@@ -1,0 +1,43 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Boss Rush Jam - Exchange"
+config/features=PackedStringArray("4.1", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*res://autoloads/Globals.gd"
+Events="*res://autoloads/Events.gd"
+SceneManager="*res://autoloads/scene_manager.tscn"
+
+[display]
+
+window/size/viewport_width=320
+window/size/viewport_height=240
+window/size/window_width_override=1280
+window/size/window_height_override=1280
+window/stretch/mode="viewport"
+
+[layer_names]
+
+2d_physics/layer_13="World"
+2d_physics/layer_14="Player"
+2d_physics/layer_15="Enemy"
+2d_physics/layer_16="Bullet"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.0901961, 0.0901961, 0.0901961, 1)
