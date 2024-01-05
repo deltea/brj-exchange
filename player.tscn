@@ -1,10 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://did6o62ni3sjp"]
+[gd_scene load_steps=8 format=3 uid="uid://did6o62ni3sjp"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_toly5"]
 [ext_resource type="Texture2D" uid="uid://li2x6sjm8ue" path="res://assets/player.png" id="1_vbidl"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i6x5"]
+atlas = ExtResource("1_vbidl")
+region = Rect2(0, 0, 10, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbqe7"]
+atlas = ExtResource("1_vbidl")
+region = Rect2(0, 0, 10, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu04m"]
+atlas = ExtResource("1_vbidl")
+region = Rect2(10, 0, 10, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gtqge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i6x5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbqe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu04m")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tomiw"]
-size = Vector2(4, 7)
+size = Vector2(6, 4.625)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -12,9 +46,14 @@ collision_mask = 13
 motion_mode = 1
 script = ExtResource("1_toly5")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_vbidl")
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gtqge")
+animation = &"idle"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
+position = Vector2(0, 2.6875)
 shape = SubResource("RectangleShape2D_tomiw")
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
