@@ -20,13 +20,14 @@ config/icon="res://icon.svg"
 Globals="*res://autoloads/Globals.gd"
 Events="*res://autoloads/Events.gd"
 SceneManager="*res://autoloads/scene_manager.tscn"
+Cursor="*res://cursor.tscn"
 
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=240
-window/size/window_width_override=1280
-window/size/window_height_override=960
+window/size/viewport_width=480
+window/size/viewport_height=270
+window/size/window_width_override=1440
+window/size/window_height_override=810
 window/stretch/mode="viewport"
 
 [input]
