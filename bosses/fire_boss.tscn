@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://6kio0pmva1lq"]
+
+[ext_resource type="Texture2D" uid="uid://ci3iat4qhxhbg" path="res://assets/bosses/fire.png" id="1_t2lle"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hcgp2"]
+radius = 15.2971
+
+[node name="FireBoss" type="Area2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_t2lle")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hcgp2")

@@ -60,11 +60,12 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func fire():
-	next_time_to_fire = Globals.time + 1 / fire_rate
+	next_time_to_fire = Globals.time + 1.0 / fire_rate
 
 	var bullet = bullet_scene.instantiate() as PlayerBullet
-	bullet.global_position = global_position
-	bullet.look_at(get_global_mouse_position())
+	var mouse_pos = get_global_mouse_position()
+	bullet.global_position = global_position + ((mouse_pos - global_position).normalized() * 5)
+	bullet.look_at(mouse_pos)
 	bullet.rotation_degrees += randf_range(-spread, spread)
 	bullet.scale = Vector2.ONE * bullet_size
 	bullet.speed = bullet_speed
