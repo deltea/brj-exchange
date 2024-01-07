@@ -38,7 +38,6 @@ texture = ExtResource("1_vbidl")
 shape = SubResource("RectangleShape2D_tomiw")
 
 [node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.5
 one_shot = true
 
 [node name="DashParticles" type="GPUParticles2D" parent="."]
@@ -48,3 +47,6 @@ process_material = SubResource("ParticleProcessMaterial_kpl2f")
 texture = ExtResource("3_snqyy")
 one_shot = true
 explosiveness = 1.0
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
+one_shot = true

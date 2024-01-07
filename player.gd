@@ -2,15 +2,16 @@ extends CharacterBody2D
 class_name Player
 
 @export_category("Movement")
-@export var run_speed = 60
-@export var dash_speed = 300
+@export var run_speed = 60.0
+@export var dash_speed = 300.0
 @export var dash_time = 0.15
+@export var dash_cooldown = 0.5
 
 @export_category("Shooting")
-@export var bullet_speed = 700
-@export var fire_rate = 3.0
-@export var spread = 10
-@export var bullet_size = 1
+@export var bullet_speed = 800.0
+@export var fire_rate = 8.0
+@export var spread = 5.0
+@export var bullet_size = 1.0
 
 @export_category("Animation")
 @export var squash_and_stretch = 0.2
@@ -19,6 +20,7 @@ class_name Player
 
 @onready var sprite := $Sprite
 @onready var dash_timer := $DashTimer
+@onready var dash_cooldown_timer := $DashCooldownTimer
 
 var target_rotation = 0.0
 var target_scale = Vector2.ONE
@@ -30,6 +32,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	dash_timer.wait_time = dash_time
+	dash_cooldown_timer.wait_time = dash_cooldown
 
 func _process(delta: float) -> void:
 	sprite.rotation = lerp_angle(sprite.rotation, target_rotation, turn_speed * delta)
@@ -38,8 +41,9 @@ func _process(delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	var input = Input.get_vector("left", "right", "up", "down")
 
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") and can_dash():
 		dash_timer.start()
+		dash_cooldown_timer.start()
 
 	if input:
 		target_scale = Vector2.ONE + Vector2(squash_and_stretch, -squash_and_stretch)
@@ -69,3 +73,6 @@ func fire():
 
 func is_dashing() -> bool:
 	return not dash_timer.is_stopped()
+
+func can_dash():
+	return dash_cooldown_timer.is_stopped()
