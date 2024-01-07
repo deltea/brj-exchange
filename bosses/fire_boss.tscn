@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dnik1siku5ttu" path="res://assets/eye.png" id="2_eev5p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hcgp2"]
-radius = 15.2971
+radius = 24.0
 
 [sub_resource type="Curve" id="Curve_f827l"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]

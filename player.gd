@@ -63,10 +63,11 @@ func _physics_process(_delta: float) -> void:
 
 func fire():
 	next_time_to_fire = Globals.time + 1.0 / fire_rate
+	Globals.mouse.impact()
 
 	var bullet = bullet_scene.instantiate() as PlayerBullet
 	var mouse_pos = get_global_mouse_position()
-	bullet.global_position = global_position + ((mouse_pos - global_position).normalized() * 5)
+	bullet.global_position = global_position + ((mouse_pos - global_position).normalized() * 12)
 	bullet.look_at(mouse_pos)
 	bullet.rotation_degrees += randf_range(-spread, spread)
 	bullet.scale = Vector2.ONE * bullet_size

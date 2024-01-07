@@ -6,11 +6,12 @@
 [node name="MouseLayer" type="CanvasLayer"]
 
 [node name="Mouse" type="TextureRect" parent="."]
-offset_left = -5.0
-offset_top = -5.0
-offset_right = 5.0
-offset_bottom = 5.0
-pivot_offset = Vector2(5, 5)
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+pivot_offset = Vector2(6, 6)
 texture = ExtResource("1_7mwta")
 stretch_mode = 2
 script = ExtResource("1_a2jbb")
+animation_speed = 10
