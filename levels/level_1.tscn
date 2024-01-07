@@ -15,12 +15,13 @@ background_color = Color(0.207843, 0.164706, 0.333333, 1)
 [node name="Player" parent="." instance=ExtResource("3_4ja5c")]
 position = Vector2(352, 192)
 
-[node name="FallBoss" parent="." instance=ExtResource("4_dlm5k")]
+[node name="FireBoss" parent="." instance=ExtResource("4_dlm5k")]
 position = Vector2(140, 82)
 
 [node name="Walls" type="Node" parent="."]
 
 [node name="Wall" type="StaticBody2D" parent="Walls"]
+z_index = 10
 position = Vector2(-176, 192)
 scale = Vector2(22, 48)
 collision_mask = 15
@@ -33,6 +34,7 @@ texture = ExtResource("4_sblfd")
 shape = SubResource("RectangleShape2D_wvt2h")
 
 [node name="Wall2" type="StaticBody2D" parent="Walls"]
+z_index = 10
 position = Vector2(880, 192)
 scale = Vector2(22, 48)
 collision_mask = 15
@@ -45,6 +47,7 @@ texture = ExtResource("4_sblfd")
 shape = SubResource("RectangleShape2D_wvt2h")
 
 [node name="Wall3" type="StaticBody2D" parent="Walls"]
+z_index = 10
 position = Vector2(352, -136)
 scale = Vector2(64, 17)
 collision_mask = 15
@@ -57,6 +60,7 @@ texture = ExtResource("4_sblfd")
 shape = SubResource("RectangleShape2D_wvt2h")
 
 [node name="Wall4" type="StaticBody2D" parent="Walls"]
+z_index = 10
 position = Vector2(352, 520)
 scale = Vector2(64, 17)
 collision_mask = 15

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://p8000uwuslll"]
+
+[ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_jgnp8"]
+
+[node name="FireBullet" instance=ExtResource("1_jgnp8")]

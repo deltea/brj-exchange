@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @export_category("Movement")
-@export var run_speed = 60.0
+@export var run_speed = 100.0
 @export var dash_speed = 300.0
 @export var dash_time = 0.2
 @export var dash_cooldown = 0.4

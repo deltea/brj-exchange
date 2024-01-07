@@ -1,14 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://6kio0pmva1lq"]
+[gd_scene load_steps=10 format=3 uid="uid://6kio0pmva1lq"]
 
+[ext_resource type="Script" path="res://bosses/fire_boss.gd" id="1_qjwe8"]
 [ext_resource type="Texture2D" uid="uid://ci3iat4qhxhbg" path="res://assets/bosses/fire.png" id="1_t2lle"]
+[ext_resource type="Texture2D" uid="uid://dnik1siku5ttu" path="res://assets/eye.png" id="2_eev5p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hcgp2"]
 radius = 15.2971
 
+[sub_resource type="Curve" id="Curve_f827l"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e7iyv"]
+curve = SubResource("Curve_f827l")
+
+[sub_resource type="Curve" id="Curve_0apcj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.839286, 1), 0.0, 0.0, 0, 0, Vector2(0.994048, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_v6c28"]
+curve = SubResource("Curve_0apcj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g28rx"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 360.0
+angle_curve = SubResource("CurveTexture_e7iyv")
+scale_min = 5.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_v6c28")
+color = Color(0.996078, 0.329412, 0.435294, 1)
+
 [node name="FireBoss" type="Area2D"]
+script = ExtResource("1_qjwe8")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_t2lle")
 
+[node name="Eye" type="Sprite2D" parent="."]
+position = Vector2(5, 0)
+texture = ExtResource("2_eev5p")
+
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hcgp2")
+
+[node name="FlamesParticles" type="GPUParticles2D" parent="."]
+z_index = -1
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_g28rx")
+lifetime = 1.2
+preprocess = 2.0

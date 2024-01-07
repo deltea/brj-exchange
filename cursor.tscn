@@ -3,7 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://4mdvsxk6y5dj" path="res://assets/cursor.png" id="1_7mwta"]
 [ext_resource type="Script" path="res://cursor.gd" id="1_a2jbb"]
 
-[node name="Cursor" type="Sprite2D"]
-z_index = 1000
+[node name="MouseLayer" type="CanvasLayer"]
+
+[node name="Mouse" type="TextureRect" parent="."]
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+pivot_offset = Vector2(5, 5)
 texture = ExtResource("1_7mwta")
+stretch_mode = 2
 script = ExtResource("1_a2jbb")
