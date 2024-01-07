@@ -4,7 +4,7 @@ class_name Player
 @export_category("Movement")
 @export var run_speed = 120.0
 @export var dash_speed = 400.0
-@export var dash_time = 0.16r
+@export var dash_time = 0.16
 @export var dash_cooldown = 0.4
 
 @export_category("Shooting")
@@ -21,6 +21,7 @@ class_name Player
 @onready var sprite := $Sprite
 @onready var dash_timer := $DashTimer
 @onready var dash_cooldown_timer := $DashCooldownTimer
+@onready var move_particles := $MoveParticles
 
 var target_rotation = 0.0
 var target_scale = Vector2.ONE
@@ -44,6 +45,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("dash") and can_dash():
 		dash_timer.start()
 		dash_cooldown_timer.start()
+		move_particles.emitting = false
 
 	if input:
 		target_scale = Vector2.ONE + Vector2(squash_and_stretch, -squash_and_stretch)
@@ -77,3 +79,6 @@ func is_dashing() -> bool:
 
 func can_dash():
 	return dash_cooldown_timer.is_stopped()
+
+func _on_dash_timer_timeout() -> void:
+	move_particles.emitting = true
