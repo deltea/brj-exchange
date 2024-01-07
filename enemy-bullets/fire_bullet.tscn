@@ -3,3 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_jgnp8"]
 
 [node name="FireBullet" instance=ExtResource("1_jgnp8")]
+collision_layer = 0
+collision_mask = 0

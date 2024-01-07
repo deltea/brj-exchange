@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh17qritcspvs"]
+
+[ext_resource type="Script" path="res://wall.gd" id="1_k58my"]
+[ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="2_ejbvc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvt2h"]
+size = Vector2(16, 16)
+
+[node name="Wall" type="StaticBody2D"]
+z_index = 10
+collision_mask = 15
+script = ExtResource("1_k58my")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.243137, 0.196078, 0.392157, 1)
+texture = ExtResource("2_ejbvc")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wvt2h")
