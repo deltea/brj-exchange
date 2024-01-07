@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://did6o62ni3sjp"]
+[gd_scene load_steps=10 format=3 uid="uid://did6o62ni3sjp"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_toly5"]
 [ext_resource type="Texture2D" uid="uid://li2x6sjm8ue" path="res://assets/player.png" id="1_vbidl"]
 [ext_resource type="Texture2D" uid="uid://c46htyaexexvl" path="res://assets/circle-particle.png" id="3_snqyy"]
 [ext_resource type="PackedScene" uid="uid://bi5x0wqyu8o1f" path="res://camera.tscn" id="4_gr7c1"]
+[ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="4_tufma"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tomiw"]
 size = Vector2(4, 4)
@@ -35,6 +36,9 @@ script = ExtResource("1_toly5")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_vbidl")
+
+[node name="DropShadow" parent="Sprite" instance=ExtResource("4_tufma")]
+shadow_scale = Vector2(1, 1)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tomiw")

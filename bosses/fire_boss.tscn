@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://6kio0pmva1lq"]
+[gd_scene load_steps=11 format=3 uid="uid://6kio0pmva1lq"]
 
 [ext_resource type="Script" path="res://bosses/fire_boss.gd" id="1_qjwe8"]
 [ext_resource type="Texture2D" uid="uid://ci3iat4qhxhbg" path="res://assets/bosses/fire.png" id="1_t2lle"]
 [ext_resource type="Texture2D" uid="uid://dnik1siku5ttu" path="res://assets/eye.png" id="2_eev5p"]
+[ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="3_vnfiq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hcgp2"]
 radius = 24.0
@@ -42,6 +43,10 @@ script = ExtResource("1_qjwe8")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_t2lle")
 
+[node name="DropShadow" parent="Sprite" instance=ExtResource("3_vnfiq")]
+shadow_offset = Vector2(0, 32)
+shadow_scale = Vector2(1, 0.5)
+
 [node name="Eye" type="Sprite2D" parent="."]
 position = Vector2(5, 0)
 texture = ExtResource("2_eev5p")
@@ -55,3 +60,4 @@ amount = 32
 process_material = SubResource("ParticleProcessMaterial_g28rx")
 lifetime = 1.2
 preprocess = 2.0
+visibility_rect = Rect2(0, 0, 0, 0)

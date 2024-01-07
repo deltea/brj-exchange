@@ -25,8 +25,8 @@ orbit_velocity_max = 0.0
 angle_min = -360.0
 angle_max = 360.0
 angle_curve = SubResource("CurveTexture_q86rg")
-scale_min = 10.0
-scale_max = 15.0
+scale_min = 5.0
+scale_max = 10.0
 scale_curve = SubResource("CurveTexture_4wfsm")
 
 [node name="WallHit" type="GPUParticles2D"]

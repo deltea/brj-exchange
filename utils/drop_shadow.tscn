@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cigrqs48dhwyp"]
+
+[ext_resource type="Script" path="res://utils/drop_shadow.gd" id="1_540ns"]
+[ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="1_rvw7q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhie2"]
+shader = ExtResource("1_rvw7q")
+shader_parameter/color = Color(0.243137, 0.196078, 0.392157, 1)
+
+[node name="DropShadow" type="Sprite2D"]
+top_level = true
+z_index = -20
+material = SubResource("ShaderMaterial_xhie2")
+script = ExtResource("1_540ns")
+shadow_scale = null

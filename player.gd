@@ -43,9 +43,7 @@ func _physics_process(_delta: float) -> void:
 	var input = Input.get_vector("left", "right", "up", "down")
 
 	if Input.is_action_just_pressed("dash") and can_dash():
-		dash_timer.start()
-		dash_cooldown_timer.start()
-		move_particles.emitting = false
+		dash()
 
 	if input:
 		target_scale = Vector2.ONE + Vector2(squash_and_stretch, -squash_and_stretch)
@@ -74,6 +72,11 @@ func fire():
 	bullet.speed = bullet_speed
 
 	Globals.world.add_child(bullet)
+
+func dash():
+	dash_timer.start()
+	dash_cooldown_timer.start()
+	move_particles.emitting = false
 
 func is_dashing() -> bool:
 	return not dash_timer.is_stopped()

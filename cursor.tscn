@@ -14,4 +14,3 @@ pivot_offset = Vector2(6, 6)
 texture = ExtResource("1_7mwta")
 stretch_mode = 2
 script = ExtResource("1_a2jbb")
-animation_speed = 10

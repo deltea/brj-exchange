@@ -1,7 +1,7 @@
 extends TextureRect
 class_name Mouse
 
-@export var animation_speed = 15
+@export var animation_speed = 10
 
 var target_rotation = 0
 
