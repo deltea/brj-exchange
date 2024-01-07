@@ -38,7 +38,6 @@ func fireballs_state():
 			fire_fireball()
 			await Globals.wait(0.5)
 
-	# fireballs_state()
 	choose_random_state()
 
 func bullet_ring_state():
@@ -47,16 +46,18 @@ func bullet_ring_state():
 	var offset = 0
 	for i in range(2):
 		for x in range(bullet_ring_num):
+			scale = Vector2.ONE * 1.5
+
 			var bullet = bullet_scene.instantiate() as EnemyBullet
 			bullet.position = position
 			bullet.rotation_degrees = 360.0 / bullet_ring_num * x + offset
 			bullet.speed = bullet_ring_speed
+
 			Globals.world.add_child(bullet)
 
 		offset += 9
 		await Globals.wait(0.4)
 
-	# bullet_ring_state()
 	choose_random_state()
 
 func laser_extrude_state():
