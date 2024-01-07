@@ -1,14 +1,69 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkleaeatsa8o"]
+[gd_scene load_steps=6 format=3 uid="uid://dkleaeatsa8o"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_1ggi7"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="3_4ja5c"]
 [ext_resource type="PackedScene" uid="uid://6kio0pmva1lq" path="res://bosses/fire_boss.tscn" id="4_dlm5k"]
+[ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="4_sblfd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvt2h"]
+size = Vector2(16, 16)
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_1ggi7")
+background_color = Color(0.207843, 0.164706, 0.333333, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_4ja5c")]
-position = Vector2(224, 128)
+position = Vector2(352, 192)
 
 [node name="FallBoss" parent="." instance=ExtResource("4_dlm5k")]
 position = Vector2(140, 82)
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Walls"]
+position = Vector2(-176, 192)
+scale = Vector2(22, 48)
+collision_mask = 15
+
+[node name="Sprite" type="Sprite2D" parent="Walls/Wall"]
+self_modulate = Color(0.243137, 0.196078, 0.392157, 1)
+texture = ExtResource("4_sblfd")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Walls/Wall"]
+shape = SubResource("RectangleShape2D_wvt2h")
+
+[node name="Wall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(880, 192)
+scale = Vector2(22, 48)
+collision_mask = 15
+
+[node name="Sprite" type="Sprite2D" parent="Walls/Wall2"]
+self_modulate = Color(0.243137, 0.196078, 0.392157, 1)
+texture = ExtResource("4_sblfd")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Walls/Wall2"]
+shape = SubResource("RectangleShape2D_wvt2h")
+
+[node name="Wall3" type="StaticBody2D" parent="Walls"]
+position = Vector2(352, -136)
+scale = Vector2(64, 17)
+collision_mask = 15
+
+[node name="Sprite" type="Sprite2D" parent="Walls/Wall3"]
+self_modulate = Color(0.243137, 0.196078, 0.392157, 1)
+texture = ExtResource("4_sblfd")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Walls/Wall3"]
+shape = SubResource("RectangleShape2D_wvt2h")
+
+[node name="Wall4" type="StaticBody2D" parent="Walls"]
+position = Vector2(352, 520)
+scale = Vector2(64, 17)
+collision_mask = 15
+
+[node name="Sprite" type="Sprite2D" parent="Walls/Wall4"]
+self_modulate = Color(0.243137, 0.196078, 0.392157, 1)
+texture = ExtResource("4_sblfd")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Walls/Wall4"]
+shape = SubResource("RectangleShape2D_wvt2h")

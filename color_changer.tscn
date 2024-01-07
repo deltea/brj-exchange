@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhymelq6irklw"]
-
-[sub_resource type="GDScript" id="GDScript_ck0p5"]
-script/source = "extends Node
-class_name ColorChanger
-"
-
-[node name="ColorChanger" type="Node"]
-script = SubResource("GDScript_ck0p5")

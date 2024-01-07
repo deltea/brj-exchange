@@ -4,8 +4,8 @@ class_name Player
 @export_category("Movement")
 @export var run_speed = 60.0
 @export var dash_speed = 300.0
-@export var dash_time = 0.15
-@export var dash_cooldown = 0.5
+@export var dash_time = 0.2
+@export var dash_cooldown = 0.4
 
 @export_category("Shooting")
 @export var bullet_speed = 800.0
