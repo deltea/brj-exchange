@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://8fp5u2l6vvfr"]
+
+[ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_mkl52"]
+[ext_resource type="Texture2D" uid="uid://dwir3wo4g8luh" path="res://assets/enemy-bullets/fireball-1.png" id="2_gqfha"]
+[ext_resource type="Script" path="res://enemy-bullets/fireball.gd" id="2_owff2"]
+[ext_resource type="Texture2D" uid="uid://bmjvui2n02mk4" path="res://assets/enemy-bullets/fireball-2.png" id="4_bru31"]
+
+[sub_resource type="Curve" id="Curve_it7j2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_kb87u"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.99213, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_bxqdx"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.5, 0.5)
+colors = PackedColorArray(1, 0.992157, 1, 1, 1, 0.619608, 0.490196, 1)
+
+[node name="Fireball" instance=ExtResource("1_mkl52")]
+script = ExtResource("2_owff2")
+texture_1 = ExtResource("2_gqfha")
+texture_2 = ExtResource("4_bru31")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_gqfha")
+
+[node name="FlamesParticles" type="CPUParticles2D" parent="." index="4"]
+z_index = -10
+amount = 16
+lifetime = 0.8
+emission_shape = 3
+emission_rect_extents = Vector2(0, 16)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("Curve_it7j2")
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_kb87u")
+color_initial_ramp = SubResource("Gradient_bxqdx")

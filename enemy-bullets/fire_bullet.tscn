@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://p8000uwuslll"]
+[gd_scene load_steps=3 format=3 uid="uid://p8000uwuslll"]
 
 [ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_jgnp8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8fpxu"]
+radius = 5.0
 
 [node name="FireBullet" instance=ExtResource("1_jgnp8")]
 collision_layer = 0
 collision_mask = 0
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("CircleShape2D_8fpxu")
