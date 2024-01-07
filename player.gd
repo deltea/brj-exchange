@@ -1,21 +1,29 @@
 extends CharacterBody2D
 class_name Player
 
+@export_category("Movement")
 @export var run_speed = 60
-@export var dash_speed = 200
-@export var dash_time = 0.2
-@export var dash_cooldown = 1.0
+@export var dash_speed = 300
+@export var dash_time = 0.15
+
+@export_category("Shooting")
+@export var bullet_speed = 700
+@export var fire_rate = 3.0
+@export var spread = 10
+@export var bullet_size = 1
 
 @export_category("Animation")
-@export var tilt = 10
-@export var dash_ghost_delay = 0.02
-@export var dash_ghost_duration = 0.3
+@export var squash_and_stretch = 0.2
+@export var turn_speed = 20
+@export var squash_and_stretch_speed = 50
 
 @onready var sprite := $Sprite
 @onready var dash_timer := $DashTimer
 
-var ghost_scene = preload("res://dash_ghost.tscn")
-var dash_ghost_timer = 0
+var target_rotation = 0.0
+var target_scale = Vector2.ONE
+var next_time_to_fire = 0.0
+var bullet_scene = preload("res://player_bullet.tscn")
 
 func _enter_tree() -> void:
 	Globals.player = self
@@ -24,35 +32,40 @@ func _ready() -> void:
 	dash_timer.wait_time = dash_time
 
 func _process(delta: float) -> void:
-	dash_ghost_timer += delta
-	if dash_ghost_timer >= dash_ghost_delay and is_dashing():
-		dash_ghost_timer = 0
-		instance_ghost()
+	sprite.rotation = lerp_angle(sprite.rotation, target_rotation, turn_speed * delta)
+	sprite.scale = sprite.scale.move_toward(target_scale, squash_and_stretch_speed * delta)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var input = Input.get_vector("left", "right", "up", "down")
-
-	sprite.rotation_degrees = input.x * tilt
-	if input:
-		sprite.play("run")
-	else:
-		sprite.stop()
-
-	var speed = dash_speed if is_dashing() else run_speed
-	velocity = input * speed
 
 	if Input.is_action_just_pressed("dash"):
 		dash_timer.start()
 
+	if input:
+		target_scale = Vector2.ONE + Vector2(squash_and_stretch, -squash_and_stretch)
+		target_rotation = input.angle()
+	else:
+		target_scale = Vector2.ONE
+
+	var speed = dash_speed if is_dashing() else run_speed
+	velocity = input * speed
+
+	if Input.is_action_pressed("fire") and Globals.time >= next_time_to_fire:
+		fire()
+
 	move_and_slide()
 
-func instance_ghost():
-	var ghost = ghost_scene.instantiate() as DashGhost
+func fire():
+	next_time_to_fire = Globals.time + 1 / fire_rate
 
-	ghost.global_position = global_position
-	ghost.duration = dash_ghost_duration
+	var bullet = bullet_scene.instantiate() as PlayerBullet
+	bullet.global_position = global_position
+	bullet.look_at(get_global_mouse_position())
+	bullet.rotation_degrees += randf_range(-spread, spread)
+	bullet.scale = Vector2.ONE * bullet_size
+	bullet.speed = bullet_speed
 
-	get_parent().get_parent().add_child(ghost)
+	Globals.world.add_child(bullet)
 
 func is_dashing() -> bool:
 	return not dash_timer.is_stopped()

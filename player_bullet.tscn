@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1j48h4fyg7fk"]
+
+[ext_resource type="PackedScene" uid="uid://350rrubvnvqp" path="res://bullet.tscn" id="1_od0rr"]
+[ext_resource type="Script" path="res://player_bullet.gd" id="2_5lux5"]
+
+[node name="PlayerBullet" instance=ExtResource("1_od0rr")]
+collision_layer = 8
+script = ExtResource("2_5lux5")

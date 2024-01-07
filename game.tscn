@@ -1,22 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkleaeatsa8o"]
+[gd_scene load_steps=3 format=3 uid="uid://dkleaeatsa8o"]
 
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="1_3j88b"]
-[ext_resource type="FontFile" uid="uid://dw82ff1gmdlec" path="res://assets/fonts/monogram.ttf" id="1_tyi4b"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_dv8b1"]
-font = ExtResource("1_tyi4b")
+[ext_resource type="Script" path="res://game.gd" id="1_udh55"]
 
 [node name="Game" type="Node2D"]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 129.0
-offset_top = 85.0
-offset_right = 159.0
-offset_bottom = 101.0
-text = "Common"
-label_settings = SubResource("LabelSettings_dv8b1")
+script = ExtResource("1_udh55")
 
 [node name="Player" parent="." instance=ExtResource("1_3j88b")]
 position = Vector2(144, 122)
