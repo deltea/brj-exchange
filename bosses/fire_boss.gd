@@ -4,7 +4,7 @@ class_name FireBoss
 enum STATE {
 	FIREBALLS,
 	BULLET_RING,
-	LASER_EXTRUDE,
+	LASER,
 	BULLET_SPIRAL,
 }
 
@@ -13,8 +13,8 @@ enum STATE {
 @export var fireball_speed = 90
 @export var bullet_ring_num = 20
 @export var bullet_ring_speed = 100
-@export var laser_extrude_telegraph = 0.5
-@export var laser_extrude_speed = 0.2
+@export var laser_telegraph = 0.6
+@export var laser_speed = 0.8
 @export var bullet_spiral_num = 60
 @export var bullet_spiral_speed = 200
 
@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	sprite.scale = sprite.scale.move_toward(Vector2.ONE, animation_speed * delta)
 
 	laser_line.set_point_position(0, global_position)
-	if not state == "LASER_EXTRUDE": laser_line.set_point_position(1, global_position)
+	if not state == "LASER": laser_line.set_point_position(1, global_position)
 
 func fireballs_state():
 	for i in range(2):
@@ -56,7 +56,7 @@ func bullet_ring_state():
 	await move(Vector2(352, 192), 2.0)
 
 	var offset = 0
-	for i in range(2):
+	for i in range(3):
 		for x in range(bullet_ring_num):
 			sprite.scale = Vector2.ONE * 1.5
 
@@ -68,11 +68,11 @@ func bullet_ring_state():
 			Globals.world.add_child(bullet)
 
 		offset += 9
-		await Globals.wait(0.4)
+		await Globals.wait(0.5)
 
 	choose_random_state()
 
-func laser_extrude_state():
+func laser_state():
 	for i in range(8):
 		var direction = get_angle_to(Globals.player.position) - PI / 2
 		laser_ray.rotation = direction
@@ -82,12 +82,13 @@ func laser_extrude_state():
 			laser_line.set_point_position(1, point)
 			laser_line.default_color = Color(255, 255, 255, 0.2)
 			laser_line.width = 0
-			var tween = get_tree().create_tween()
-			tween.tween_property(laser_line, "width", 30, laser_extrude_telegraph)
-			await tween.finished
-			laser_line.default_color = Color.WHITE
 
-		await Globals.wait(laser_extrude_speed)
+			var tween = get_tree().create_tween()
+			tween.tween_property(laser_line, "width", 30, laser_telegraph)
+			tween.tween_property(laser_line, "default_color", Color.WHITE, 0)
+			tween.tween_property(laser_line, "width", 0, 0.1).set_delay(0.1)
+
+		await Globals.wait(laser_speed)
 
 	choose_random_state()
 
@@ -130,7 +131,7 @@ func choose_random_state():
 	match state:
 		"FIREBALLS": fireballs_state()
 		"BULLET_RING": bullet_ring_state()
-		"LASER_EXTRUDE": laser_extrude_state()
+		"LASER": laser_state()
 		"BULLET_SPIRAL": bullet_spiral_state()
 
 func flash():

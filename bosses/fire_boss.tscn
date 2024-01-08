@@ -41,8 +41,8 @@ fireball_positions = []
 fireball_speed = 90
 bullet_ring_num = 20
 bullet_ring_speed = 100
-laser_extrude_telegraph = 0.5
-laser_extrude_speed = 0.2
+laser_telegraph = 0.6
+laser_speed = 0.8
 bullet_spiral_num = 60
 bullet_spiral_speed = 200
 
