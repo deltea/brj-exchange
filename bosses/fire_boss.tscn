@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://6kio0pmva1lq"]
+[gd_scene load_steps=14 format=3 uid="uid://6kio0pmva1lq"]
 
 [ext_resource type="Texture2D" uid="uid://ci3iat4qhxhbg" path="res://assets/bosses/fire.png" id="1_t2lle"]
 [ext_resource type="PackedScene" uid="uid://capye210yfaqj" path="res://bosses/boss.tscn" id="1_ws5ey"]
@@ -6,16 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://dnik1siku5ttu" path="res://assets/eye.png" id="2_eev5p"]
 [ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="2_s3aha"]
 [ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="3_vnfiq"]
+[ext_resource type="Texture2D" uid="uid://cj45b77p7h80m" path="res://assets/enemy-bullets/laser.png" id="7_qp7ny"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbwp4"]
+radius = 21.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iivps"]
 shader = ExtResource("2_s3aha")
 shader_parameter/enabled = false
 shader_parameter/color = Color(1, 1, 1, 1)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tbwp4"]
-radius = 21.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_febb2"]
+shader = ExtResource("2_s3aha")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mfm5k"]
 shader = ExtResource("2_s3aha")
 shader_parameter/enabled = false
 shader_parameter/color = Color(1, 1, 1, 1)
@@ -35,17 +41,19 @@ fireball_positions = []
 fireball_speed = 90
 bullet_ring_num = 20
 bullet_ring_speed = 100
+laser_extrude_telegraph = 0.5
+laser_extrude_speed = 0.2
 
-[node name="Sprite" parent="." index="0"]
+[node name="CollisionShape" parent="." index="0"]
+shape = SubResource("CircleShape2D_tbwp4")
+
+[node name="Sprite" parent="." index="1"]
 material = SubResource("ShaderMaterial_iivps")
 texture = ExtResource("1_t2lle")
 
 [node name="DropShadow" parent="Sprite" index="0" instance=ExtResource("3_vnfiq")]
 shadow_offset = Vector2(0, 32)
 shadow_scale = Vector2(1, 0.5)
-
-[node name="CollisionShape" parent="." index="1"]
-shape = SubResource("CircleShape2D_tbwp4")
 
 [node name="Eye" type="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_febb2")
@@ -54,6 +62,7 @@ texture = ExtResource("2_eev5p")
 
 [node name="FlamesParticles" type="CPUParticles2D" parent="." index="3"]
 z_index = -1
+material = SubResource("ShaderMaterial_mfm5k")
 amount = 32
 lifetime = 1.2
 preprocess = 2.0
@@ -69,5 +78,17 @@ scale_amount_min = 5.0
 scale_amount_max = 10.0
 scale_amount_curve = SubResource("Curve_2xwsg")
 color = Color(0.996078, 0.329412, 0.435294, 1)
+
+[node name="LaserLine" type="Line2D" parent="." index="4"]
+top_level = true
+z_index = -10
+points = PackedVector2Array(0, 0, 0, 0)
+width = 30.0
+texture = ExtResource("7_qp7ny")
+texture_mode = 1
+end_cap_mode = 1
+
+[node name="LaserRay" type="RayCast2D" parent="." index="5"]
+target_position = Vector2(0, 500)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
