@@ -43,6 +43,8 @@ bullet_ring_num = 20
 bullet_ring_speed = 100
 laser_extrude_telegraph = 0.5
 laser_extrude_speed = 0.2
+bullet_spiral_num = 60
+bullet_spiral_speed = 200
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource("CircleShape2D_tbwp4")

@@ -15,6 +15,8 @@ enum STATE {
 @export var bullet_ring_speed = 100
 @export var laser_extrude_telegraph = 0.5
 @export var laser_extrude_speed = 0.2
+@export var bullet_spiral_num = 60
+@export var bullet_spiral_speed = 200
 
 @onready var sprite := $Sprite
 @onready var eye := $Eye
@@ -28,7 +30,6 @@ var bullet_scene = preload("res://enemy-bullets/fire_bullet.tscn")
 
 func _ready() -> void:
 	choose_random_state()
-	#
 
 func _process(delta: float) -> void:
 	var direction = (Globals.player.position - global_position).normalized()
@@ -66,8 +67,6 @@ func bullet_ring_state():
 
 			Globals.world.add_child(bullet)
 
-			await Globals.wait(0.1)
-
 		offset += 9
 		await Globals.wait(0.4)
 
@@ -93,6 +92,22 @@ func laser_extrude_state():
 	choose_random_state()
 
 func bullet_spiral_state():
+	await move(Vector2(352, 192), 2.0)
+
+	for i in range(bullet_spiral_num):
+		sprite.scale = Vector2.ONE * 1.5
+
+		var bullet = bullet_scene.instantiate() as EnemyBullet
+		bullet.position = position
+		bullet.rotation_degrees = 720.0 / bullet_spiral_num * i
+		bullet.speed = bullet_spiral_speed
+
+		Globals.world.add_child(bullet)
+
+		await Globals.wait(0.05)
+
+	await Globals.wait(0.4)
+
 	choose_random_state()
 
 func fire_fireball():
