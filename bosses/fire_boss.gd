@@ -1,4 +1,5 @@
 extends Boss
+class_name FireBoss
 
 enum STATE {
 	FIREBALLS,
@@ -13,6 +14,7 @@ enum STATE {
 @export var bullet_ring_num = 20
 @export var bullet_ring_speed = 100
 
+@onready var sprite := $Sprite
 @onready var eye := $Eye
 
 var state = STATE.FIREBALLS
@@ -88,3 +90,12 @@ func choose_random_state():
 		"BULLET_RING": bullet_ring_state()
 		"LASER_EXTRUDE": fireballs_state()
 		"LASER_FOLLOW": bullet_ring_state()
+
+func flash():
+	scale = Vector2.ONE * 1.2
+
+	sprite.material.set_shader_parameter("enabled", true)
+	eye.material.set_shader_parameter("enabled", true)
+	await Globals.wait(0.2)
+	sprite.material.set_shader_parameter("enabled", false)
+	eye.material.set_shader_parameter("enabled", false)

@@ -1,39 +1,58 @@
-[gd_scene load_steps=8 format=3 uid="uid://6kio0pmva1lq"]
+[gd_scene load_steps=12 format=3 uid="uid://6kio0pmva1lq"]
 
-[ext_resource type="Script" path="res://bosses/fire_boss.gd" id="1_qjwe8"]
 [ext_resource type="Texture2D" uid="uid://ci3iat4qhxhbg" path="res://assets/bosses/fire.png" id="1_t2lle"]
+[ext_resource type="PackedScene" uid="uid://capye210yfaqj" path="res://bosses/boss.tscn" id="1_ws5ey"]
+[ext_resource type="Script" path="res://bosses/fire_boss.gd" id="2_bs7sd"]
 [ext_resource type="Texture2D" uid="uid://dnik1siku5ttu" path="res://assets/eye.png" id="2_eev5p"]
+[ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="2_s3aha"]
 [ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="3_vnfiq"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hcgp2"]
-radius = 24.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iivps"]
+shader = ExtResource("2_s3aha")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
 
-[sub_resource type="Curve" id="Curve_f827l"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbwp4"]
+radius = 21.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_febb2"]
+shader = ExtResource("2_s3aha")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="Curve" id="Curve_pl2nr"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_0apcj"]
+[sub_resource type="Curve" id="Curve_2xwsg"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.839286, 1), 0.0, 0.0, 0, 0, Vector2(0.994048, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="FireBoss" type="Area2D"]
-script = ExtResource("1_qjwe8")
+[node name="FireBoss" node_paths=PackedStringArray("fireball_positions") instance=ExtResource("1_ws5ey")]
+script = ExtResource("2_bs7sd")
+animation_speed = 2
+fireball_positions = []
+fireball_speed = 90
+bullet_ring_num = 20
+bullet_ring_speed = 100
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_iivps")
 texture = ExtResource("1_t2lle")
 
-[node name="DropShadow" parent="Sprite" instance=ExtResource("3_vnfiq")]
+[node name="DropShadow" parent="Sprite" index="0" instance=ExtResource("3_vnfiq")]
 shadow_offset = Vector2(0, 32)
 shadow_scale = Vector2(1, 0.5)
 
-[node name="Eye" type="Sprite2D" parent="."]
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("CircleShape2D_tbwp4")
+
+[node name="Eye" type="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_febb2")
 position = Vector2(5, 0)
 texture = ExtResource("2_eev5p")
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_hcgp2")
-
-[node name="FlamesParticles" type="CPUParticles2D" parent="."]
+[node name="FlamesParticles" type="CPUParticles2D" parent="." index="3"]
 z_index = -1
 amount = 32
 lifetime = 1.2
@@ -45,8 +64,10 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 20.0
 initial_velocity_max = 20.0
 angle_max = 360.0
-angle_curve = SubResource("Curve_f827l")
+angle_curve = SubResource("Curve_pl2nr")
 scale_amount_min = 5.0
 scale_amount_max = 10.0
-scale_amount_curve = SubResource("Curve_0apcj")
+scale_amount_curve = SubResource("Curve_2xwsg")
 color = Color(0.996078, 0.329412, 0.435294, 1)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

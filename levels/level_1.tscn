@@ -13,7 +13,7 @@ background_color = Color(0.207843, 0.164706, 0.333333, 1)
 position = Vector2(352, 192)
 
 [node name="FireBoss" parent="." node_paths=PackedStringArray("fireball_positions") instance=ExtResource("4_dlm5k")]
-position = Vector2(192, 128)
+position = Vector2(176, 128)
 fireball_positions = [NodePath("../Positions/Marker2D6"), NodePath("../Positions/Marker2D5"), NodePath("../Positions/Marker2D4"), NodePath("../Positions/Marker2D3"), NodePath("../Positions/Marker2D2"), NodePath("../Positions/Marker2D")]
 
 [node name="Walls" type="Node" parent="."]

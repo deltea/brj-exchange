@@ -12,6 +12,7 @@ class_name Player
 @export var fire_rate = 8.0
 @export var spread = 5.0
 @export var bullet_size = 1.0
+@export var bullet_damage = 1.0
 
 @export_category("Animation")
 @export var squash_and_stretch = 0.2
