@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://cursor.gd" id="1_a2jbb"]
 
 [node name="MouseLayer" type="CanvasLayer"]
+layer = 100
 
 [node name="Mouse" type="TextureRect" parent="."]
 offset_left = -6.0

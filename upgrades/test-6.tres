@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://dfrvdmjj8bjmm"]
+
+[ext_resource type="Script" path="res://upgrade_resource.gd" id="1_m1u3w"]
+[ext_resource type="Texture2D" uid="uid://cp4s8ga7e423h" path="res://assets/cards/placeholder.png" id="2_36b2b"]
+
+[resource]
+script = ExtResource("1_m1u3w")
+name = "Test 1"
+description = "This is a test. This card does nothing. Boring."
+exchange_cost = 1
+texture = ExtResource("2_36b2b")

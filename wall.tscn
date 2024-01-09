@@ -11,9 +11,9 @@ z_index = 10
 collision_mask = 15
 script = ExtResource("1_k58my")
 
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wvt2h")
+
 [node name="Sprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.243137, 0.196078, 0.392157, 1)
 texture = ExtResource("2_ejbvc")
-
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_wvt2h")

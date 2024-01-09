@@ -19,5 +19,8 @@ func _process(delta: float) -> void:
 	rotation_degrees = move_toward(rotation_degrees, target_rotation, 800 * delta)
 
 func impact():
-	target_rotation += 90
 	scale = Vector2.ONE * 1.8
+
+func impact_rotation():
+	impact()
+	target_rotation += 90

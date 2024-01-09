@@ -55,7 +55,8 @@ texture = ExtResource("1_t2lle")
 
 [node name="DropShadow" parent="Sprite" index="0" instance=ExtResource("3_vnfiq")]
 shadow_offset = Vector2(0, 32)
-shadow_scale = Vector2(1, 0.5)
+shadow_color = Color(0.243137, 0.196078, 0.392157, 1)
+scale_multiplier = Vector2(1, 0.5)
 
 [node name="Eye" type="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_febb2")

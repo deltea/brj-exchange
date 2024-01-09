@@ -18,7 +18,8 @@ func take_damage():
 		die()
 
 func die():
-	print("dead")
+	queue_free()
+	SceneManager.change_scene(SceneManager.exchange_scene)
 
 func flash():
 	if $Sprite:
