@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 Globals="*res://autoloads/Globals.gd"
 Events="*res://autoloads/Events.gd"
 SceneManager="*res://autoloads/scene_manager.tscn"
-Cursor="*res://cursor.tscn"
+Cursor="*res://autoloads/cursor.tscn"
 UpgradeManager="*res://autoloads/upgrade_manager.tscn"
 
 [display]
