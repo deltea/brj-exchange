@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5ii0oh7b1hwh"]
 
 [ext_resource type="Texture2D" uid="uid://4mdvsxk6y5dj" path="res://assets/cursor.png" id="1_7mwta"]
-[ext_resource type="Script" path="res://cursor.gd" id="1_a2jbb"]
+[ext_resource type="Script" path="res://autoloads/cursor.gd" id="1_a2jbb"]
 
 [node name="MouseLayer" type="CanvasLayer"]
 layer = 100
