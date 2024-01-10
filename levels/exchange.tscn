@@ -1,14 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxkfboqgr7sje"]
+[gd_scene load_steps=7 format=3 uid="uid://bxkfboqgr7sje"]
 
 [ext_resource type="Script" path="res://exchange.gd" id="1_1gvsp"]
 [ext_resource type="Shader" path="res://shaders/swirl_background.gdshader" id="2_6nt6n"]
 [ext_resource type="Texture2D" uid="uid://1lyf8m6e541s" path="res://assets/background.png" id="3_4fj8d"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_m3le3"]
+noise_type = 0
+frequency = 0.0091
+fractal_type = 2
+fractal_octaves = 1
+fractal_ping_pong_strength = 1.516
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jsu0q"]
+noise = SubResource("FastNoiseLite_m3le3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yn8bx"]
 shader = ExtResource("2_6nt6n")
 shader_parameter/color_1 = Color(0.407843, 0.407843, 0.407843, 1)
 shader_parameter/color_2 = Color(0.764706, 0.764706, 0.764706, 1)
 shader_parameter/swirl_speed = 0.5
+shader_parameter/noise = SubResource("NoiseTexture2D_jsu0q")
 
 [node name="Exchange" type="Node2D"]
 script = ExtResource("1_1gvsp")
