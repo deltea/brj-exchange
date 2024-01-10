@@ -15,9 +15,9 @@ noise = SubResource("FastNoiseLite_m3le3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yn8bx"]
 shader = ExtResource("2_6nt6n")
-shader_parameter/color_1 = Color(0.407843, 0.407843, 0.407843, 1)
-shader_parameter/color_2 = Color(0.764706, 0.764706, 0.764706, 1)
-shader_parameter/swirl_speed = 0.5
+shader_parameter/color_1 = Color(0.270588, 0.270588, 0.443137, 1)
+shader_parameter/color_2 = Color(0.490196, 0.486275, 0.678431, 1)
+shader_parameter/swirl_speed = 1.0
 shader_parameter/noise = SubResource("NoiseTexture2D_jsu0q")
 
 [node name="Exchange" type="Node2D"]

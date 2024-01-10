@@ -1,13 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://7wp38g63w1pa"]
+[gd_scene load_steps=5 format=3 uid="uid://7wp38g63w1pa"]
 
 [ext_resource type="Script" path="res://autoloads/upgrade_manager.gd" id="1_2cqpv"]
-[ext_resource type="Resource" uid="uid://wu48h7bim13a" path="res://upgrades/test-1.tres" id="2_jyjmt"]
-[ext_resource type="Resource" uid="uid://dhlsqtnmay43y" path="res://upgrades/test-2.tres" id="3_x660k"]
-[ext_resource type="Resource" uid="uid://iglp2d625smb" path="res://upgrades/test-3.tres" id="4_477i2"]
-[ext_resource type="Resource" uid="uid://comreds6ryri8" path="res://upgrades/test-4.tres" id="5_lleuk"]
-[ext_resource type="Resource" uid="uid://bcfw2ehb7xdxb" path="res://upgrades/test-5.tres" id="6_g7sne"]
-[ext_resource type="Resource" uid="uid://dfrvdmjj8bjmm" path="res://upgrades/test-6.tres" id="7_soprc"]
+[ext_resource type="Resource" uid="uid://wu48h7bim13a" path="res://upgrades/life.tres" id="2_g43ls"]
+[ext_resource type="Resource" uid="uid://dhlsqtnmay43y" path="res://upgrades/speed.tres" id="3_l2v1v"]
+[ext_resource type="Resource" uid="uid://iglp2d625smb" path="res://upgrades/damage.tres" id="4_ajnnv"]
 
 [node name="UpgradeManager" type="Node"]
 script = ExtResource("1_2cqpv")
-upgrades = Array[Resource("res://upgrade_resource.gd")]([ExtResource("2_jyjmt"), ExtResource("3_x660k"), ExtResource("4_477i2"), ExtResource("5_lleuk"), ExtResource("6_g7sne"), ExtResource("7_soprc")])
+upgrades = Array[Resource("res://upgrade_resource.gd")]([ExtResource("2_g43ls"), ExtResource("3_l2v1v"), ExtResource("4_ajnnv")])

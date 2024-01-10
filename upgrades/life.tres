@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_3vnrn")
-name = "Test 6"
+name = "Gift of Life"
 description = "This is a test. This card does nothing. Boring."
 exchange_cost = 1
 texture = ExtResource("2_4toe6")
+method = 0

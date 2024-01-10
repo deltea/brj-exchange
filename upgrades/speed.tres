@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_p4im4")
-name = "Test 1"
+name = "Gift of Speed"
 description = "This is a test. This card does nothing. Boring."
 exchange_cost = 1
 texture = ExtResource("2_difxe")
+method = 1
