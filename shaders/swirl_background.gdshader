@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform vec3 color_1: source_color;
 uniform vec3 color_2: source_color;
-uniform float swirl_speed = 1.0;
+uniform float swirl_speed = 0.5;
 uniform sampler2D noise;
 
 float swirl(vec2 uv, float size, int arms) {
