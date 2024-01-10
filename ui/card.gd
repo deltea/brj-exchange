@@ -1,7 +1,7 @@
 extends Area2D
 class_name Card
 
-@export var hover_y = -10
+@export var hover_y = -5
 @export var animation_speed = 100
 
 @onready var sprite := $Sprite

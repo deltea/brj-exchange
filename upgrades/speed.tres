@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://dhlsqtnmay43y"]
 
 [ext_resource type="Script" path="res://upgrade_resource.gd" id="1_p4im4"]
-[ext_resource type="Texture2D" uid="uid://cp4s8ga7e423h" path="res://assets/cards/placeholder.png" id="2_difxe"]
+[ext_resource type="Texture2D" uid="uid://pljogl3wx4fk" path="res://assets/cards/speed.png" id="2_3emr1"]
 
 [resource]
 script = ExtResource("1_p4im4")
 name = "Gift of Speed"
 description = "This is a test. This card does nothing. Boring."
 exchange_cost = 1
-texture = ExtResource("2_difxe")
+texture = ExtResource("2_3emr1")
 method = 1

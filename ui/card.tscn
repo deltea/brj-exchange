@@ -17,7 +17,7 @@ shape = SubResource("RectangleShape2D_ohywm")
 texture = ExtResource("1_m1ron")
 
 [node name="DropShadow" parent="Sprite" instance=ExtResource("3_ll6wq")]
-shadow_color = Color(0.109804, 0.109804, 0.109804, 1)
+shadow_color = Color(0.14902, 0.14902, 0.14902, 1)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
