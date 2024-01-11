@@ -27,6 +27,7 @@ class_name Player
 @onready var dash_timer := $DashTimer
 @onready var dash_cooldown_timer := $DashCooldownTimer
 @onready var move_particles := $MoveParticles
+@onready var hitbox := $Hitbox
 
 var target_rotation = 0.0
 var target_scale = Vector2.ONE
@@ -40,6 +41,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	dash_timer.wait_time = dash_time
 	dash_cooldown_timer.wait_time = dash_cooldown
+	hitbox.set_collision_mask_value(4, true)
 
 func _process(delta: float) -> void:
 	sprite.rotation = lerp_angle(sprite.rotation, target_rotation, turn_speed * delta)
@@ -83,6 +85,7 @@ func dash():
 	dash_timer.start()
 	dash_cooldown_timer.start()
 	move_particles.emitting = false
+	hitbox.set_collision_mask_value(4, false)
 
 func is_dashing() -> bool:
 	return not dash_timer.is_stopped()
@@ -104,6 +107,7 @@ func die():
 
 func _on_dash_timer_timeout() -> void:
 	move_particles.emitting = true
+	hitbox.set_collision_mask_value(4, true)
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area is EnemyBullet:
