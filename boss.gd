@@ -1,7 +1,7 @@
 extends Area2D
 class_name Boss
 
-@export var max_health = 100
+@export var max_health = 400
 
 var health = max_health
 

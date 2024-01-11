@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://8fp5u2l6vvfr"]
+[gd_scene load_steps=9 format=3 uid="uid://8fp5u2l6vvfr"]
 
 [ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_mkl52"]
 [ext_resource type="Texture2D" uid="uid://dwir3wo4g8luh" path="res://assets/enemy-bullets/fireball-1.png" id="2_gqfha"]
 [ext_resource type="Script" path="res://enemy-bullets/fireball.gd" id="2_owff2"]
 [ext_resource type="Texture2D" uid="uid://bmjvui2n02mk4" path="res://assets/enemy-bullets/fireball-2.png" id="4_bru31"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lblem"]
+radius = 10.0499
 
 [sub_resource type="Curve" id="Curve_it7j2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -22,9 +25,13 @@ colors = PackedColorArray(1, 0.992157, 1, 1, 1, 0.619608, 0.490196, 1)
 script = ExtResource("2_owff2")
 texture_1 = ExtResource("2_gqfha")
 texture_2 = ExtResource("4_bru31")
+damage = 20.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource("2_gqfha")
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("CircleShape2D_lblem")
 
 [node name="FlamesParticles" type="CPUParticles2D" parent="." index="4"]
 z_index = -10

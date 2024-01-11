@@ -73,7 +73,7 @@ func bullet_ring_state():
 	choose_random_state()
 
 func laser_state():
-	for i in range(8):
+	for i in range(5):
 		var direction = get_angle_to(Globals.player.position) - PI / 2
 		laser_ray.rotation = direction
 

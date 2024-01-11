@@ -3,6 +3,7 @@ class_name EnemyBullet
 
 @export var texture_1: Texture2D
 @export var texture_2: Texture2D
+@export var damage = 20.0
 
 @onready var sprite := $Sprite
 

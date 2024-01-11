@@ -14,6 +14,10 @@ class_name Player
 @export var bullet_size = 1.0
 @export var bullet_damage = 1.0
 
+@export_category("Health")
+@export var max_health = 100
+@export var regen = 1
+
 @export_category("Animation")
 @export var squash_and_stretch = 0.2
 @export var turn_speed = 20
@@ -27,6 +31,7 @@ class_name Player
 var target_rotation = 0.0
 var target_scale = Vector2.ONE
 var next_time_to_fire = 0.0
+var health = max_health
 var bullet_scene = preload("res://player_bullet.tscn")
 
 func _enter_tree() -> void:
@@ -43,9 +48,6 @@ func _process(delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	var input = Input.get_vector("left", "right", "up", "down")
 
-	if Input.is_action_just_pressed("dash") and can_dash():
-		dash()
-
 	if input:
 		target_scale = Vector2.ONE + Vector2(squash_and_stretch, -squash_and_stretch)
 		target_rotation = input.angle()
@@ -54,6 +56,9 @@ func _physics_process(_delta: float) -> void:
 
 	var speed = dash_speed if is_dashing() else run_speed
 	velocity = input * speed
+
+	if Input.is_action_just_pressed("dash") and can_dash():
+		dash()
 
 	if Input.is_action_pressed("fire") and Globals.time >= next_time_to_fire:
 		fire()
@@ -85,5 +90,23 @@ func is_dashing() -> bool:
 func can_dash():
 	return dash_cooldown_timer.is_stopped()
 
+func get_hurt(damage: float):
+	print("oof")
+	health -= damage
+	Globals.hitstop(0.1)
+	Globals.camera.impact()
+	if health <= 0:
+		die()
+		return
+
+func die():
+	print("ur ded")
+
 func _on_dash_timer_timeout() -> void:
 	move_particles.emitting = true
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area is EnemyBullet:
+		var bullet = area as EnemyBullet
+		bullet.queue_free()
+		get_hurt(bullet.damage)
