@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkleaeatsa8o"]
+[gd_scene load_steps=8 format=3 uid="uid://dkleaeatsa8o"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_1ggi7"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="3_4ja5c"]
 [ext_resource type="PackedScene" uid="uid://6kio0pmva1lq" path="res://bosses/fire_boss.tscn" id="4_dlm5k"]
 [ext_resource type="PackedScene" uid="uid://bh17qritcspvs" path="res://wall.tscn" id="4_knrh1"]
+[ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="5_2e7dh"]
+
+[sub_resource type="Curve" id="Curve_qkq0h"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ey3ex"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.248162, 1), 0.0, 0.0, 0, 0, Vector2(0.751838, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_1ggi7")
@@ -15,6 +24,84 @@ position = Vector2(352, 192)
 [node name="FireBoss" parent="." node_paths=PackedStringArray("fireball_positions") instance=ExtResource("4_dlm5k")]
 position = Vector2(176, 128)
 fireball_positions = [NodePath("../Positions/Marker2D6"), NodePath("../Positions/Marker2D5"), NodePath("../Positions/Marker2D4"), NodePath("../Positions/Marker2D3"), NodePath("../Positions/Marker2D2"), NodePath("../Positions/Marker2D")]
+
+[node name="FlameArenaParticles" type="CPUParticles2D" parent="."]
+z_index = 20
+position = Vector2(352, 384)
+amount = 200
+preprocess = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(480, 0)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("Curve_qkq0h")
+scale_amount_min = 20.0
+scale_amount_max = 40.0
+scale_amount_curve = SubResource("Curve_ey3ex")
+color = Color(0.996078, 0.329412, 0.435294, 1)
+
+[node name="FlameArenaParticles2" type="CPUParticles2D" parent="."]
+z_index = 20
+position = Vector2(352, 0)
+amount = 200
+preprocess = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(480, 0)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("Curve_qkq0h")
+scale_amount_min = 20.0
+scale_amount_max = 40.0
+scale_amount_curve = SubResource("Curve_ey3ex")
+color = Color(0.996078, 0.329412, 0.435294, 1)
+
+[node name="FlameArenaParticles3" type="CPUParticles2D" parent="."]
+z_index = 20
+position = Vector2(32, 192)
+rotation = -1.5708
+amount = 200
+preprocess = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(480, 0)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("Curve_qkq0h")
+scale_amount_min = 20.0
+scale_amount_max = 40.0
+scale_amount_curve = SubResource("Curve_ey3ex")
+color = Color(0.996078, 0.329412, 0.435294, 1)
+
+[node name="FlameArenaParticles4" type="CPUParticles2D" parent="."]
+z_index = 20
+position = Vector2(672, 192)
+rotation = -1.5708
+amount = 200
+preprocess = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(480, 0)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("Curve_qkq0h")
+scale_amount_min = 20.0
+scale_amount_max = 40.0
+scale_amount_curve = SubResource("Curve_ey3ex")
+color = Color(0.996078, 0.329412, 0.435294, 1)
 
 [node name="Walls" type="Node" parent="."]
 
@@ -33,6 +120,36 @@ scale = Vector2(64, 17)
 [node name="Wall4" parent="Walls" instance=ExtResource("4_knrh1")]
 position = Vector2(352, 456)
 scale = Vector2(64, 17)
+
+[node name="FireWall" type="Sprite2D" parent="Walls"]
+self_modulate = Color(0.996078, 0.329412, 0.435294, 1)
+z_index = 20
+position = Vector2(352, 480)
+scale = Vector2(64, 14)
+texture = ExtResource("5_2e7dh")
+
+[node name="FireWall2" type="Sprite2D" parent="Walls"]
+self_modulate = Color(0.996078, 0.329412, 0.435294, 1)
+z_index = 20
+position = Vector2(352, -96)
+scale = Vector2(64, 14)
+texture = ExtResource("5_2e7dh")
+
+[node name="FireWall3" type="Sprite2D" parent="Walls"]
+self_modulate = Color(0.996078, 0.329412, 0.435294, 1)
+z_index = 20
+position = Vector2(-48, 192)
+rotation = -1.5708
+scale = Vector2(64, 14)
+texture = ExtResource("5_2e7dh")
+
+[node name="FireWall4" type="Sprite2D" parent="Walls"]
+self_modulate = Color(0.996078, 0.329412, 0.435294, 1)
+z_index = 20
+position = Vector2(752, 192)
+rotation = -1.5708
+scale = Vector2(64, 14)
+texture = ExtResource("5_2e7dh")
 
 [node name="Positions" type="Node" parent="."]
 

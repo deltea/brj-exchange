@@ -4,6 +4,8 @@ extends Node2D
 @export var card_separation = 45.0
 @export var card_y_offset = 10.0
 @export var tween_speed = 0.2
+@export var exchange_row_y = 64
+@export var current_row_y = 180
 
 var card_scene = preload("res://ui/card.tscn")
 
@@ -19,7 +21,21 @@ func _ready() -> void:
 
 		#! Add the card tilting and y offset DYNAMICALLY
 		var card_x = 240 + i * card_separation - (upgrade_num - 1) * card_separation / 2.0
-		var card_y = 64 + abs(i - 2) * card_y_offset
+		var card_y = exchange_row_y - abs(i - 2) * card_y_offset
+		card.tilted_rotation = -i * card_tilt + 2 * card_tilt
+		tween.chain().tween_property(card, "position", Vector2(card_x, card_y), tween_speed)
+
+		add_child(card)
+
+	var current_num = UpgradeManager.current_upgrades.size()
+	for i in range(current_num):
+		var card = card_scene.instantiate() as Card
+		card.position = Vector2(480.0 / 2.0 - (52.0 / 2), 0 - 68)
+		card.upgrade = UpgradeManager.current_upgrades[i]
+		card.animation_offset = i
+
+		var card_x = 240 + i * card_separation - (current_num - 1) * card_separation / 2.0
+		var card_y = current_row_y + abs(i - 2) * card_y_offset
 		card.tilted_rotation = i * card_tilt - 2 * card_tilt
 		tween.chain().tween_property(card, "position", Vector2(card_x, card_y), tween_speed)
 
