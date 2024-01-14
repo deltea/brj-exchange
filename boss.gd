@@ -3,7 +3,10 @@ class_name Boss
 
 @export var max_health = 400
 
-var health = max_health
+var health: float
+
+func _enter_tree() -> void:
+	health = max_health
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is PlayerBullet:
