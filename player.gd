@@ -104,6 +104,7 @@ func get_hurt(damage: float):
 
 func die():
 	print("ur ded")
+	Globals.hitstop(10000)
 
 func _on_dash_timer_timeout() -> void:
 	move_particles.emitting = true

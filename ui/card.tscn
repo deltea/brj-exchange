@@ -1,23 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1u5yhbh4x6bu"]
+[gd_scene load_steps=4 format=3 uid="uid://d1u5yhbh4x6bu"]
 
 [ext_resource type="Texture2D" uid="uid://cp4s8ga7e423h" path="res://assets/cards/placeholder.png" id="1_m1ron"]
 [ext_resource type="Script" path="res://ui/card.gd" id="1_rf507"]
-[ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="3_ll6wq"]
+[ext_resource type="PackedScene" uid="uid://8f3h1q5epi06" path="res://utils/drop_shadow_ui.tscn" id="3_u7v7r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ohywm"]
-size = Vector2(52, 68)
-
-[node name="Card" type="Area2D"]
+[node name="Card" type="TextureButton"]
+offset_left = -26.0
+offset_top = -34.0
+offset_right = 26.0
+offset_bottom = 34.0
+pivot_offset = Vector2(26, 34)
+texture_normal = ExtResource("1_m1ron")
 script = ExtResource("1_rf507")
 
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ohywm")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_m1ron")
-
-[node name="DropShadow" parent="Sprite" instance=ExtResource("3_ll6wq")]
-shadow_color = Color(0.14902, 0.14902, 0.14902, 1)
+[node name="DropShadowUI" parent="." instance=ExtResource("3_u7v7r")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 52.0
+offset_bottom = 68.0
+shadow_color = Color(0.160784, 0.160784, 0.160784, 1)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

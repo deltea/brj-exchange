@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://8f3h1q5epi06"]
+
+[ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="1_43ejn"]
+[ext_resource type="Script" path="res://utils/drop_shadow_ui.gd" id="1_p20dx"]
+[ext_resource type="Texture2D" uid="uid://cp4s8ga7e423h" path="res://assets/cards/placeholder.png" id="2_j5fg3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5s07h"]
+shader = ExtResource("1_43ejn")
+shader_parameter/enabled = true
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[node name="DropShadowUI" type="TextureRect"]
+top_level = true
+material = SubResource("ShaderMaterial_5s07h")
+offset_left = -26.0
+offset_top = -34.0
+offset_right = 26.0
+offset_bottom = 34.0
+pivot_offset = Vector2(26, 34)
+texture = ExtResource("2_j5fg3")
+stretch_mode = 2
+script = ExtResource("1_p20dx")
