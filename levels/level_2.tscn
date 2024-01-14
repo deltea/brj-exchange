@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhaa06yprb18p"]
+[gd_scene load_steps=8 format=3 uid="uid://dhaa06yprb18p"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_a4h7j"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="1_mspsa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://wall.gd" id="3_621s4"]
 [ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="3_kxgd8"]
 [ext_resource type="PackedScene" uid="uid://tsu7wev5f1wn" path="res://bosses/earth_boss.tscn" id="6_qum4r"]
+[ext_resource type="PackedScene" uid="uid://d0mvw8sksxfl2" path="res://bosses/earth_boss_segment.tscn" id="7_key6g"]
 
 [node name="Level 2" type="Node2D"]
 script = ExtResource("1_a4h7j")
@@ -16,7 +17,9 @@ shadow_color = Color(0.0901961, 0.0627451, 0.0823529, 1)
 position = Vector2(240, 294)
 
 [node name="EarthBoss" parent="." instance=ExtResource("6_qum4r")]
+z_index = 10
 position = Vector2(240, 72)
+move_speed = 50
 
 [node name="Wall" type="StaticBody2D" parent="."]
 z_index = 10
@@ -31,3 +34,30 @@ texture = ExtResource("2_fv5q6")
 
 [node name="CollisionPolygon" type="CollisionPolygon2D" parent="Wall"]
 polygon = PackedVector2Array(-132, -30, 606, -30, 606, 402, -132, 402, -132, -30, -60, 78, -103, 128, -118, 173, -118, 215, -105, 251, -66, 300, 6, 348, 96, 378, 204, 396, 318, 390, 414, 372, 516, 324, 552, 294, 582, 258, 600, 216, 600, 168, 573, 113, 522, 66, 461, 32, 378, 6, 313, -6, 245, -9, 162, -6, 72, 12, 1, 40, -60, 78)
+
+[node name="EarthBossSegments" type="Node" parent="."]
+
+[node name="WormSegment9" parent="EarthBossSegments" instance=ExtResource("7_key6g")]
+scale = Vector2(0.7, 0.7)
+gap = 10
+
+[node name="WormSegment8" parent="EarthBossSegments" instance=ExtResource("7_key6g")]
+scale = Vector2(0.8, 0.8)
+gap = 12
+
+[node name="WormSegment7" parent="EarthBossSegments" instance=ExtResource("7_key6g")]
+scale = Vector2(0.9, 0.9)
+
+[node name="WormSegment6" parent="EarthBossSegments" instance=ExtResource("7_key6g")]
+
+[node name="WormSegment5" parent="EarthBossSegments" instance=ExtResource("7_key6g")]
+
+[node name="WormSegment4" parent="EarthBossSegments" instance=ExtResource("7_key6g")]
+
+[node name="WormSegment3" parent="EarthBossSegments" instance=ExtResource("7_key6g")]
+
+[node name="WormSegment2" parent="EarthBossSegments" instance=ExtResource("7_key6g")]
+
+[node name="WormSegment" parent="EarthBossSegments" node_paths=PackedStringArray("boss") instance=ExtResource("7_key6g")]
+boss = NodePath("../../EarthBoss")
+gap = 20
