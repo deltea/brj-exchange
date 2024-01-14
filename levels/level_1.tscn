@@ -11,12 +11,13 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_ey3ex"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.248162, 1), 0.0, 0.0, 0, 0, Vector2(0.751838, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.248162, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Level 1" type="Node2D"]
 script = ExtResource("1_1ggi7")
 background_color = Color(0.207843, 0.164706, 0.333333, 1)
+shadow_color = Color(0.1729, 0.1372, 0.28, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_4ja5c")]
 position = Vector2(352, 192)
@@ -27,7 +28,7 @@ fireball_positions = [NodePath("../Positions/Marker2D6"), NodePath("../Positions
 
 [node name="FlameArenaParticles" type="CPUParticles2D" parent="."]
 z_index = 20
-position = Vector2(352, 384)
+position = Vector2(352, 376)
 amount = 200
 preprocess = 1.0
 emission_shape = 3
@@ -46,7 +47,7 @@ color = Color(0.996078, 0.329412, 0.435294, 1)
 
 [node name="FlameArenaParticles2" type="CPUParticles2D" parent="."]
 z_index = 20
-position = Vector2(352, 0)
+position = Vector2(352, 8)
 amount = 200
 preprocess = 1.0
 emission_shape = 3
@@ -65,7 +66,7 @@ color = Color(0.996078, 0.329412, 0.435294, 1)
 
 [node name="FlameArenaParticles3" type="CPUParticles2D" parent="."]
 z_index = 20
-position = Vector2(32, 192)
+position = Vector2(56, 192)
 rotation = -1.5708
 amount = 200
 preprocess = 1.0
@@ -85,7 +86,7 @@ color = Color(0.996078, 0.329412, 0.435294, 1)
 
 [node name="FlameArenaParticles4" type="CPUParticles2D" parent="."]
 z_index = 20
-position = Vector2(672, 192)
+position = Vector2(648, 192)
 rotation = -1.5708
 amount = 200
 preprocess = 1.0
