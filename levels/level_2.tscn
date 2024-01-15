@@ -19,7 +19,7 @@ position = Vector2(240, 294)
 [node name="EarthBoss" parent="." instance=ExtResource("6_qum4r")]
 z_index = 10
 position = Vector2(240, 72)
-move_speed = 50
+turn_speed = 100
 
 [node name="Wall" type="StaticBody2D" parent="."]
 z_index = 10

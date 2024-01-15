@@ -6,6 +6,7 @@ enum STATE {
 	BULLET_RING,
 	LASER,
 	BULLET_SPIRAL,
+	BULLET_CORNERS,
 }
 
 @export var animation_speed = 2
@@ -17,6 +18,9 @@ enum STATE {
 @export var laser_speed = 0.8
 @export var bullet_spiral_num = 60
 @export var bullet_spiral_speed = 200
+@export var bullet_corners_num = 5
+@export var bullet_corners_spread = 10
+@export var bullet_corners_speed = 150
 
 @onready var sprite := $Sprite
 @onready var eye := $Eye
@@ -111,6 +115,23 @@ func bullet_spiral_state():
 
 	choose_random_state()
 
+func bullet_corners_state():
+	for i in range(4):
+		var random_position = fireball_positions.pick_random().position
+		await move(random_position, 1.0)
+		sprite.scale = Vector2.ONE * 1.5
+
+		var angle = rad_to_deg((get_angle_to(Globals.player.position))) - ((bullet_corners_num - 1) * bullet_corners_spread / 2.0)
+		for x in range(bullet_corners_num):
+			var bullet = bullet_scene.instantiate() as EnemyBullet
+			bullet.position = position
+			bullet.rotation_degrees = angle + x * bullet_corners_spread
+			bullet.speed = bullet_corners_speed
+
+			Globals.world.add_child(bullet)
+
+	choose_random_state()
+
 func fire_fireball():
 	sprite.scale = Vector2.ONE * 1.5
 	var fireball = fireball_scene.instantiate() as Fireball
@@ -133,6 +154,7 @@ func choose_random_state():
 		"BULLET_RING": bullet_ring_state()
 		"LASER": laser_state()
 		"BULLET_SPIRAL": bullet_spiral_state()
+		"BULLET_CORNERS": bullet_corners_state()
 
 func flash():
 	sprite.scale = Vector2.ONE * 1.2
