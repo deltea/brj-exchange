@@ -4,7 +4,7 @@ class_name FireBoss
 enum STATE {
 	FIREBALLS,
 	BULLET_RING,
-	LASER,
+	# LASER,
 	BULLET_SPIRAL,
 	BULLET_CORNERS,
 }
@@ -28,12 +28,13 @@ enum STATE {
 @onready var laser_line := $LaserLine
 @onready var flames_particles := $FlamesParticles
 
-var state = STATE.FIREBALLS
+var state: STATE
+var state_index = 0
 var fireball_scene = preload("res://enemy-bullets/fireball.tscn")
 var bullet_scene = preload("res://enemy-bullets/fire_bullet.tscn")
 
 func _ready() -> void:
-	choose_random_state()
+	next_state()
 
 func _process(delta: float) -> void:
 	var direction = (Globals.player.position - global_position).normalized()
@@ -42,7 +43,8 @@ func _process(delta: float) -> void:
 	sprite.scale = sprite.scale.move_toward(Vector2.ONE, animation_speed * delta)
 
 	laser_line.set_point_position(0, global_position)
-	if not state == "LASER": laser_line.set_point_position(1, global_position)
+	# if not state == STATE.LASER: laser_line.set_point_position(1, global_position)
+	laser_line.set_point_position(1, global_position)
 
 func fireballs_state():
 	for i in range(2):
@@ -54,7 +56,7 @@ func fireballs_state():
 			fire_fireball()
 			await Globals.wait(0.5)
 
-	choose_random_state()
+	next_state()
 
 func bullet_ring_state():
 	await move(Vector2(352, 192), 2.0)
@@ -74,7 +76,7 @@ func bullet_ring_state():
 		offset += 9
 		await Globals.wait(0.5)
 
-	choose_random_state()
+	next_state()
 
 func laser_state():
 	for i in range(5):
@@ -94,7 +96,7 @@ func laser_state():
 
 		await Globals.wait(laser_speed)
 
-	choose_random_state()
+	next_state()
 
 func bullet_spiral_state():
 	await move(Vector2(352, 192), 2.0)
@@ -113,7 +115,7 @@ func bullet_spiral_state():
 
 	await Globals.wait(0.4)
 
-	choose_random_state()
+	next_state()
 
 func bullet_corners_state():
 	for i in range(4):
@@ -130,7 +132,7 @@ func bullet_corners_state():
 
 			Globals.world.add_child(bullet)
 
-	choose_random_state()
+	next_state()
 
 func fire_fireball():
 	sprite.scale = Vector2.ONE * 1.5
@@ -147,14 +149,16 @@ func move(target_position: Vector2, duration: float):
 	tween.tween_property(self, "position", target_position, duration)
 	return tween.finished
 
-func choose_random_state():
-	state = STATE.keys()[randi() % STATE.size()]
-	match state:
-		"FIREBALLS": fireballs_state()
-		"BULLET_RING": bullet_ring_state()
-		"LASER": laser_state()
-		"BULLET_SPIRAL": bullet_spiral_state()
-		"BULLET_CORNERS": bullet_corners_state()
+func next_state():
+	match state_index:
+		STATE.FIREBALLS: fireballs_state()
+		STATE.BULLET_RING: bullet_ring_state()
+		# STATE.LASER: laser_state()
+		STATE.BULLET_SPIRAL: bullet_spiral_state()
+		STATE.BULLET_CORNERS: bullet_corners_state()
+
+	state_index = (state_index + 1) % len(STATE.keys())
+	print(state_index)
 
 func flash():
 	sprite.scale = Vector2.ONE * 1.2
