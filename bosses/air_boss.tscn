@@ -23,6 +23,7 @@ shadow_offset = Vector2(0, 32)
 scale_multiplier = Vector2(1, 0.8)
 
 [node name="Hands" type="Sprite2D" parent="." index="2"]
+position = Vector2(0, 3)
 texture = ExtResource("4_ldoiq")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -50,7 +50,7 @@ func fireballs_state():
 	for i in range(2):
 		var random_position = fireball_positions.pick_random().position
 		await move(random_position, 1.5)
-		await Globals.wait(0.5)
+		await Globals.wait(0.2)
 
 		for x in range(3):
 			fire_fireball()
@@ -158,7 +158,6 @@ func next_state():
 		STATE.BULLET_CORNERS: bullet_corners_state()
 
 	state_index = (state_index + 1) % len(STATE.keys())
-	print(state_index)
 
 func flash():
 	sprite.scale = Vector2.ONE * 1.2

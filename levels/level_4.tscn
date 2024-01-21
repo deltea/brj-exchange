@@ -1,15 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjm747f0p1sx1"]
+[gd_scene load_steps=6 format=3 uid="uid://bjm747f0p1sx1"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8r6rk"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="2_46u0j"]
 [ext_resource type="PackedScene" uid="uid://cdclqvueu65tx" path="res://bosses/air_boss.tscn" id="3_popip"]
+[ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="4_esfm0"]
+[ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="5_uqpuf"]
 
 [node name="Level 4" type="Node2D"]
 script = ExtResource("1_8r6rk")
-background_color = Color(0.4, 0.631373, 1, 1)
+background_color = Color(0.470588, 0.67451, 1, 1)
 shadow_color = Color(0.419608, 0.380392, 1, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_46u0j")]
 
 [node name="AirBoss" parent="." instance=ExtResource("3_popip")]
-position = Vector2(104, -56)
+position = Vector2(0, -88)
+
+[node name="Floor" type="Sprite2D" parent="."]
+self_modulate = Color(0.4, 0.631373, 1, 1)
+z_index = -30
+scale = Vector2(17, 17)
+texture = ExtResource("4_esfm0")
+
+[node name="DropShadow" parent="Floor" instance=ExtResource("5_uqpuf")]
+ordering = -40
