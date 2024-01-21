@@ -2,8 +2,8 @@ extends Boss
 class_name AirBoss
 
 enum STATE {
-	BULLET_WIND,
 	BULLET_CURVE,
+	BULLET_WIND,
 	TILES,
 	CLOUD_PUFFS,
 }
@@ -12,14 +12,29 @@ enum STATE {
 @export var wind_force = Vector2(80, 0)
 @export var wind_bullet_num = 100
 @export var wind_bullet_speed = 250
+@export var bullet_curve_num = 10
+@export var bullet_curve_speed = 150
 
 @onready var hands := $Hands
 
 var state_index = 0
 var bullet_scene = preload("res://enemy-bullets/air_bullet.tscn")
+var curvy_bullet_scene = preload("res://enemy-bullets/curvy_bullet.tscn")
 
 func _ready() -> void:
 	next_state(0)
+
+func bullet_curve_state():
+	for i in range(bullet_curve_num):
+		await Globals.wait(0.5)
+
+		var bullet = curvy_bullet_scene.instantiate() as CurvyBullet
+		bullet.position = Vector2(448, 0)
+		bullet.rotation = bullet.get_angle_to(Globals.player.position)
+		bullet.speed = bullet_curve_speed
+		Globals.world.add_child(bullet)
+
+	next_state(1)
 
 func bullet_wind_state():
 	wind_particles.emitting = true
@@ -43,11 +58,12 @@ func bullet_wind_state():
 
 		wind_particles.position.x = -wind_particles.position.x
 		wind_particles.rotation_degrees = 180
+		Globals.player.wind_force = -wind_force
+
+	wind_particles.emitting = true
+	Globals.player.wind_force = Vector2.ZERO
 
 	next_state(0)
-
-func bullet_curve_state():
-	next_state()
 
 func tiles_state():
 	next_state()
@@ -57,8 +73,8 @@ func cloud_puffs_state():
 
 func next_state(index: int = state_index):
 	match index:
-		STATE.BULLET_WIND: bullet_wind_state()
 		STATE.BULLET_CURVE: bullet_curve_state()
+		STATE.BULLET_WIND: bullet_wind_state()
 		STATE.TILES: tiles_state()
 		STATE.CLOUD_PUFFS: cloud_puffs_state()
 

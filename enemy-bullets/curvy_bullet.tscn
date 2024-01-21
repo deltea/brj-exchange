@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://u4742paqghj1"]
+
+[ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_s7yh6"]
+[ext_resource type="Script" path="res://enemy-bullets/curvy_bullet.gd" id="2_g4i8b"]
+[ext_resource type="Texture2D" uid="uid://br3n542gvs34n" path="res://assets/enemy-bullets/curvy-bullet-1.png" id="2_qejt0"]
+[ext_resource type="Texture2D" uid="uid://bmek24qe75nt7" path="res://assets/enemy-bullets/curvy-bullet-2.png" id="3_2p0ki"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6wtv7"]
+radius = 10.0499
+
+[node name="CurvyBullet" instance=ExtResource("1_s7yh6")]
+script = ExtResource("2_g4i8b")
+curve_magnitude = 3
+curve_speed = 3
+texture_1 = ExtResource("2_qejt0")
+texture_2 = ExtResource("3_2p0ki")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_qejt0")
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("CircleShape2D_6wtv7")

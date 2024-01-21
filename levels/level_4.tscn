@@ -28,8 +28,7 @@ shadow_color = Color(0.419608, 0.380392, 1, 1)
 [node name="AirBoss" parent="." node_paths=PackedStringArray("wind_particles") instance=ExtResource("3_popip")]
 position = Vector2(0, -88)
 wind_particles = NodePath("../WindParticles")
-wind_bullet_num = 100
-wind_bullet_speed = 250
+bullet_curve_num = 10
 
 [node name="WindParticles" type="CPUParticles2D" parent="."]
 position = Vector2(-448, 0)
@@ -54,23 +53,21 @@ texture = ExtResource("4_esfm0")
 [node name="DropShadow" parent="Floor" instance=ExtResource("5_uqpuf")]
 ordering = -40
 
-[node name="Walls" type="Node" parent="."]
-
-[node name="Wall" type="StaticBody2D" parent="Walls"]
+[node name="Walls" type="StaticBody2D" parent="."]
 collision_mask = 0
 
-[node name="CollisionShape" type="CollisionShape2D" parent="Walls/Wall"]
+[node name="CollisionShape" type="CollisionShape2D" parent="Walls"]
 position = Vector2(0, 136)
 shape = SubResource("WorldBoundaryShape2D_hl8ji")
 
-[node name="CollisionShape2" type="CollisionShape2D" parent="Walls/Wall"]
+[node name="CollisionShape2" type="CollisionShape2D" parent="Walls"]
 position = Vector2(0, -136)
 shape = SubResource("WorldBoundaryShape2D_wlsvn")
 
-[node name="CollisionShape3" type="CollisionShape2D" parent="Walls/Wall"]
+[node name="CollisionShape3" type="CollisionShape2D" parent="Walls"]
 position = Vector2(136, 0)
 shape = SubResource("WorldBoundaryShape2D_m78ou")
 
-[node name="CollisionShape4" type="CollisionShape2D" parent="Walls/Wall"]
+[node name="CollisionShape4" type="CollisionShape2D" parent="Walls"]
 position = Vector2(-136, 0)
 shape = SubResource("WorldBoundaryShape2D_5dj0x")

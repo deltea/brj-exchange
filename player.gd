@@ -34,7 +34,7 @@ var target_scale = Vector2.ONE
 var next_time_to_fire = 0.0
 var health = max_health
 var bullet_scene = preload("res://player_bullet.tscn")
-var wind_force = 0
+var wind_force = Vector2.ZERO
 
 func _enter_tree() -> void:
 	Globals.player = self
