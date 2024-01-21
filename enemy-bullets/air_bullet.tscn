@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4wgep1l7uhu6"]
+
+[ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_g6qf0"]
+[ext_resource type="Texture2D" uid="uid://nyrqtkp5fl07" path="res://assets/enemy-bullets/air-bullet-1.png" id="2_82wsl"]
+[ext_resource type="Texture2D" uid="uid://klj5uu5bv7ey" path="res://assets/enemy-bullets/air-bullet-2.png" id="3_byv4u"]
+
+[node name="AirBullet" instance=ExtResource("1_g6qf0")]
+texture_1 = ExtResource("2_82wsl")
+texture_2 = ExtResource("3_byv4u")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_82wsl")

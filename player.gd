@@ -34,6 +34,7 @@ var target_scale = Vector2.ONE
 var next_time_to_fire = 0.0
 var health = max_health
 var bullet_scene = preload("res://player_bullet.tscn")
+var wind_force = 0
 
 func _enter_tree() -> void:
 	Globals.player = self
@@ -57,7 +58,7 @@ func _physics_process(_delta: float) -> void:
 		target_scale = Vector2.ONE
 
 	var speed = dash_speed if is_dashing() else run_speed
-	velocity = input * speed
+	velocity = input * speed + wind_force
 
 	if Input.is_action_just_pressed("dash") and can_dash():
 		dash()

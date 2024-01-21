@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjm747f0p1sx1"]
+[gd_scene load_steps=11 format=3 uid="uid://bjm747f0p1sx1"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8r6rk"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="2_46u0j"]
 [ext_resource type="PackedScene" uid="uid://cdclqvueu65tx" path="res://bosses/air_boss.tscn" id="3_popip"]
+[ext_resource type="Texture2D" uid="uid://bn83f0txp5mpf" path="res://assets/wind-particle.png" id="4_03gfe"]
 [ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="4_esfm0"]
 [ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="5_uqpuf"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hl8ji"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wlsvn"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m78ou"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5dj0x"]
+normal = Vector2(1, 0)
 
 [node name="Level 4" type="Node2D"]
 script = ExtResource("1_8r6rk")
@@ -13,8 +25,25 @@ shadow_color = Color(0.419608, 0.380392, 1, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_46u0j")]
 
-[node name="AirBoss" parent="." instance=ExtResource("3_popip")]
+[node name="AirBoss" parent="." node_paths=PackedStringArray("wind_particles") instance=ExtResource("3_popip")]
 position = Vector2(0, -88)
+wind_particles = NodePath("../WindParticles")
+wind_bullet_num = 100
+wind_bullet_speed = 250
+
+[node name="WindParticles" type="CPUParticles2D" parent="."]
+position = Vector2(-448, 0)
+emitting = false
+amount = 150
+lifetime = 3.0
+preprocess = 3.0
+texture = ExtResource("4_03gfe")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 270)
+spread = 2.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 350.0
 
 [node name="Floor" type="Sprite2D" parent="."]
 self_modulate = Color(0.4, 0.631373, 1, 1)
@@ -24,3 +53,24 @@ texture = ExtResource("4_esfm0")
 
 [node name="DropShadow" parent="Floor" instance=ExtResource("5_uqpuf")]
 ordering = -40
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Walls"]
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Walls/Wall"]
+position = Vector2(0, 136)
+shape = SubResource("WorldBoundaryShape2D_hl8ji")
+
+[node name="CollisionShape2" type="CollisionShape2D" parent="Walls/Wall"]
+position = Vector2(0, -136)
+shape = SubResource("WorldBoundaryShape2D_wlsvn")
+
+[node name="CollisionShape3" type="CollisionShape2D" parent="Walls/Wall"]
+position = Vector2(136, 0)
+shape = SubResource("WorldBoundaryShape2D_m78ou")
+
+[node name="CollisionShape4" type="CollisionShape2D" parent="Walls/Wall"]
+position = Vector2(-136, 0)
+shape = SubResource("WorldBoundaryShape2D_5dj0x")
