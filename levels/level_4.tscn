@@ -39,8 +39,8 @@ emission_shape = 3
 emission_rect_extents = Vector2(1, 270)
 spread = 2.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 300.0
-initial_velocity_max = 350.0
+initial_velocity_min = 400.0
+initial_velocity_max = 450.0
 
 [node name="Floor" type="Sprite2D" parent="."]
 self_modulate = Color(0.4, 0.631373, 1, 1)
