@@ -1,11 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjm747f0p1sx1"]
+[gd_scene load_steps=15 format=3 uid="uid://bjm747f0p1sx1"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8r6rk"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="2_46u0j"]
 [ext_resource type="PackedScene" uid="uid://cdclqvueu65tx" path="res://bosses/air_boss.tscn" id="3_popip"]
 [ext_resource type="Texture2D" uid="uid://bn83f0txp5mpf" path="res://assets/wind-particle.png" id="4_03gfe"]
 [ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="4_esfm0"]
+[ext_resource type="Shader" path="res://shaders/clouds.gdshader" id="5_pvlpr"]
 [ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="5_uqpuf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ugmlf"]
+noise_type = 0
+frequency = 0.0041
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dd5ff"]
+seamless = true
+noise = SubResource("FastNoiseLite_ugmlf")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_11hv2"]
+shader = ExtResource("5_pvlpr")
+shader_parameter/scroll_speed = 0.05
+shader_parameter/merge_speed = 0.01
+shader_parameter/noise = SubResource("NoiseTexture2D_dd5ff")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hl8ji"]
 
@@ -41,6 +56,13 @@ spread = 2.0
 gravity = Vector2(0, 0)
 initial_velocity_min = 400.0
 initial_velocity_max = 450.0
+
+[node name="CloudsBackground" type="Sprite2D" parent="."]
+z_index = -50
+material = SubResource("ShaderMaterial_11hv2")
+position = Vector2(-1.71661e-05, 7.62939e-06)
+scale = Vector2(56, 40)
+texture = ExtResource("4_esfm0")
 
 [node name="Floor" type="Sprite2D" parent="."]
 self_modulate = Color(0.4, 0.631373, 1, 1)
