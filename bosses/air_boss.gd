@@ -9,12 +9,16 @@ enum STATE {
 }
 
 @export var wind_particles: CPUParticles2D
-@export var wind_force = Vector2(80, 0)
+@export var wind_force = Vector2(60, 0)
 @export var wind_bullet_num = 50
 @export var wind_bullet_speed = 250
 @export var bullet_curve_num = 10
 @export var bullet_curve_speed = 150
 @export var cloud_puffs_delay = 1
+@export var tiles_num = 40
+@export var tiles_delay = 0.1
+@export var tiles_position_min = Vector2.ZERO
+@export var tiles_position_max = Vector2.ZERO
 
 @onready var hands := $Hands
 
@@ -22,9 +26,10 @@ var state_index = 0
 var bullet_scene = preload("res://enemy-bullets/air_bullet.tscn")
 var curvy_bullet_scene = preload("res://enemy-bullets/curvy_bullet.tscn")
 var cloud_puff_scene = preload("res://enemies/cloud_puff.tscn")
+var tile_scene = preload("res://enemies/enemy_tile.tscn")
 
 func _ready() -> void:
-	next_state(0)
+	next_state()
 
 func bullet_curve_state():
 	for i in range(bullet_curve_num):
@@ -74,9 +79,18 @@ func cloud_puffs_state():
 		cloud_puff.position = position
 		Globals.world.add_child(cloud_puff)
 
-	next_state(0)
+	next_state()
 
 func tiles_state():
+	for i in range(tiles_num):
+		await Globals.wait(tiles_delay)
+
+		var tile = tile_scene.instantiate()
+		var random_x = randf_range(tiles_position_min.x, tiles_position_max.x)
+		var random_y = randf_range(tiles_position_min.y, tiles_position_max.y)
+		tile.position = Vector2(random_x, random_y)
+		Globals.world.add_child(tile)
+
 	next_state()
 
 func next_state(index: int = state_index):

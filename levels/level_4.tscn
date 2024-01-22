@@ -43,6 +43,11 @@ shadow_color = Color(0.419608, 0.380392, 1, 1)
 [node name="AirBoss" parent="." node_paths=PackedStringArray("wind_particles") instance=ExtResource("3_popip")]
 position = Vector2(0, -88)
 wind_particles = NodePath("../WindParticles")
+wind_force = Vector2(60, 0)
+tiles_num = 40
+tiles_delay = 0.1
+tiles_position_min = Vector2(-136, -136)
+tiles_position_max = Vector2(136, 136)
 
 [node name="WindParticles" type="CPUParticles2D" parent="."]
 position = Vector2(-448, 0)

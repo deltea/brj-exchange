@@ -116,3 +116,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		var bullet = area as EnemyBullet
 		bullet.queue_free()
 		get_hurt(bullet.damage)
+	elif area is EnemyTile:
+		var tile = area as EnemyTile
+		tile.queue_free()
+		get_hurt(tile.damage)

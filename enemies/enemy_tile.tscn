@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://comqwlxp0axpr"]
+
+[ext_resource type="Script" path="res://enemies/enemy_tile.gd" id="1_h32ev"]
+[ext_resource type="Texture2D" uid="uid://bpane04u8suh7" path="res://assets/enemies/damage-tile.png" id="1_oc46r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vapkf"]
+radius = 10.0499
+
+[node name="EnemyTile" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_h32ev")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.364706, 0.364706, 0.364706, 1)
+texture = ExtResource("1_oc46r")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vapkf")
