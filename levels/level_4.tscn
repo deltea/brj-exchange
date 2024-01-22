@@ -10,7 +10,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ugmlf"]
 noise_type = 0
-frequency = 0.0041
+frequency = 0.003
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dd5ff"]
 seamless = true
@@ -19,7 +19,7 @@ noise = SubResource("FastNoiseLite_ugmlf")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_11hv2"]
 shader = ExtResource("5_pvlpr")
 shader_parameter/scroll_speed = 0.05
-shader_parameter/merge_speed = 0.01
+shader_parameter/merge_speed = 0.02
 shader_parameter/noise = SubResource("NoiseTexture2D_dd5ff")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hl8ji"]
