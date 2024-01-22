@@ -28,14 +28,12 @@ shadow_color = Color(0.419608, 0.380392, 1, 1)
 [node name="AirBoss" parent="." node_paths=PackedStringArray("wind_particles") instance=ExtResource("3_popip")]
 position = Vector2(0, -88)
 wind_particles = NodePath("../WindParticles")
-bullet_curve_num = 10
 
 [node name="WindParticles" type="CPUParticles2D" parent="."]
 position = Vector2(-448, 0)
 emitting = false
 amount = 150
 lifetime = 3.0
-preprocess = 3.0
 texture = ExtResource("4_03gfe")
 emission_shape = 3
 emission_rect_extents = Vector2(1, 270)

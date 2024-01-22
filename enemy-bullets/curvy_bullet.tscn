@@ -1,12 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://u4742paqghj1"]
+[gd_scene load_steps=10 format=3 uid="uid://u4742paqghj1"]
 
 [ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_s7yh6"]
 [ext_resource type="Script" path="res://enemy-bullets/curvy_bullet.gd" id="2_g4i8b"]
 [ext_resource type="Texture2D" uid="uid://br3n542gvs34n" path="res://assets/enemy-bullets/curvy-bullet-1.png" id="2_qejt0"]
 [ext_resource type="Texture2D" uid="uid://bmek24qe75nt7" path="res://assets/enemy-bullets/curvy-bullet-2.png" id="3_2p0ki"]
+[ext_resource type="Texture2D" uid="uid://c46htyaexexvl" path="res://assets/circle-particle.png" id="5_pijul"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6wtv7"]
 radius = 10.0499
+
+[sub_resource type="Curve" id="Curve_dcc3l"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_qt6w8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.99213, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_q8pmo"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.5, 0.5)
+colors = PackedColorArray(1, 0.992157, 1, 1, 0.980392, 0.866667, 0.635294, 1)
 
 [node name="CurvyBullet" instance=ExtResource("1_s7yh6")]
 script = ExtResource("2_g4i8b")
@@ -20,3 +34,20 @@ texture = ExtResource("2_qejt0")
 
 [node name="CollisionShape" parent="." index="1"]
 shape = SubResource("CircleShape2D_6wtv7")
+
+[node name="CloudParticles" type="CPUParticles2D" parent="." index="4"]
+z_index = -10
+amount = 32
+lifetime = 0.5
+texture = ExtResource("5_pijul")
+emission_shape = 3
+emission_rect_extents = Vector2(0, 16)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("Curve_dcc3l")
+scale_amount_min = 1.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_qt6w8")
+color_initial_ramp = SubResource("Gradient_q8pmo")

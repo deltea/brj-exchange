@@ -17,8 +17,7 @@ func take_damage():
 	flash()
 
 	health -= Globals.player.bullet_damage
-	if health < 0:
-		die()
+	if health < 0: die()
 
 func die():
 	queue_free()

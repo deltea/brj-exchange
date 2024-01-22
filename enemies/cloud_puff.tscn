@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5yck23uy06"]
+
+[ext_resource type="Texture2D" uid="uid://meya18xmdss5" path="res://assets/enemies/cloud.png" id="1_7nq4i"]
+[ext_resource type="Script" path="res://enemies/cloud_puff.gd" id="1_p32r1"]
+[ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="2_5704y"]
+[ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="2_ewve5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhjta"]
+shader = ExtResource("2_ewve5")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iurpo"]
+radius = 8.0
+height = 24.0
+
+[node name="CloudPuff" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_p32r1")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xhjta")
+texture = ExtResource("1_7nq4i")
+
+[node name="DropShadow" parent="Sprite" instance=ExtResource("2_5704y")]
+shadow_offset = Vector2(0, 16)
+scale_multiplier = Vector2(1, 0.8)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_iurpo")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
