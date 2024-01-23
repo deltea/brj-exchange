@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1u5yhbh4x6bu"]
+[gd_scene load_steps=6 format=3 uid="uid://d1u5yhbh4x6bu"]
 
+[ext_resource type="ButtonGroup" uid="uid://hte8m2f7nvyi" path="res://ui/button_group.tres" id="1_axv7o"]
 [ext_resource type="Texture2D" uid="uid://cp4s8ga7e423h" path="res://assets/cards/placeholder.png" id="1_m1ron"]
 [ext_resource type="Script" path="res://ui/card.gd" id="1_rf507"]
 [ext_resource type="PackedScene" uid="uid://8f3h1q5epi06" path="res://utils/drop_shadow_ui.tscn" id="3_u7v7r"]
+[ext_resource type="Texture2D" uid="uid://g77clxgyr6ah" path="res://assets/cards/card-border.png" id="4_0pa4r"]
 
 [node name="Card" type="TextureButton"]
 offset_left = -26.0
@@ -10,6 +12,8 @@ offset_top = -34.0
 offset_right = 26.0
 offset_bottom = 34.0
 pivot_offset = Vector2(26, 34)
+toggle_mode = true
+button_group = ExtResource("1_axv7o")
 texture_normal = ExtResource("1_m1ron")
 script = ExtResource("1_rf507")
 
@@ -21,5 +25,20 @@ offset_right = 52.0
 offset_bottom = 68.0
 shadow_color = Color(0.160784, 0.160784, 0.160784, 1)
 
+[node name="Border" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 52.0
+offset_bottom = 68.0
+texture = ExtResource("4_0pa4r")
+stretch_mode = 2
+
+[node name="Cost" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 52.0
+offset_bottom = 68.0
+stretch_mode = 2
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cusw14c718mic"
-path="res://.godot/imported/m5x7.ttf-47a8993373daecfb025c7957e719fc41.fontdata"
+uid="uid://dsq8wyluty5hc"
+path="res://.godot/imported/rainyhearts.ttf-d23ef0e7e6b1f2f39033923ad3b66140.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/m5x7.ttf"
-dest_files=["res://.godot/imported/m5x7.ttf-47a8993373daecfb025c7957e719fc41.fontdata"]
+source_file="res://assets/fonts/rainyhearts.ttf"
+dest_files=["res://.godot/imported/rainyhearts.ttf-d23ef0e7e6b1f2f39033923ad3b66140.fontdata"]
 
 [params]
 

@@ -12,6 +12,7 @@ offset_top = -6.0
 offset_right = 6.0
 offset_bottom = 6.0
 pivot_offset = Vector2(6, 6)
+mouse_filter = 2
 texture = ExtResource("1_7mwta")
 stretch_mode = 2
 script = ExtResource("1_a2jbb")

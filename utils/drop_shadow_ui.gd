@@ -19,6 +19,6 @@ func _ready():
 func _process(_delta: float) -> void:
 	if not get_parent(): return
 
-	position = parent.position + shadow_offset
+	global_position = parent.global_position + shadow_offset
 	rotation = parent.rotation
 	scale = parent.scale * scale_multiplier
