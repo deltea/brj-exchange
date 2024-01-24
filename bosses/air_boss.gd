@@ -65,7 +65,7 @@ func bullet_wind_state():
 
 	for x in range(2):
 		await move(wind_particles.position / 2, 1.5)
-		hand_position = -wind_particles.position.normalized() * 5
+		hand_position = -wind_particles.position.normalized() * 6
 
 		for i in range(wind_bullet_num):
 			await Globals.wait(0.05)
