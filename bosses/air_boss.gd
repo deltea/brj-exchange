@@ -14,8 +14,8 @@ enum STATE {
 @export var wind_bullet_speed = 250
 @export var bullet_curve_num = 10
 @export var bullet_curve_speed = 150
-@export var cloud_puffs_num = 2
-@export var cloud_puffs_delay = 2
+@export var cloud_puffs_num = 1
+@export var cloud_puff_positions: Array[Marker2D]
 @export var tiles_num = 40
 @export var tiles_delay = 0.1
 @export var tiles_position_min = Vector2.ZERO
@@ -33,6 +33,8 @@ func _ready() -> void:
 	next_state()
 
 func bullet_curve_state():
+	await move(Vector2(0, -104), 1.0)
+
 	for i in range(bullet_curve_num):
 		await Globals.wait(0.5)
 
@@ -52,6 +54,8 @@ func bullet_wind_state():
 	wind_particles.rotation_degrees = 0
 
 	for x in range(2):
+		await move(wind_particles.position / 2, 1.5)
+
 		for i in range(wind_bullet_num):
 			await Globals.wait(0.05)
 
@@ -75,7 +79,9 @@ func bullet_wind_state():
 
 func cloud_puffs_state():
 	for i in range(cloud_puffs_num):
-		await Globals.wait(cloud_puffs_delay)
+		var random_position = cloud_puff_positions.pick_random().position
+		await move(random_position, 2)
+
 		var cloud_puff = cloud_puff_scene.instantiate()
 		cloud_puff.position = position
 		Globals.world.add_child(cloud_puff)
@@ -83,6 +89,8 @@ func cloud_puffs_state():
 	next_state()
 
 func tiles_state():
+	await move(Vector2(0, 104), 1.5)
+
 	for i in range(tiles_num):
 		await Globals.wait(tiles_delay)
 
@@ -93,6 +101,11 @@ func tiles_state():
 		Globals.world.add_child(tile)
 
 	next_state()
+
+func move(target_position: Vector2, duration: float):
+	var tween = get_tree().create_tween().set_trans(Tween.TRANS_BACK)
+	tween.tween_property(self, "position", target_position, duration)
+	return tween.finished
 
 func next_state(index: int = state_index):
 	match index:

@@ -56,13 +56,11 @@ shadow_color = Color(0.419608, 0.380392, 1, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_46u0j")]
 
-[node name="AirBoss" parent="." node_paths=PackedStringArray("wind_particles") instance=ExtResource("3_popip")]
-position = Vector2(0, -88)
+[node name="AirBoss" parent="." node_paths=PackedStringArray("wind_particles", "cloud_puff_positions") instance=ExtResource("3_popip")]
+position = Vector2(0, -104)
 wind_particles = NodePath("../WindParticles")
 wind_force = Vector2(60, 0)
-cloud_puffs_num = 2
-tiles_num = 40
-tiles_delay = 0.1
+cloud_puff_positions = [NodePath("../Positions/Marker2D"), NodePath("../Positions/Marker2D2"), NodePath("../Positions/Marker2D3"), NodePath("../Positions/Marker2D4")]
 tiles_position_min = Vector2(-136, -136)
 tiles_position_max = Vector2(136, 136)
 
@@ -120,3 +118,17 @@ shape = SubResource("WorldBoundaryShape2D_m78ou")
 [node name="CollisionShape4" type="CollisionShape2D" parent="Walls"]
 position = Vector2(-136, 0)
 shape = SubResource("WorldBoundaryShape2D_5dj0x")
+
+[node name="Positions" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Positions"]
+position = Vector2(-136, -136)
+
+[node name="Marker2D2" type="Marker2D" parent="Positions"]
+position = Vector2(136, -136)
+
+[node name="Marker2D3" type="Marker2D" parent="Positions"]
+position = Vector2(136, 136)
+
+[node name="Marker2D4" type="Marker2D" parent="Positions"]
+position = Vector2(-136, 136)

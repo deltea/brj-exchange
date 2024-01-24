@@ -9,14 +9,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkqx3"]
 size = Vector2(24, 32)
 
-[node name="AirBoss" instance=ExtResource("1_8p8fi")]
+[node name="AirBoss" node_paths=PackedStringArray("cloud_puff_positions") instance=ExtResource("1_8p8fi")]
 script = ExtResource("2_abdfu")
 wind_force = Vector2(80, 0)
 wind_bullet_num = 50
 wind_bullet_speed = 250
 bullet_curve_num = 10
 bullet_curve_speed = 150
-cloud_puffs_delay = 1
+cloud_puffs_num = 2
+cloud_puff_positions = []
+tiles_num = 40
+tiles_delay = 0.1
+tiles_position_min = Vector2(0, 0)
+tiles_position_max = Vector2(0, 0)
 
 [node name="CollisionShape" parent="." index="0"]
 shape = SubResource("RectangleShape2D_wkqx3")
@@ -29,7 +34,7 @@ shadow_offset = Vector2(0, 32)
 scale_multiplier = Vector2(1, 0.8)
 
 [node name="Hands" type="Sprite2D" parent="." index="2"]
-position = Vector2(0, 3)
+position = Vector2(0, 2)
 texture = ExtResource("4_ldoiq")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
