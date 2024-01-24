@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://kwwvwopk2odt"]
+
+[ext_resource type="Texture2D" uid="uid://cea3vx6fjcy1o" path="res://assets/title.png" id="1_55bpo"]
+[ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="1_b25yf"]
+[ext_resource type="Shader" path="res://shaders/swirl_background.gdshader" id="1_rhh71"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xa4ly"]
+frequency = 0.0108
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gs7ga"]
+noise = SubResource("FastNoiseLite_xa4ly")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2aqgd"]
+shader = ExtResource("1_rhh71")
+shader_parameter/color_1 = Color(1, 0.243137, 0, 1)
+shader_parameter/color_2 = Color(0.870588, 0, 0, 1)
+shader_parameter/swirl_speed = 0.5
+shader_parameter/noise = SubResource("NoiseTexture2D_gs7ga")
+
+[node name="StartMenu" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="Title" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 27.0
+offset_right = 332.0
+offset_bottom = 73.0
+texture = ExtResource("1_55bpo")
+stretch_mode = 2
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -30
+material = SubResource("ShaderMaterial_2aqgd")
+scale = Vector2(30, 16.875)
+texture = ExtResource("1_b25yf")
+centered = false
