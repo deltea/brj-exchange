@@ -25,7 +25,6 @@ colors = PackedColorArray(1, 0.992157, 1, 1, 1, 0.619608, 0.490196, 1)
 script = ExtResource("2_owff2")
 texture_1 = ExtResource("2_gqfha")
 texture_2 = ExtResource("4_bru31")
-damage = 20.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource("2_gqfha")

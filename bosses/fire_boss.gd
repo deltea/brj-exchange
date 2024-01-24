@@ -102,7 +102,7 @@ func bullet_spiral_state():
 	await move(Vector2(352, 192), 2.0)
 
 	for i in range(bullet_spiral_num):
-		sprite.scale = Vector2.ONE * 1.5
+		sprite.scale = Vector2.ONE * 1.2
 
 		var bullet = bullet_scene.instantiate() as EnemyBullet
 		bullet.position = position
