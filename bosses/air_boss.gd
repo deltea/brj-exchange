@@ -8,9 +8,10 @@ enum STATE {
 	TILES,
 }
 
+@export var hand_speed = 100
 @export var wind_particles: CPUParticles2D
 @export var wind_force = Vector2(60, 0)
-@export var wind_bullet_num = 50
+@export var wind_bullet_num = 30
 @export var wind_bullet_speed = 250
 @export var bullet_curve_num = 10
 @export var bullet_curve_speed = 150
@@ -23,14 +24,23 @@ enum STATE {
 
 @onready var hands := $Hands
 
-var state_index = 0
+var state_index = -1
 var bullet_scene = preload("res://enemy-bullets/air_bullet.tscn")
 var curvy_bullet_scene = preload("res://enemy-bullets/curvy_bullet.tscn")
 var cloud_puff_scene = preload("res://enemies/cloud_puff.tscn")
 var tile_scene = preload("res://enemies/enemy_tile.tscn")
+var hand_position = Vector2.ZERO
 
 func _ready() -> void:
 	next_state()
+
+func _process(delta: float) -> void:
+	match state_index:
+		STATE.BULLET_CURVE: hand_position = Vector2(0, sin(3.0 * Globals.time) * 5.0)
+		STATE.CLOUD_PUFFS: hand_position = Vector2.ZERO
+		STATE.TILES: hand_position = Vector2.ZERO
+
+	hands.position = hands.position.move_toward(hand_position, hand_speed * delta)
 
 func bullet_curve_state():
 	await move(Vector2(0, -104), 1.0)
@@ -55,6 +65,7 @@ func bullet_wind_state():
 
 	for x in range(2):
 		await move(wind_particles.position / 2, 1.5)
+		hand_position = -wind_particles.position.normalized() * 5
 
 		for i in range(wind_bullet_num):
 			await Globals.wait(0.05)
@@ -107,11 +118,11 @@ func move(target_position: Vector2, duration: float):
 	tween.tween_property(self, "position", target_position, duration)
 	return tween.finished
 
-func next_state(index: int = state_index):
-	match index:
+func next_state(index = null):
+	state_index = (state_index + 1) % len(STATE.keys())
+
+	match index if index else state_index:
 		STATE.BULLET_CURVE: bullet_curve_state()
 		STATE.BULLET_WIND: bullet_wind_state()
 		STATE.CLOUD_PUFFS: cloud_puffs_state()
 		STATE.TILES: tiles_state()
-
-	state_index = (state_index + 1) % len(STATE.keys())
