@@ -60,6 +60,7 @@ shadow_color = Color(0.419608, 0.380392, 1, 1)
 position = Vector2(0, -88)
 wind_particles = NodePath("../WindParticles")
 wind_force = Vector2(60, 0)
+cloud_puffs_num = 2
 tiles_num = 40
 tiles_delay = 0.1
 tiles_position_min = Vector2(-136, -136)

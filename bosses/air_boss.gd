@@ -14,7 +14,8 @@ enum STATE {
 @export var wind_bullet_speed = 250
 @export var bullet_curve_num = 10
 @export var bullet_curve_speed = 150
-@export var cloud_puffs_delay = 1
+@export var cloud_puffs_num = 2
+@export var cloud_puffs_delay = 2
 @export var tiles_num = 40
 @export var tiles_delay = 0.1
 @export var tiles_position_min = Vector2.ZERO
@@ -73,7 +74,7 @@ func bullet_wind_state():
 	next_state()
 
 func cloud_puffs_state():
-	for i in range(1):
+	for i in range(cloud_puffs_num):
 		await Globals.wait(cloud_puffs_delay)
 		var cloud_puff = cloud_puff_scene.instantiate()
 		cloud_puff.position = position
