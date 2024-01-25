@@ -57,6 +57,7 @@ func bullet_curve_state():
 		bullet.speed = bullet_curve_speed
 		Globals.world.add_child(bullet)
 
+	await Globals.wait(2)
 	next_state()
 
 func bullet_wind_state():

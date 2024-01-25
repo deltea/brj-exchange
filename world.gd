@@ -4,6 +4,7 @@ class_name World
 @export var background_color: Color = Color.BLACK
 @export var shadow_color: Color = Color.BLACK
 @export var portal_color: Color = Color.WHITE
+@export var boss_health_color: Color = Color.PALE_VIOLET_RED
 
 var portal_scene = preload("res://portal.tscn")
 

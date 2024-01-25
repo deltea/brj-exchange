@@ -20,6 +20,7 @@ script = ExtResource("1_1ggi7")
 background_color = Color(0.207843, 0.164706, 0.333333, 1)
 shadow_color = Color(0.1729, 0.1372, 0.28, 1)
 portal_color = Color(1, 0.619608, 0.490196, 1)
+boss_health_color = Color(1, 0.619608, 0.490196, 1)
 
 [node name="Canvas" parent="." instance=ExtResource("2_vawvb")]
 
