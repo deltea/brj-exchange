@@ -1,7 +1,7 @@
 extends Area2D
 class_name Boss
 
-@export var max_health = 400
+@export var max_health = 300
 
 var health: float
 var explosion_scene = preload("res://particles/explosion.tscn")
@@ -18,6 +18,7 @@ func take_damage():
 	flash()
 
 	health -= Globals.player.bullet_damage
+	Globals.canvas.boss_health.value = health
 	if health < 0: die()
 
 func die():

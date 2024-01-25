@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dkleaeatsa8o"]
+[gd_scene load_steps=9 format=3 uid="uid://dkleaeatsa8o"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_1ggi7"]
+[ext_resource type="PackedScene" uid="uid://do1wktcurduto" path="res://ui/canvas.tscn" id="2_vawvb"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="3_4ja5c"]
 [ext_resource type="PackedScene" uid="uid://6kio0pmva1lq" path="res://bosses/fire_boss.tscn" id="4_dlm5k"]
 [ext_resource type="PackedScene" uid="uid://bh17qritcspvs" path="res://wall.tscn" id="4_knrh1"]
@@ -20,6 +21,8 @@ background_color = Color(0.207843, 0.164706, 0.333333, 1)
 shadow_color = Color(0.1729, 0.1372, 0.28, 1)
 portal_color = Color(1, 0.619608, 0.490196, 1)
 
+[node name="Canvas" parent="." instance=ExtResource("2_vawvb")]
+
 [node name="Player" parent="." instance=ExtResource("3_4ja5c")]
 position = Vector2(0.00186157, 64)
 
@@ -29,7 +32,6 @@ fireball_positions = [NodePath("../Positions/Marker2D6"), NodePath("../Positions
 bullet_corners_num = 5
 bullet_corners_spread = 10
 bullet_corners_speed = 150
-max_health = 10
 
 [node name="FlameArenaParticles" type="CPUParticles2D" parent="."]
 z_index = 20

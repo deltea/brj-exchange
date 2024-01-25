@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://do1wktcurduto"]
+
+[ext_resource type="Texture2D" uid="uid://cjvux8u0xi6en" path="res://assets/ui/boss-health-outline.png" id="1_5r2hf"]
+[ext_resource type="Script" path="res://ui/canvas.gd" id="1_ciq5o"]
+[ext_resource type="Texture2D" uid="uid://cgsvblsv8rtst" path="res://assets/ui/boss-health.png" id="1_w7wdj"]
+[ext_resource type="Texture2D" uid="uid://umlx0g0dk11w" path="res://assets/ui/player-health-outline.png" id="2_wlg5g"]
+[ext_resource type="Texture2D" uid="uid://dscvwng75nptx" path="res://assets/ui/player-health.png" id="2_yd27w"]
+[ext_resource type="Script" path="res://ui/wobble_ui.gd" id="4_2xril"]
+
+[node name="Canvas" type="CanvasLayer"]
+script = ExtResource("1_ciq5o")
+
+[node name="BossHealth" type="TextureProgressBar" parent="."]
+offset_left = 9.0
+offset_top = 252.0
+offset_right = 471.0
+offset_bottom = 261.0
+pivot_offset = Vector2(231, 5)
+max_value = 300.0
+value = 300.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_over = ExtResource("1_5r2hf")
+texture_progress = ExtResource("1_w7wdj")
+tint_progress = Color(1, 0.619608, 0.490196, 1)
+script = ExtResource("4_2xril")
+speed = 1.0
+magnitude = 0.5
+
+[node name="PlayerHealth" type="TextureProgressBar" parent="."]
+offset_left = 432.0
+offset_top = 9.0
+offset_right = 472.0
+offset_bottom = 42.0
+pivot_offset = Vector2(16, 11)
+value = 100.0
+fill_mode = 3
+texture_under = ExtResource("2_wlg5g")
+texture_progress = ExtResource("2_yd27w")
+script = ExtResource("4_2xril")
+magnitude = 10.0

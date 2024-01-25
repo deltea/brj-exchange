@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://di35doqi3tf3y"]
 
 [ext_resource type="Script" path="res://autoloads/SceneManager.gd" id="1_cij6o"]
-[ext_resource type="Texture2D" uid="uid://bi48tnan3ibde" path="res://assets/half-screen.png" id="2_4dusy"]
+[ext_resource type="Texture2D" uid="uid://bi48tnan3ibde" path="res://assets/ui/half-screen.png" id="2_4dusy"]
 
 [sub_resource type="Animation" id="Animation_50g4m"]
 resource_name = "transition"

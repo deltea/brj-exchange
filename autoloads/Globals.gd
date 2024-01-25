@@ -4,6 +4,7 @@ var player: Player
 var mouse: Mouse
 var world: World
 var camera: Camera
+var canvas: Canvas
 
 var time = 0.0
 

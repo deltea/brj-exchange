@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bi48tnan3ibde"
-path="res://.godot/imported/half-screen.png-0b3945f467fdccb7bd9a78b9c991efe1.ctex"
+uid="uid://umlx0g0dk11w"
+path="res://.godot/imported/player-health-outline.png-0d2741ba05723ee67cb6f058bb520b7b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/half-screen.png"
-dest_files=["res://.godot/imported/half-screen.png-0b3945f467fdccb7bd9a78b9c991efe1.ctex"]
+source_file="res://assets/ui/player-health-outline.png"
+dest_files=["res://.godot/imported/player-health-outline.png-0d2741ba05723ee67cb6f058bb520b7b.ctex"]
 
 [params]
 

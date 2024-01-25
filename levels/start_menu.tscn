@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://kwwvwopk2odt"]
 
-[ext_resource type="Texture2D" uid="uid://cea3vx6fjcy1o" path="res://assets/title.png" id="1_55bpo"]
+[ext_resource type="Texture2D" uid="uid://cea3vx6fjcy1o" path="res://assets/ui/title.png" id="1_55bpo"]
 [ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="1_b25yf"]
 [ext_resource type="Shader" path="res://shaders/swirl_background.gdshader" id="1_rhh71"]
 [ext_resource type="Script" path="res://ui/wobble_ui.gd" id="2_djfjg"]

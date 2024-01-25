@@ -103,6 +103,7 @@ func can_dash():
 func get_hurt(damage: float):
 	print("oof")
 	health -= damage
+	Globals.canvas.player_health.value = health
 	Globals.hitstop(0.15)
 	Globals.camera.impact()
 	Globals.camera.shake(0.1, 1)
