@@ -1,9 +1,12 @@
 extends Area2D
 class_name CloudPuff
 
+@export var animation_speed = 2
 @export var max_health = 50
 @export var follow_speed = 30
 @export var bullet_speed = 80
+
+@onready var sprite := $Sprite
 
 var health: float
 var following_player = true
@@ -14,6 +17,8 @@ func _enter_tree() -> void:
 	health = max_health
 
 func _process(delta: float) -> void:
+	sprite.scale = sprite.scale.move_toward(Vector2.ONE, animation_speed * delta)
+
 	if following_player:
 		position = position.move_toward(Globals.player.position, follow_speed * delta)
 
@@ -31,9 +36,10 @@ func die():
 	queue_free()
 
 func flash():
-	$Sprite.material.set_shader_parameter("enabled", true)
+	sprite.scale = Vector2.ONE * 1.2
+	sprite.material.set_shader_parameter("enabled", true)
 	await Globals.wait(0.1)
-	$Sprite.material.set_shader_parameter("enabled", false)
+	sprite.material.set_shader_parameter("enabled", false)
 
 func shoot():
 	var bullet = bullet_scene.instantiate() as EnemyBullet

@@ -8,7 +8,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xhjta"]
 shader = ExtResource("2_ewve5")
 shader_parameter/enabled = false
-shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/color = Color(0.980392, 0.866667, 0.635294, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iurpo"]
 radius = 8.0

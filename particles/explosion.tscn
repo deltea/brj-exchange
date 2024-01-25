@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4ctpkx5yv2an"]
+
+[sub_resource type="Curve" id="Curve_2pbcf"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_je6bl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.759191, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Explosion" type="CPUParticles2D"]
+position = Vector2(240, 160)
+emitting = false
+amount = 50
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.5
+lifetime_randomness = 0.2
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 80.0
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("Curve_2pbcf")
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_je6bl")

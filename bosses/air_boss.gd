@@ -8,6 +8,7 @@ enum STATE {
 	TILES,
 }
 
+@export var animation_speed = 2
 @export var hand_speed = 100
 @export var wind_particles: CPUParticles2D
 @export var wind_force = Vector2(60, 0)
@@ -23,6 +24,7 @@ enum STATE {
 @export var tiles_position_max = Vector2.ZERO
 
 @onready var hands := $Hands
+@onready var sprite := $Sprite
 
 var state_index = -1
 var bullet_scene = preload("res://enemy-bullets/air_bullet.tscn")
@@ -41,6 +43,7 @@ func _process(delta: float) -> void:
 		STATE.TILES: hand_position = Vector2.ZERO
 
 	hands.position = hands.position.move_toward(hand_position, hand_speed * delta)
+	sprite.scale = sprite.scale.move_toward(Vector2.ONE, animation_speed * delta)
 
 func bullet_curve_state():
 	await move(Vector2(0, -104), 1.0)
@@ -94,7 +97,7 @@ func cloud_puffs_state():
 		await move(random_position, 2)
 
 		var cloud_puff = cloud_puff_scene.instantiate()
-		cloud_puff.position = position
+		cloud_puff.position = random_position
 		Globals.world.add_child(cloud_puff)
 
 	next_state()
@@ -126,3 +129,10 @@ func next_state(index = null):
 		STATE.BULLET_WIND: bullet_wind_state()
 		STATE.CLOUD_PUFFS: cloud_puffs_state()
 		STATE.TILES: tiles_state()
+
+func flash():
+	sprite.scale = Vector2.ONE * 1.2
+
+	sprite.material.set_shader_parameter("enabled", true)
+	await Globals.wait(0.2)
+	sprite.material.set_shader_parameter("enabled", false)

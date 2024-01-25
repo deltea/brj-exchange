@@ -53,11 +53,13 @@ normal = Vector2(1, 0)
 script = ExtResource("1_8r6rk")
 background_color = Color(0.470588, 0.67451, 1, 1)
 shadow_color = Color(0.419608, 0.380392, 1, 1)
+portal_color = Color(0.980392, 0.866667, 0.635294, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_46u0j")]
 
 [node name="AirBoss" parent="." node_paths=PackedStringArray("wind_particles", "cloud_puff_positions") instance=ExtResource("3_popip")]
 position = Vector2(0, -104)
+animation_speed = 2
 wind_particles = NodePath("../WindParticles")
 wind_force = Vector2(60, 0)
 cloud_puff_positions = [NodePath("../Positions/Marker2D"), NodePath("../Positions/Marker2D2"), NodePath("../Positions/Marker2D3"), NodePath("../Positions/Marker2D4")]

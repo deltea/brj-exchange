@@ -38,14 +38,11 @@ shape = SubResource("CircleShape2D_06gny")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Sprite" type="Sprite2D" parent="."]
-self_modulate = Color(1, 0, 0, 1)
 texture = ExtResource("1_j185p")
 
 [node name="Particles" type="GPUParticles2D" parent="."]
-self_modulate = Color(1, 0, 0, 1)
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_ilrli")
 texture = ExtResource("3_fr6ei")
-preprocess = 1.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

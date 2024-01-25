@@ -1,16 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdclqvueu65tx"]
+[gd_scene load_steps=9 format=3 uid="uid://cdclqvueu65tx"]
 
 [ext_resource type="PackedScene" uid="uid://capye210yfaqj" path="res://bosses/boss.tscn" id="1_8p8fi"]
 [ext_resource type="Script" path="res://bosses/air_boss.gd" id="2_abdfu"]
 [ext_resource type="Texture2D" uid="uid://c5w4afn56wktx" path="res://assets/bosses/air.png" id="2_r18pu"]
+[ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="3_igkse"]
 [ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="3_r4t5u"]
 [ext_resource type="Texture2D" uid="uid://bp7sut00rxa4g" path="res://assets/bosses/air-hands.png" id="4_ldoiq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkqx3"]
 size = Vector2(24, 32)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lb3sd"]
+shader = ExtResource("3_igkse")
+shader_parameter/enabled = false
+shader_parameter/color = Color(0.980392, 0.866667, 0.635294, 1)
+
 [node name="AirBoss" node_paths=PackedStringArray("cloud_puff_positions") instance=ExtResource("1_8p8fi")]
 script = ExtResource("2_abdfu")
+animation_speed = 2
 hand_speed = 100
 wind_force = Vector2(80, 0)
 wind_bullet_num = 30
@@ -28,6 +35,7 @@ tiles_position_max = Vector2(0, 0)
 shape = SubResource("RectangleShape2D_wkqx3")
 
 [node name="Sprite" parent="." index="1"]
+material = SubResource("ShaderMaterial_lb3sd")
 texture = ExtResource("2_r18pu")
 
 [node name="DropShadow" parent="Sprite" index="0" instance=ExtResource("3_r4t5u")]

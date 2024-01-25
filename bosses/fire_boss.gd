@@ -59,7 +59,7 @@ func fireballs_state():
 	next_state()
 
 func bullet_ring_state():
-	await move(Vector2(352, 192), 2.0)
+	await move(Vector2.ZERO, 2.0)
 
 	var offset = 0
 	for i in range(3):
@@ -99,7 +99,7 @@ func laser_state():
 	next_state()
 
 func bullet_spiral_state():
-	await move(Vector2(352, 192), 2.0)
+	await move(Vector2.ZERO, 2.0)
 
 	for i in range(bullet_spiral_num):
 		sprite.scale = Vector2.ONE * 1.2
