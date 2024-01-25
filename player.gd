@@ -35,6 +35,7 @@ var next_time_to_fire = 0.0
 var health = max_health
 var bullet_scene = preload("res://player_bullet.tscn")
 var wind_force = Vector2.ZERO
+var can_move = true
 
 func _enter_tree() -> void:
 	Globals.player = self
@@ -43,12 +44,17 @@ func _ready() -> void:
 	dash_timer.wait_time = dash_time
 	dash_cooldown_timer.wait_time = dash_cooldown
 	hitbox.set_collision_mask_value(4, true)
+	Events.go_in_portal.connect(_on_go_into_portal)
 
 func _process(delta: float) -> void:
+	if not can_move: return
+
 	sprite.rotation = lerp_angle(sprite.rotation, target_rotation, turn_speed * delta)
 	sprite.scale = sprite.scale.move_toward(target_scale, squash_and_stretch_speed * delta)
 
 func _physics_process(_delta: float) -> void:
+	if not can_move: return
+
 	var input = Input.get_vector("left", "right", "up", "down")
 
 	if input:
@@ -106,6 +112,16 @@ func get_hurt(damage: float):
 func die():
 	print("ur ded")
 	Globals.hitstop(10000)
+
+func _on_go_into_portal(portal: Portal):
+	can_move = false
+	velocity = Vector2.ZERO
+	move_particles.emitting = false
+	var tweener = get_tree().create_tween().set_parallel(true)
+	tweener.tween_property(sprite, "scale", Vector2.ZERO, 1)
+	tweener.tween_property(sprite, "global_position", portal.position, 1)
+	tweener.tween_property(sprite, "global_rotation_degrees", sprite.global_rotation_degrees + 360, 1)
+	tweener.tween_callback(func(): SceneManager.change_scene(SceneManager.exchange_scene)).set_delay(1)
 
 func _on_dash_timer_timeout() -> void:
 	move_particles.emitting = true
