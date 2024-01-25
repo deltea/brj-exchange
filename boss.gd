@@ -22,6 +22,7 @@ func take_damage():
 
 func die():
 	Events.boss_defeated.emit()
+	Globals.camera.shake(0.5, 2)
 	var explosion = explosion_scene.instantiate() as CPUParticles2D
 	explosion.position = position
 	explosion.emitting = true

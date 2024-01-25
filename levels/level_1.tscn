@@ -29,7 +29,7 @@ fireball_positions = [NodePath("../Positions/Marker2D6"), NodePath("../Positions
 bullet_corners_num = 5
 bullet_corners_spread = 10
 bullet_corners_speed = 150
-max_health = 20
+max_health = 10
 
 [node name="FlameArenaParticles" type="CPUParticles2D" parent="."]
 z_index = 20

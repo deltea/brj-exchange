@@ -16,6 +16,7 @@ func _ready() -> void:
 	tween.tween_property(self, "scale", Vector2.ONE, telegraph_duration)
 	tween.tween_property(collider, "disabled", false, 0)
 	tween.tween_property($Sprite, "self_modulate", damage_color, 0)
+	tween.tween_callback(func(): Globals.camera.shake(0.2, 0.4))
 	tween.tween_property(collider, "disabled", true, 0.5)
 	tween.tween_property(self, "scale", Vector2.ZERO, 1.0)
 	tween.tween_callback(queue_free)

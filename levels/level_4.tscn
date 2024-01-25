@@ -59,7 +59,6 @@ portal_color = Color(0.980392, 0.866667, 0.635294, 1)
 
 [node name="AirBoss" parent="." node_paths=PackedStringArray("wind_particles", "cloud_puff_positions") instance=ExtResource("3_popip")]
 position = Vector2(0, -104)
-animation_speed = 2
 wind_particles = NodePath("../WindParticles")
 wind_force = Vector2(60, 0)
 cloud_puff_positions = [NodePath("../Positions/Marker2D"), NodePath("../Positions/Marker2D2"), NodePath("../Positions/Marker2D3"), NodePath("../Positions/Marker2D4")]

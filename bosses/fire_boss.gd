@@ -65,6 +65,7 @@ func bullet_ring_state():
 	for i in range(3):
 		for x in range(bullet_ring_num):
 			sprite.scale = Vector2.ONE * 1.5
+			Globals.camera.shake(0.1, 0.5)
 
 			var bullet = bullet_scene.instantiate() as EnemyBullet
 			bullet.position = position
@@ -74,7 +75,7 @@ func bullet_ring_state():
 			Globals.world.add_child(bullet)
 
 		offset += 9
-		await Globals.wait(0.5)
+		await Globals.wait(1)
 
 	next_state()
 
@@ -103,6 +104,7 @@ func bullet_spiral_state():
 
 	for i in range(bullet_spiral_num):
 		sprite.scale = Vector2.ONE * 1.2
+		Globals.camera.shake(0.1, 0.2)
 
 		var bullet = bullet_scene.instantiate() as EnemyBullet
 		bullet.position = position
@@ -122,6 +124,7 @@ func bullet_corners_state():
 		var random_position = fireball_positions.pick_random().position
 		await move(random_position, 1.0)
 		sprite.scale = Vector2.ONE * 1.5
+		Globals.camera.shake(0.1, 0.5)
 
 		var angle = rad_to_deg((get_angle_to(Globals.player.position))) - ((bullet_corners_num - 1) * bullet_corners_spread / 2.0)
 		for x in range(bullet_corners_num):
@@ -135,6 +138,7 @@ func bullet_corners_state():
 	next_state()
 
 func fire_fireball():
+	Globals.camera.shake(0.1, 0.6)
 	sprite.scale = Vector2.ONE * 1.5
 	var fireball = fireball_scene.instantiate() as Fireball
 	var direction = (Globals.player.position - position).normalized()

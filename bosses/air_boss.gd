@@ -34,7 +34,7 @@ var tile_scene = preload("res://enemies/enemy_tile.tscn")
 var hand_position = Vector2.ZERO
 
 func _ready() -> void:
-	next_state()
+	next_state(3)
 
 func _process(delta: float) -> void:
 	match state_index:
