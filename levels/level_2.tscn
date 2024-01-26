@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bssdl05nt66ie"]
+[gd_scene load_steps=12 format=3 uid="uid://bssdl05nt66ie"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_h52k8"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="1_mspsa"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://dofc5x622mqnj" path="res://assets/bubble-particle.png" id="8_0qywv"]
 [ext_resource type="Shader" path="res://shaders/bubbles.gdshader" id="8_28n0g"]
 [ext_resource type="PackedScene" uid="uid://dquuni4v6g06p" path="res://whirlpool.tscn" id="10_ioct6"]
-[ext_resource type="PackedScene" uid="uid://bm83btd6ueyu2" path="res://enemies/fish.tscn" id="11_i3gnn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ock1y"]
 shader = ExtResource("8_28n0g")
@@ -60,19 +59,14 @@ boss_health_color = Color(0.427451, 0.737255, 0.72549, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_mspsa")]
 
-[node name="WaterBoss" parent="." instance=ExtResource("4_h28vm")]
+[node name="WaterBoss" parent="." node_paths=PackedStringArray("whirlpool") instance=ExtResource("4_h28vm")]
 position = Vector2(0, -66)
-whirlpool_force = 60
-
-[node name="Wall" type="StaticBody2D" parent="."]
-z_index = 10
-script = ExtResource("5_ftppk")
-
-[node name="Sprite" type="Sprite2D" parent="Wall"]
-texture = ExtResource("5_bcf7e")
-
-[node name="CollisionPolygon" type="CollisionPolygon2D" parent="Wall"]
-polygon = PackedVector2Array(240, -240, 240, 240, -240, 240, -240, -240, 240, -240, 43, -198, 14, -203, -21, -202, -45, -196, -71, -189, -99, -177, -121, -163, -137, -149, -156, -129, -172, -108, -184, -84, -194, -58, -200, -31, -202, 0, -200, 26, -197, 48, -189, 74, -178, 96, -162, 121, -139, 148, -113, 168, -91, 181, -63, 192, -36, 198, -15, 202, 24, 201, 55, 195, 79, 187, 104, 174, 130, 155, 154, 131, 172, 107, 185, 81, 195, 54, 202, 21, 203, -9, 198, -45, 186, -82, 167, -115, 149, -136, 130, -156, 107, -172, 77, -188, 43, -198)
+whirlpool = NodePath("../Whirlpool")
+whirlpool_fish_num = 50
+whirlpool_fish_delay = 0.1
+whirlpool_fish_speed = 0
+whirlpool_fish_acceleration = 3
+whirlpool_fish_radius = 220
 
 [node name="BubbleParticles" type="GPUParticles2D" parent="."]
 z_index = 10
@@ -84,7 +78,20 @@ lifetime = 38.0
 preprocess = 38.0
 visibility_rect = Rect2(-480, -800, 960, 810)
 
-[node name="Seaweed" type="Node" parent="."]
+[node name="Whirlpool" parent="." instance=ExtResource("10_ioct6")]
+
+[node name="Wall" type="StaticBody2D" parent="."]
+z_index = 20
+script = ExtResource("5_ftppk")
+
+[node name="Sprite" type="Sprite2D" parent="Wall"]
+texture = ExtResource("5_bcf7e")
+
+[node name="CollisionPolygon" type="CollisionPolygon2D" parent="Wall"]
+polygon = PackedVector2Array(240, -240, 240, 240, -240, 240, -240, -240, 240, -240, 43, -198, 14, -203, -21, -202, -45, -196, -71, -189, -99, -177, -121, -163, -137, -149, -156, -129, -172, -108, -184, -84, -194, -58, -200, -31, -202, 0, -200, 26, -197, 48, -189, 74, -178, 96, -162, 121, -139, 148, -113, 168, -91, 181, -63, 192, -36, 198, -15, 202, 24, 201, 55, 195, 79, 187, 104, 174, 130, 155, 154, 131, 172, 107, 185, 81, 195, 54, 202, 21, 203, -9, 198, -45, 186, -82, 167, -115, 149, -136, 130, -156, 107, -172, 77, -188, 43, -198)
+
+[node name="Seaweed" type="Node2D" parent="."]
+z_index = 10
 
 [node name="Seaweed" parent="Seaweed" instance=ExtResource("7_gjtht")]
 
@@ -189,25 +196,20 @@ scale = Vector2(1.7422, 1.34009)
 
 [node name="Seaweed22" parent="Seaweed" instance=ExtResource("7_gjtht")]
 position = Vector2(164, -90)
-rotation = 4.26497
+rotation = -2.01822
 scale = Vector2(1.7422, 1.34009)
 
 [node name="Seaweed23" parent="Seaweed" instance=ExtResource("7_gjtht")]
 position = Vector2(179, -78)
-rotation = 4.26497
+rotation = -2.01822
 scale = Vector2(1.7422, 1.34009)
 
 [node name="Seaweed24" parent="Seaweed" instance=ExtResource("7_gjtht")]
 position = Vector2(184.317, -31.1416)
-rotation = 4.60112
+rotation = -1.68206
 scale = Vector2(1.7422, 1.72662)
 
 [node name="Seaweed25" parent="Seaweed" instance=ExtResource("7_gjtht")]
 position = Vector2(19, -180)
-rotation = 3.3645
+rotation = -2.91868
 scale = Vector2(0.809399, 1.59989)
-
-[node name="Whirlpool" parent="." instance=ExtResource("10_ioct6")]
-
-[node name="Fish" parent="." instance=ExtResource("11_i3gnn")]
-position = Vector2(-107, 0)

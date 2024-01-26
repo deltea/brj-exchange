@@ -2,8 +2,9 @@ extends Area2D
 class_name Fish
 
 @export var animation_speed = 5
-@export var max_health = 10
+@export var max_health = 0
 @export var mouth_angle_max = 30
+@export var damage = 10
 
 @onready var mouth_top := $MouthTop
 @onready var mouth_bottom := $MouthBottom
@@ -11,6 +12,8 @@ class_name Fish
 
 var health: float
 var explosion_scene = preload("res://particles/wall_hit.tscn")
+var speed = 0
+var acceleration = 0
 
 func _enter_tree() -> void:
 	health = max_health
@@ -21,6 +24,10 @@ func _process(delta: float) -> void:
 
 	mouth_bottom.rotation_degrees = sin(Globals.time * 20.0 + PI) * mouth_angle_max + mouth_angle_max
 	mouth_top.rotation_degrees = sin(Globals.time * 20.0) * mouth_angle_max - mouth_angle_max
+
+func _physics_process(delta: float) -> void:
+	position += Vector2.from_angle(rotation) * speed * delta
+	speed += acceleration
 
 func take_damage():
 	flash()
@@ -53,3 +60,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area is PlayerBullet:
 		(area as PlayerBullet).queue_free()
 		take_damage()
+	if area is Whirlpool:
+		var tween = get_tree().create_tween().set_trans(Tween.TRANS_SINE)
+		tween.tween_property(self, "scale", Vector2.ZERO, 0.1)
+		tween.tween_callback(queue_free)

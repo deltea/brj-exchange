@@ -6,6 +6,7 @@
 [ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="2_ewve5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xhjta"]
+resource_local_to_scene = true
 shader = ExtResource("2_ewve5")
 shader_parameter/enabled = false
 shader_parameter/color = Color(0.980392, 0.866667, 0.635294, 1)

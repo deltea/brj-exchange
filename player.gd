@@ -140,3 +140,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		var tile = area as EnemyTile
 		tile.queue_free()
 		get_hurt(tile.damage)
+	elif area is Fish:
+		var fish = area as Fish
+		fish.queue_free()
+		get_hurt(fish.damage)

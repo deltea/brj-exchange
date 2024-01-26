@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://bjm747f0p1sx1"]
+[gd_scene load_steps=19 format=3 uid="uid://bjm747f0p1sx1"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_8r6rk"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="2_46u0j"]
+[ext_resource type="PackedScene" uid="uid://cdclqvueu65tx" path="res://bosses/air_boss.tscn" id="3_popip"]
 [ext_resource type="Texture2D" uid="uid://bn83f0txp5mpf" path="res://assets/wind-particle.png" id="4_03gfe"]
 [ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="4_esfm0"]
 [ext_resource type="Shader" path="res://shaders/clouds.gdshader" id="5_pvlpr"]
@@ -59,6 +60,11 @@ boss_health_color = Color(0.980392, 0.866667, 0.635294, 1)
 [node name="Canvas" parent="." instance=ExtResource("8_2bxnw")]
 
 [node name="Player" parent="." instance=ExtResource("2_46u0j")]
+
+[node name="AirBoss" parent="." node_paths=PackedStringArray("wind_particles", "cloud_puff_positions") instance=ExtResource("3_popip")]
+position = Vector2(0, -200)
+wind_particles = NodePath("../WindParticles")
+cloud_puff_positions = [NodePath("../Positions/Marker2D"), NodePath("../Positions/Marker2D2"), NodePath("../Positions/Marker2D3"), NodePath("../Positions/Marker2D4")]
 
 [node name="WindParticles" type="CPUParticles2D" parent="."]
 position = Vector2(-448, 0)

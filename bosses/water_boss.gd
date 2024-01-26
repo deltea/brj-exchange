@@ -7,7 +7,13 @@ enum STATE {
 }
 
 @export var animation_speed = 2
+@export var whirlpool: Whirlpool
 @export var whirlpool_force = 60
+@export var whirlpool_fish_num = 50
+@export var whirlpool_fish_delay = 0.1
+@export var whirlpool_fish_speed = 0
+@export var whirlpool_fish_acceleration = 3
+@export var whirlpool_fish_radius = 220
 
 @onready var sprite := $Sprite
 @onready var mouth_top := $MouthTop
@@ -15,6 +21,7 @@ enum STATE {
 @onready var eye := $MouthTop/Eye
 
 var state_index = -1
+var fish_scene = preload("res://enemies/fish.tscn")
 
 func _ready() -> void:
 	next_state()
@@ -29,6 +36,25 @@ func _process(delta: float) -> void:
 # Attack methods
 func whirlpool_state():
 	await move(Vector2(randf_range(-180, 180), randf_range(-180, 180)), 2.0)
+	Globals.player.whirlpool_force = whirlpool_force
+	whirlpool.target_scale = Vector2.ONE
+
+	for i in whirlpool_fish_num:
+		var fish = fish_scene.instantiate() as Fish
+		var random_rotation = randf_range(0, PI * 2)
+		var random_position = Vector2.from_angle(random_rotation) * whirlpool_fish_radius
+		fish.position = random_position
+		fish.rotation = random_rotation + PI
+		fish.acceleration = whirlpool_fish_acceleration
+		fish.speed = whirlpool_fish_speed
+		Globals.world.add_child(fish)
+
+		await Globals.wait(whirlpool_fish_delay)
+
+	whirlpool.target_scale = Vector2.ZERO
+
+	Globals.player.whirlpool_force = 0
+
 	next_state()
 
 func fishies_state():

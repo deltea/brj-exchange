@@ -1,8 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dquuni4v6g06p"]
+[gd_scene load_steps=11 format=3 uid="uid://dquuni4v6g06p"]
 
 [ext_resource type="Shader" path="res://shaders/whirlpool.gdshader" id="1_j2nmk"]
 [ext_resource type="Texture2D" uid="uid://blq2b041xxo6a" path="res://assets/portal.png" id="1_my2lp"]
+[ext_resource type="Script" path="res://whirlpool.gd" id="2_a5sox"]
 [ext_resource type="Texture2D" uid="uid://c46htyaexexvl" path="res://assets/circle-particle.png" id="3_asb6x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ercr4"]
+radius = 14.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_825gm"]
 
@@ -35,9 +39,17 @@ angle_max = 720.0
 scale_curve = SubResource("CurveTexture_j8jfj")
 color = Color(0.215686, 0.129412, 0.203922, 1)
 
-[node name="Whirlpool" type="Sprite2D"]
+[node name="Whirlpool" type="Area2D"]
 self_modulate = Color(0.215686, 0.129412, 0.203922, 1)
 z_index = -10
+collision_mask = 0
+script = ExtResource("2_a5sox")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ercr4")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.215686, 0.129412, 0.203922, 1)
 texture = ExtResource("1_my2lp")
 
 [node name="Swirl" type="Sprite2D" parent="."]
@@ -46,6 +58,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_my2lp")
 
 [node name="Particles" type="GPUParticles2D" parent="."]
+visible = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_07k3x")
 texture = ExtResource("3_asb6x")

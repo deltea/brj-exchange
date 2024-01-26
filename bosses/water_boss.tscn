@@ -20,6 +20,7 @@ shader_parameter/color = Color(1, 1, 1, 1)
 [node name="WaterBoss" instance=ExtResource("1_qhatv")]
 script = ExtResource("2_piiff")
 animation_speed = 2
+whirlpool_force = 60
 
 [node name="CollisionShape" parent="." index="0"]
 position = Vector2(-4, 0)
@@ -27,7 +28,7 @@ rotation = 1.57079
 shape = SubResource("CapsuleShape2D_poypq")
 
 [node name="Sprite" parent="." index="1"]
-position = Vector2(-4, 0)
+position = Vector2(-3, 0)
 texture = ExtResource("2_txqf0")
 
 [node name="DropShadow" parent="Sprite" index="0" instance=ExtResource("3_v6gl3")]

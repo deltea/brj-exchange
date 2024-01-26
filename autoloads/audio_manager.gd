@@ -5,7 +5,7 @@ extends Node
 @export var enemy_hit: AudioStream
 
 @onready var sfx_player := $SFXStreamPlayer
-@onready var music_player := $MusicPlayer
+@onready var music_player := $MusicStreamPlayer
 
 func play_sound(sound: AudioStream):
 	sfx_player.stream = sound
