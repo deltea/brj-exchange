@@ -34,6 +34,7 @@ texture = ExtResource("2_txqf0")
 shadow_offset = Vector2(0, 16)
 
 [node name="MouthTop" type="Sprite2D" parent="." index="2"]
+z_index = 1
 material = SubResource("ShaderMaterial_me5wq")
 texture = ExtResource("4_trefq")
 offset = Vector2(-4, 0)

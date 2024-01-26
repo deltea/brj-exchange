@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bssdl05nt66ie"]
+[gd_scene load_steps=11 format=3 uid="uid://bssdl05nt66ie"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_h52k8"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="1_mspsa"]
@@ -6,6 +6,46 @@
 [ext_resource type="PackedScene" uid="uid://bxerpboix0ded" path="res://bosses/water_boss.tscn" id="4_h28vm"]
 [ext_resource type="Texture2D" uid="uid://cdm1ss5g32bhn" path="res://assets/circle-arena.png" id="5_bcf7e"]
 [ext_resource type="Script" path="res://wall.gd" id="5_ftppk"]
+[ext_resource type="PackedScene" uid="uid://b38msfrakrpbt" path="res://seaweed.tscn" id="7_gjtht"]
+[ext_resource type="Texture2D" uid="uid://dofc5x622mqnj" path="res://assets/bubble-particle.png" id="8_0qywv"]
+[ext_resource type="Shader" path="res://shaders/bubbles.gdshader" id="8_28n0g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ock1y"]
+shader = ExtResource("8_28n0g")
+shader_parameter/speed = 50.0
+shader_parameter/wobble_speed = 10.0
+shader_parameter/wobble_magnitude = 10.0
+shader_parameter/direction = Vector3(0, -1, 0)
+shader_parameter/spread = 0.0
+shader_parameter/flatness = 0.0
+shader_parameter/initial_linear_velocity_min = 20.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/scale_min = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/initial_linear_velocity_max = 20.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_box_extents = Vector3(480, 0, 1)
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/gravity = Vector3(0, -1e-06, 0)
 
 [node name="Level 2" type="Node2D"]
 script = ExtResource("1_h52k8")
@@ -22,11 +62,59 @@ boss_health_color = Color(0.427451, 0.737255, 0.72549, 1)
 position = Vector2(0, -66)
 
 [node name="Wall" type="StaticBody2D" parent="."]
+z_index = 10
 script = ExtResource("5_ftppk")
 
 [node name="Sprite" type="Sprite2D" parent="Wall"]
-z_index = -50
 texture = ExtResource("5_bcf7e")
 
 [node name="CollisionPolygon" type="CollisionPolygon2D" parent="Wall"]
 polygon = PackedVector2Array(240, -240, 240, 240, -240, 240, -240, -240, 240, -240, 43, -198, 14, -203, -21, -202, -45, -196, -71, -189, -99, -177, -121, -163, -137, -149, -156, -129, -172, -108, -184, -84, -194, -58, -200, -31, -202, 0, -200, 26, -197, 48, -189, 74, -178, 96, -162, 121, -139, 148, -113, 168, -91, 181, -63, 192, -36, 198, -15, 202, 24, 201, 55, 195, 79, 187, 104, 174, 130, 155, 154, 131, 172, 107, 185, 81, 195, 54, 202, 21, 203, -9, 198, -45, 186, -82, 167, -115, 149, -136, 130, -156, 107, -172, 77, -188, 43, -198)
+
+[node name="BubbleParticles" type="GPUParticles2D" parent="."]
+z_index = 10
+position = Vector2(0, 365)
+amount = 200
+process_material = SubResource("ShaderMaterial_ock1y")
+texture = ExtResource("8_0qywv")
+lifetime = 38.0
+preprocess = 38.0
+visibility_rect = Rect2(-480, -800, 960, 810)
+
+[node name="Seaweed" type="Node" parent="."]
+
+[node name="Seaweed" parent="Seaweed" instance=ExtResource("7_gjtht")]
+
+[node name="Seaweed2" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(9.5, 198.167)
+scale = Vector2(0.791667, 0.791667)
+
+[node name="Seaweed3" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(102, 156)
+rotation = -0.494754
+scale = Vector2(0.791667, 1.12356)
+
+[node name="Seaweed4" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(104.961, 146.221)
+rotation = -0.494754
+scale = Vector2(0.791667, 1.33825)
+
+[node name="Seaweed5" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(119, 155)
+rotation = -0.494754
+scale = Vector2(0.791667, 1.33825)
+
+[node name="Seaweed6" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(59, 182)
+rotation = -0.360231
+scale = Vector2(0.791667, 1.33825)
+
+[node name="Seaweed7" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(171, 88)
+rotation = -0.708272
+scale = Vector2(1.22677, 1.33825)
+
+[node name="Seaweed8" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(180, 81)
+rotation = -0.708272
+scale = Vector2(1.22677, 1.00963)

@@ -16,11 +16,13 @@ var state_index = -1
 
 func _ready() -> void:
 	next_state()
-	# pass
 
 func _process(delta: float) -> void:
 	mouth_top.scale = mouth_top.scale.move_toward(Vector2.ONE, animation_speed * delta)
 	mouth_bottom.scale = mouth_bottom.scale.move_toward(Vector2.ONE, animation_speed * delta)
+
+	mouth_bottom.rotation_degrees = sin(Globals.time * 10.0 + PI) * 30 + 30
+	mouth_top.rotation_degrees = sin(Globals.time * 10.0) * 30 - 30
 
 # Attack methods
 func whirlpool_state():
