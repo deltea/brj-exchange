@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://bm83btd6ueyu2"]
+
+[ext_resource type="Script" path="res://enemies/fish.gd" id="1_oba4k"]
+[ext_resource type="Texture2D" uid="uid://crqxyl8r2c58r" path="res://assets/enemies/fish-tail.png" id="2_51nca"]
+[ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="2_jypkg"]
+[ext_resource type="Texture2D" uid="uid://dhdin6brf5pj" path="res://assets/enemies/fish-mouth.png" id="3_4vdqw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7pogv"]
+shader = ExtResource("2_jypkg")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_snxoy"]
+radius = 5.0
+height = 16.0
+
+[node name="Fish" type="Area2D"]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_oba4k")
+
+[node name="Tail" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7pogv")
+position = Vector2(-2, 0)
+texture = ExtResource("2_51nca")
+
+[node name="MouthTop" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7pogv")
+texture = ExtResource("3_4vdqw")
+offset = Vector2(-2, 0)
+flip_v = true
+
+[node name="MouthBottom" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7pogv")
+texture = ExtResource("3_4vdqw")
+offset = Vector2(-2, 0)
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_snxoy")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

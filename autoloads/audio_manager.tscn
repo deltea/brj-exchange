@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5bhqrv0qsgwp"]
+[gd_scene load_steps=5 format=3 uid="uid://c5bhqrv0qsgwp"]
 
 [ext_resource type="Script" path="res://autoloads/audio_manager.gd" id="1_5swth"]
 [ext_resource type="AudioStream" uid="uid://lcru46t8ltvp" path="res://assets/sfx/hurt.tres" id="2_2wt3y"]
+[ext_resource type="AudioStream" uid="uid://chtwur1ja107v" path="res://assets/sfx/shoot.wav" id="2_ybchh"]
 [ext_resource type="AudioStream" uid="uid://bbb2oit3ursql" path="res://assets/sfx/enemy-hit.wav" id="4_o7vyd"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_5swth")
+shoot = ExtResource("2_ybchh")
 hurt = ExtResource("2_2wt3y")
 enemy_hit = ExtResource("4_o7vyd")
 

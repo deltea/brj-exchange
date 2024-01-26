@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bssdl05nt66ie"]
+[gd_scene load_steps=13 format=3 uid="uid://bssdl05nt66ie"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_h52k8"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="1_mspsa"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dofc5x622mqnj" path="res://assets/bubble-particle.png" id="8_0qywv"]
 [ext_resource type="Shader" path="res://shaders/bubbles.gdshader" id="8_28n0g"]
 [ext_resource type="PackedScene" uid="uid://dquuni4v6g06p" path="res://whirlpool.tscn" id="10_ioct6"]
+[ext_resource type="PackedScene" uid="uid://bm83btd6ueyu2" path="res://enemies/fish.tscn" id="11_i3gnn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ock1y"]
 shader = ExtResource("8_28n0g")
@@ -61,6 +62,7 @@ boss_health_color = Color(0.427451, 0.737255, 0.72549, 1)
 
 [node name="WaterBoss" parent="." instance=ExtResource("4_h28vm")]
 position = Vector2(0, -66)
+whirlpool_force = 60
 
 [node name="Wall" type="StaticBody2D" parent="."]
 z_index = 10
@@ -120,4 +122,92 @@ position = Vector2(180, 81)
 rotation = -0.708272
 scale = Vector2(1.22677, 1.00963)
 
+[node name="Seaweed9" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-81, 174)
+rotation = 0.447638
+scale = Vector2(1.73349, 0.732534)
+
+[node name="Seaweed10" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-99, 163)
+rotation = 0.447638
+scale = Vector2(1.45706, 0.932424)
+
+[node name="Seaweed11" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-112, 156)
+rotation = 0.662677
+scale = Vector2(0.921023, 0.737909)
+
+[node name="Seaweed12" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-143.595, 110.724)
+rotation = 0.867733
+scale = Vector2(0.921023, 1.22323)
+
+[node name="Seaweed13" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-157, 103)
+rotation = 0.867733
+scale = Vector2(0.921023, 1.22323)
+
+[node name="Seaweed14" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-183.788, 54.7798)
+rotation = 1.21589
+scale = Vector2(1.07773, 0.933085)
+
+[node name="Seaweed15" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-186, 42)
+rotation = 1.21589
+scale = Vector2(1.07773, 0.933085)
+
+[node name="Seaweed16" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-180, -72)
+rotation = 1.78901
+scale = Vector2(1.07773, 0.933085)
+
+[node name="Seaweed17" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-180, -86)
+rotation = 1.78901
+scale = Vector2(1.07773, 0.933085)
+
+[node name="Seaweed18" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-171.115, -93.0297)
+rotation = 1.78901
+scale = Vector2(1.07773, 1.38815)
+
+[node name="Seaweed19" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-127.359, -138.308)
+rotation = 2.36591
+scale = Vector2(1.07773, 1.5767)
+
+[node name="Seaweed20" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-122, -149)
+rotation = 2.36591
+scale = Vector2(1.07773, 1.5767)
+
+[node name="Seaweed21" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(-53.7004, -180.804)
+rotation = 2.85336
+scale = Vector2(1.7422, 1.34009)
+
+[node name="Seaweed22" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(164, -90)
+rotation = 4.26497
+scale = Vector2(1.7422, 1.34009)
+
+[node name="Seaweed23" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(179, -78)
+rotation = 4.26497
+scale = Vector2(1.7422, 1.34009)
+
+[node name="Seaweed24" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(184.317, -31.1416)
+rotation = 4.60112
+scale = Vector2(1.7422, 1.72662)
+
+[node name="Seaweed25" parent="Seaweed" instance=ExtResource("7_gjtht")]
+position = Vector2(19, -180)
+rotation = 3.3645
+scale = Vector2(0.809399, 1.59989)
+
 [node name="Whirlpool" parent="." instance=ExtResource("10_ioct6")]
+
+[node name="Fish" parent="." instance=ExtResource("11_i3gnn")]
+position = Vector2(-107, 0)

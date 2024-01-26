@@ -3,9 +3,11 @@ class_name WaterBoss
 
 enum STATE {
 	WHIRLPOOL,
+	FISHIES,
 }
 
 @export var animation_speed = 2
+@export var whirlpool_force = 60
 
 @onready var sprite := $Sprite
 @onready var mouth_top := $MouthTop
@@ -27,7 +29,10 @@ func _process(delta: float) -> void:
 # Attack methods
 func whirlpool_state():
 	await move(Vector2(randf_range(-180, 180), randf_range(-180, 180)), 2.0)
-	next_state(0)
+	next_state()
+
+func fishies_state():
+	next_state()
 
 func move(target_position: Vector2, duration: float):
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_EXPO)
@@ -40,6 +45,7 @@ func next_state(index = null):
 
 	match index if index else state_index:
 		STATE.WHIRLPOOL: whirlpool_state()
+		STATE.FISHIES: fishies_state()
 
 func flash():
 	mouth_top.scale = Vector2.ONE * 1.2
