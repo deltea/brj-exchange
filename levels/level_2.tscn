@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bssdl05nt66ie"]
+[gd_scene load_steps=12 format=3 uid="uid://bssdl05nt66ie"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_h52k8"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="1_mspsa"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b38msfrakrpbt" path="res://seaweed.tscn" id="7_gjtht"]
 [ext_resource type="Texture2D" uid="uid://dofc5x622mqnj" path="res://assets/bubble-particle.png" id="8_0qywv"]
 [ext_resource type="Shader" path="res://shaders/bubbles.gdshader" id="8_28n0g"]
+[ext_resource type="PackedScene" uid="uid://dquuni4v6g06p" path="res://whirlpool.tscn" id="10_ioct6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ock1y"]
 shader = ExtResource("8_28n0g")
@@ -118,3 +119,5 @@ scale = Vector2(1.22677, 1.33825)
 position = Vector2(180, 81)
 rotation = -0.708272
 scale = Vector2(1.22677, 1.00963)
+
+[node name="Whirlpool" parent="." instance=ExtResource("10_ioct6")]
