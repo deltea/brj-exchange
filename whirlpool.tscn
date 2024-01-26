@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://dquuni4v6g06p"]
+
+[ext_resource type="Shader" path="res://shaders/whirlpool.gdshader" id="1_j2nmk"]
+[ext_resource type="Texture2D" uid="uid://blq2b041xxo6a" path="res://assets/portal.png" id="1_my2lp"]
+[ext_resource type="Texture2D" uid="uid://c46htyaexexvl" path="res://assets/circle-particle.png" id="3_asb6x"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_825gm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k4oml"]
+shader = ExtResource("1_j2nmk")
+shader_parameter/speed = 5.0
+shader_parameter/arm_thickness = -0.2
+shader_parameter/color = Color(0.215686, 0.129412, 0.203922, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_825gm")
+
+[sub_resource type="Curve" id="Curve_l0lla"]
+max_value = 1.5
+_data = [Vector2(0, 1.5), 0.0, 0.0, 0, 0, Vector2(0.501984, 1.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_j8jfj"]
+curve = SubResource("Curve_l0lla")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_07k3x"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -720.0
+angle_max = 720.0
+scale_curve = SubResource("CurveTexture_j8jfj")
+color = Color(0.215686, 0.129412, 0.203922, 1)
+
+[node name="Whirlpool" type="Sprite2D"]
+self_modulate = Color(0.215686, 0.129412, 0.203922, 1)
+z_index = -10
+texture = ExtResource("1_my2lp")
+
+[node name="Swirl" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_k4oml")
+scale = Vector2(2, 2)
+texture = ExtResource("1_my2lp")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_07k3x")
+texture = ExtResource("3_asb6x")
+lifetime = 1.5
