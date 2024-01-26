@@ -21,6 +21,7 @@ Globals="*res://autoloads/Globals.gd"
 Events="*res://autoloads/Events.gd"
 UpgradeManager="*res://autoloads/upgrade_manager.tscn"
 Cursor="*res://autoloads/cursor.tscn"
+AudioManager="*res://autoloads/audio_manager.tscn"
 SceneManager="*res://autoloads/scene_manager.tscn"
 
 [display]

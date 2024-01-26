@@ -15,6 +15,7 @@ func _on_area_entered(area: Area2D) -> void:
 		take_damage()
 
 func take_damage():
+	AudioManager.play_sound(AudioManager.enemy_hit)
 	flash()
 
 	health -= Globals.player.bullet_damage

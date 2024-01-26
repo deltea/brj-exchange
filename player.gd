@@ -76,6 +76,7 @@ func _physics_process(_delta: float) -> void:
 func fire():
 	next_time_to_fire = Globals.time + 1.0 / fire_rate
 	Globals.mouse.impact_rotation()
+	AudioManager.play_sound(AudioManager.shoot)
 
 	var bullet = bullet_scene.instantiate() as PlayerBullet
 	var mouse_pos = get_global_mouse_position()
@@ -100,7 +101,7 @@ func can_dash():
 	return dash_cooldown_timer.is_stopped()
 
 func get_hurt(damage: float):
-	print("oof")
+	AudioManager.play_sound(AudioManager.hurt)
 	health -= damage
 	Globals.canvas.player_health.value = health
 	Globals.hitstop(0.15)
