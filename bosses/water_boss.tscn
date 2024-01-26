@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://bxerpboix0ded"]
+
+[ext_resource type="PackedScene" uid="uid://capye210yfaqj" path="res://bosses/boss.tscn" id="1_qhatv"]
+[ext_resource type="Script" path="res://bosses/water_boss.gd" id="2_piiff"]
+[ext_resource type="Texture2D" uid="uid://khq8dbfm3hs3" path="res://assets/bosses/water.png" id="2_txqf0"]
+[ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="3_v6gl3"]
+[ext_resource type="Texture2D" uid="uid://psowth2l4phi" path="res://assets/bosses/water-mouth.png" id="4_trefq"]
+[ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="5_bq182"]
+[ext_resource type="Texture2D" uid="uid://deiam7r1g0j5o" path="res://assets/bosses/water-eye.png" id="5_ja5gk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_poypq"]
+radius = 16.0
+height = 36.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_me5wq"]
+shader = ExtResource("5_bq182")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[node name="WaterBoss" instance=ExtResource("1_qhatv")]
+script = ExtResource("2_piiff")
+animation_speed = 2
+
+[node name="CollisionShape" parent="." index="0"]
+position = Vector2(-4, 0)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_poypq")
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2(-4, 0)
+texture = ExtResource("2_txqf0")
+
+[node name="DropShadow" parent="Sprite" index="0" instance=ExtResource("3_v6gl3")]
+shadow_offset = Vector2(0, 16)
+
+[node name="MouthTop" type="Sprite2D" parent="." index="2"]
+material = SubResource("ShaderMaterial_me5wq")
+texture = ExtResource("4_trefq")
+offset = Vector2(-4, 0)
+flip_v = true
+
+[node name="Eye" type="Sprite2D" parent="MouthTop" index="0"]
+material = SubResource("ShaderMaterial_me5wq")
+position = Vector2(5, -4)
+texture = ExtResource("5_ja5gk")
+
+[node name="DropShadow" parent="MouthTop" index="1" instance=ExtResource("3_v6gl3")]
+shadow_offset = Vector2(0, 16)
+
+[node name="MouthBottom" type="Sprite2D" parent="." index="3"]
+material = SubResource("ShaderMaterial_me5wq")
+texture = ExtResource("4_trefq")
+offset = Vector2(-4, 0)
+
+[node name="DropShadow" parent="MouthBottom" index="0" instance=ExtResource("3_v6gl3")]
+shadow_offset = Vector2(0, 16)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

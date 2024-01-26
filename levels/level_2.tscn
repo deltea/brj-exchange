@@ -1,13 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://bssdl05nt66ie"]
+[gd_scene load_steps=7 format=3 uid="uid://bssdl05nt66ie"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_h52k8"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="1_mspsa"]
-[ext_resource type="PackedScene" uid="uid://d2sxlsok3f7ea" path="res://portal.tscn" id="3_32jak"]
+[ext_resource type="PackedScene" uid="uid://do1wktcurduto" path="res://ui/canvas.tscn" id="3_tyfrf"]
+[ext_resource type="PackedScene" uid="uid://bxerpboix0ded" path="res://bosses/water_boss.tscn" id="4_h28vm"]
+[ext_resource type="Texture2D" uid="uid://cdm1ss5g32bhn" path="res://assets/circle-arena.png" id="5_bcf7e"]
+[ext_resource type="Script" path="res://wall.gd" id="5_ftppk"]
 
 [node name="Level 2" type="Node2D"]
 script = ExtResource("1_h52k8")
+background_color = Color(0.282353, 0.533333, 0.717647, 1)
+shadow_color = Color(0.278431, 0.266667, 0.462745, 1)
+portal_color = Color(0.54902, 0.937255, 0.713726, 1)
+boss_health_color = Color(0.427451, 0.737255, 0.72549, 1)
+
+[node name="Canvas" parent="." instance=ExtResource("3_tyfrf")]
 
 [node name="Player" parent="." instance=ExtResource("1_mspsa")]
 
-[node name="Portal" parent="." instance=ExtResource("3_32jak")]
-position = Vector2(0, -78)
+[node name="WaterBoss" parent="." instance=ExtResource("4_h28vm")]
+position = Vector2(0, -66)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+script = ExtResource("5_ftppk")
+
+[node name="Sprite" type="Sprite2D" parent="Wall"]
+z_index = -50
+texture = ExtResource("5_bcf7e")
+
+[node name="CollisionPolygon" type="CollisionPolygon2D" parent="Wall"]
+polygon = PackedVector2Array(240, -240, 240, 240, -240, 240, -240, -240, 240, -240, 43, -198, 14, -203, -21, -202, -45, -196, -71, -189, -99, -177, -121, -163, -137, -149, -156, -129, -172, -108, -184, -84, -194, -58, -200, -31, -202, 0, -200, 26, -197, 48, -189, 74, -178, 96, -162, 121, -139, 148, -113, 168, -91, 181, -63, 192, -36, 198, -15, 202, 24, 201, 55, 195, 79, 187, 104, 174, 130, 155, 154, 131, 172, 107, 185, 81, 195, 54, 202, 21, 203, -9, 198, -45, 186, -82, 167, -115, 149, -136, 130, -156, 107, -172, 77, -188, 43, -198)

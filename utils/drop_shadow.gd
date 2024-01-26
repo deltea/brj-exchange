@@ -13,6 +13,9 @@ func _ready():
 	parent_sprite = get_parent() as Sprite2D
 	texture = parent_sprite.texture
 	z_index = ordering
+	offset = parent_sprite.offset
+	flip_v = parent_sprite.flip_v
+	flip_h = parent_sprite.flip_h
 	material.set_shader_parameter("color", Globals.world.shadow_color)
 
 func _process(_delta: float) -> void:

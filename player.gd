@@ -16,7 +16,6 @@ class_name Player
 
 @export_category("Health")
 @export var max_health = 100
-@export var regen = 1
 
 @export_category("Animation")
 @export var squash_and_stretch = 0.2
