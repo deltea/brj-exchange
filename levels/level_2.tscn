@@ -67,6 +67,18 @@ whirlpool_fish_delay = 0.1
 whirlpool_fish_speed = 0
 whirlpool_fish_acceleration = 3
 whirlpool_fish_radius = 220
+cannon_delay = 1
+cannon_bullet_num = 10
+cannon_bullet_speed = 150
+bullet_spiral_move_speed = 200
+bullet_spiral_num = 100
+bullet_spiral_delay = 0.1
+bullet_spiral_speed = 100
+fishies_delay = 0.1
+fishies_num = 100
+fishies_speed = 200
+fishies_min = Vector2(-240, -240)
+fishies_max = Vector2(240, 240)
 
 [node name="BubbleParticles" type="GPUParticles2D" parent="."]
 z_index = 10

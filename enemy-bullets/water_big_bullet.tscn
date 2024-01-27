@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2xrsndbaagp0"]
+
+[ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_ah5ci"]
+[ext_resource type="Script" path="res://enemy-bullets/water_big_bullet.gd" id="2_clkij"]
+[ext_resource type="Texture2D" uid="uid://cnbt0dqd1lf4w" path="res://assets/enemy-bullets/water-big-bullet-1.png" id="2_u70ft"]
+[ext_resource type="Texture2D" uid="uid://db308suqu5ysy" path="res://assets/enemy-bullets/water-big-bullet-2.png" id="3_ruolb"]
+[ext_resource type="Texture2D" uid="uid://c46htyaexexvl" path="res://assets/circle-particle.png" id="4_6j38a"]
+
+[sub_resource type="Curve" id="Curve_26bn7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_lh1d1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.99213, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_q5eyq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.5, 0.5)
+colors = PackedColorArray(1, 0.992157, 1, 1, 0.54902, 0.937255, 0.713726, 1)
+
+[node name="WaterBigBullet" instance=ExtResource("1_ah5ci")]
+script = ExtResource("2_clkij")
+texture_1 = ExtResource("2_u70ft")
+texture_2 = ExtResource("3_ruolb")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_u70ft")
+
+[node name="TrailParticles" type="CPUParticles2D" parent="." index="4"]
+z_index = -10
+amount = 16
+lifetime = 0.8
+texture = ExtResource("4_6j38a")
+emission_shape = 3
+emission_rect_extents = Vector2(0, 16)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("Curve_26bn7")
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_lh1d1")
+color_initial_ramp = SubResource("Gradient_q5eyq")
