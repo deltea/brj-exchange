@@ -11,6 +11,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ugmlf"]
 noise_type = 0
+fractal_octaves = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dd5ff"]
 seamless = true
@@ -65,6 +66,8 @@ boss_health_color = Color(0.980392, 0.866667, 0.635294, 1)
 position = Vector2(0, -200)
 wind_particles = NodePath("../WindParticles")
 cloud_puff_positions = [NodePath("../Positions/Marker2D"), NodePath("../Positions/Marker2D2"), NodePath("../Positions/Marker2D3"), NodePath("../Positions/Marker2D4")]
+tiles_position_min = Vector2(-136, -136)
+tiles_position_max = Vector2(136, 136)
 
 [node name="WindParticles" type="CPUParticles2D" parent="."]
 position = Vector2(-448, 0)
