@@ -11,6 +11,3 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	position += Vector2.from_angle(rotation) * speed * delta + (sin(curve_speed * Globals.time + time) * curve_magnitude * Vector2.DOWN)
-
-func _on_visible_on_screen_notifier_screen_exited() -> void:
-	pass

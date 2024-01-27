@@ -9,3 +9,6 @@ class_name EnemyBullet
 
 func _on_animation_timer_timeout() -> void:
 	sprite.texture = texture_2 if sprite.texture == texture_1 else texture_1
+
+func _on_visible_on_screen_notifier_screen_exited() -> void:
+	pass

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqjshxairybgf"
-path="res://.godot/imported/earth-head.png-c175ecd883bc666890f4e193daae56a4.ctex"
+uid="uid://bpmvvolbli8io"
+path="res://.godot/imported/earth.png-ea4cf4f2d13ab307f401527981b7594b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bosses/earth-head.png"
-dest_files=["res://.godot/imported/earth-head.png-c175ecd883bc666890f4e193daae56a4.ctex"]
+source_file="res://assets/bosses/earth.png"
+dest_files=["res://.godot/imported/earth.png-ea4cf4f2d13ab307f401527981b7594b.ctex"]
 
 [params]
 

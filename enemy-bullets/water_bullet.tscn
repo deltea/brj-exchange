@@ -1,14 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxtgrnuucygky"]
+[gd_scene load_steps=3 format=3 uid="uid://cxtgrnuucygky"]
 
 [ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_c3edn"]
 [ext_resource type="Texture2D" uid="uid://cwutg62shi0hd" path="res://assets/enemy-bullets/water-bullet-1.png" id="2_bwu6b"]
-[ext_resource type="Script" path="res://enemy-bullets/water_bullet.gd" id="2_yhb53"]
-[ext_resource type="Texture2D" uid="uid://b20hbu7pjjipv" path="res://assets/enemy-bullets/water-bullet-2.png" id="3_mulks"]
 
 [node name="WaterBullet" instance=ExtResource("1_c3edn")]
-script = ExtResource("2_yhb53")
-texture_1 = ExtResource("2_bwu6b")
-texture_2 = ExtResource("3_mulks")
+texture_1 = null
+texture_2 = null
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource("2_bwu6b")

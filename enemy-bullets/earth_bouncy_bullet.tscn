@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://mur7ksi68rwq"]
+
+[ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_71hqy"]
+[ext_resource type="Script" path="res://enemy-bullets/earth_bouncy_bullet.gd" id="2_7ruv1"]
+[ext_resource type="Texture2D" uid="uid://n324jtf7tx06" path="res://assets/enemy-bullets/earth-bouncy-bullet-1.png" id="2_r7ivn"]
+[ext_resource type="Texture2D" uid="uid://b5lk5nf4wahhi" path="res://assets/enemy-bullets/earth-bouncy-bullet-2.png" id="3_6i1vh"]
+
+[sub_resource type="Curve" id="Curve_fftwv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6murs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.99213, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8vyin"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.5, 0.5)
+colors = PackedColorArray(0.929412, 0.733333, 0.439216, 1, 0.662745, 0.352941, 0.247059, 1)
+
+[node name="EarthBouncyBullet" instance=ExtResource("1_71hqy")]
+script = ExtResource("2_7ruv1")
+texture_1 = ExtResource("2_r7ivn")
+texture_2 = ExtResource("3_6i1vh")
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_r7ivn")
+
+[node name="TrailParticles" type="CPUParticles2D" parent="." index="4"]
+z_index = -10
+amount = 32
+lifetime = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(0, 10)
+direction = Vector2(0, 1)
+gravity = Vector2(0, 0)
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("Curve_fftwv")
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_6murs")
+color_initial_ramp = SubResource("Gradient_8vyin")

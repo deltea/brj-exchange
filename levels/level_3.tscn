@@ -1,62 +1,124 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhaa06yprb18p"]
+[gd_scene load_steps=15 format=3 uid="uid://dhaa06yprb18p"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_bg3pf"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="2_3fxdq"]
-[ext_resource type="PackedScene" uid="uid://tsu7wev5f1wn" path="res://bosses/earth_boss.tscn" id="3_1pb0w"]
-[ext_resource type="Script" path="res://wall.gd" id="4_p7i0s"]
-[ext_resource type="Texture2D" uid="uid://dfeusgchb7x52" path="res://assets/walls.png" id="5_8e3wn"]
-[ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="6_tv6ml"]
-[ext_resource type="PackedScene" uid="uid://d0mvw8sksxfl2" path="res://bosses/earth_boss_segment.tscn" id="7_50u6q"]
+[ext_resource type="PackedScene" uid="uid://yuhbd4k2rwxf" path="res://bosses/earth_boss.tscn" id="3_1pb0w"]
+[ext_resource type="PackedScene" uid="uid://do1wktcurduto" path="res://ui/canvas.tscn" id="4_34whx"]
+[ext_resource type="PackedScene" uid="uid://bh17qritcspvs" path="res://wall.tscn" id="5_8vayh"]
+[ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="5_ro2s4"]
+[ext_resource type="Shader" path="res://shaders/jungle.gdshader" id="5_s0efo"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mobxv"]
+resource_local_to_scene = true
+frequency = 0.05
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q0co1"]
+resource_local_to_scene = true
+noise = SubResource("FastNoiseLite_mobxv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mcipk"]
+shader = ExtResource("5_s0efo")
+shader_parameter/color = Color(0.141176, 0.156863, 0.156863, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_q0co1")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1swoo"]
+resource_local_to_scene = true
+frequency = 0.08
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_okswl"]
+resource_local_to_scene = true
+noise = SubResource("FastNoiseLite_1swoo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rh8s0"]
+shader = ExtResource("5_s0efo")
+shader_parameter/color = Color(0.227451, 0.313726, 0.262745, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_okswl")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n40p2"]
+size = Vector2(16, 16)
 
 [node name="Level 3" type="Node2D"]
 script = ExtResource("1_bg3pf")
-background_color = Color(0.2, 0.14902, 0.156863, 1)
-shadow_color = Color(0.0901961, 0.0627451, 0.0823529, 1)
+background_color = Color(0.498039, 0.596078, 0.376471, 1)
+shadow_color = Color(0.227451, 0.313726, 0.262745, 1)
+portal_color = Color(0.662745, 0.352941, 0.247059, 1)
+boss_health_color = Color(0.929412, 0.733333, 0.439216, 1)
+
+[node name="Canvas" parent="." instance=ExtResource("4_34whx")]
 
 [node name="Player" parent="." instance=ExtResource("2_3fxdq")]
-position = Vector2(240, 294)
 
 [node name="EarthBoss" parent="." instance=ExtResource("3_1pb0w")]
-z_index = 10
-position = Vector2(240, 72)
+position = Vector2(0, -56)
+bullet_explosion_num = 5
+bullet_explosion_speed = 150
 
-[node name="Wall" type="StaticBody2D" parent="."]
-z_index = 10
-collision_mask = 15
-script = ExtResource("4_p7i0s")
+[node name="BackgroundFront" type="Sprite2D" parent="."]
+z_index = -20
+material = SubResource("ShaderMaterial_mcipk")
+scale = Vector2(72, 56)
+texture = ExtResource("5_ro2s4")
 
-[node name="Walls" type="Sprite2D" parent="Wall"]
-position = Vector2(240, 192)
-texture = ExtResource("5_8e3wn")
+[node name="BackgroundBack" type="Sprite2D" parent="."]
+z_index = -30
+material = SubResource("ShaderMaterial_rh8s0")
+scale = Vector2(72, 56)
+texture = ExtResource("5_ro2s4")
 
-[node name="DropShadow" parent="Wall/Walls" instance=ExtResource("6_tv6ml")]
+[node name="ArenaBackground" type="Sprite2D" parent="."]
+self_modulate = Color(0.498039, 0.596078, 0.376471, 1)
+z_index = -20
+rotation = 0.785398
+scale = Vector2(27.45, 27.45)
+texture = ExtResource("5_ro2s4")
 
-[node name="CollisionPolygon" type="CollisionPolygon2D" parent="Wall"]
-polygon = PackedVector2Array(-132, -30, 606, -30, 606, 402, -132, 402, -132, -30, -60, 78, -103, 128, -118, 173, -118, 215, -105, 251, -66, 300, 6, 348, 96, 378, 204, 396, 318, 390, 414, 372, 516, 324, 552, 294, 582, 258, 600, 216, 600, 168, 573, 113, 522, 66, 461, 32, 378, 6, 313, -6, 245, -9, 162, -6, 72, 12, 1, 40, -60, 78)
+[node name="Wall" parent="." instance=ExtResource("5_8vayh")]
+position = Vector2(-144, -144)
+rotation = 2.35619
+scale = Vector2(27.45, 2)
 
-[node name="EarthBossSegments" type="Node" parent="."]
+[node name="CollisionShape" parent="Wall" index="0"]
+shape = SubResource("RectangleShape2D_n40p2")
 
-[node name="WormSegment9" parent="EarthBossSegments" instance=ExtResource("7_50u6q")]
-scale = Vector2(0.7, 0.7)
-gap = 10
+[node name="Sprite" parent="Wall" index="1"]
+self_modulate = Color(0.141176, 0.156863, 0.156863, 1)
 
-[node name="WormSegment8" parent="EarthBossSegments" instance=ExtResource("7_50u6q")]
-scale = Vector2(0.8, 0.8)
-gap = 12
+[node name="Wall2" parent="." instance=ExtResource("5_8vayh")]
+position = Vector2(144, -144)
+rotation = 0.785398
+scale = Vector2(27.45, 2)
 
-[node name="WormSegment7" parent="EarthBossSegments" instance=ExtResource("7_50u6q")]
-scale = Vector2(0.9, 0.9)
+[node name="CollisionShape" parent="Wall2" index="0"]
+shape = SubResource("RectangleShape2D_n40p2")
 
-[node name="WormSegment6" parent="EarthBossSegments" instance=ExtResource("7_50u6q")]
+[node name="Sprite" parent="Wall2" index="1"]
+self_modulate = Color(0.141176, 0.156863, 0.156863, 1)
 
-[node name="WormSegment5" parent="EarthBossSegments" instance=ExtResource("7_50u6q")]
+[node name="Wall3" parent="." instance=ExtResource("5_8vayh")]
+position = Vector2(144, 144)
+rotation = 2.35619
+scale = Vector2(27.45, 2)
 
-[node name="WormSegment4" parent="EarthBossSegments" instance=ExtResource("7_50u6q")]
+[node name="CollisionShape" parent="Wall3" index="0"]
+shape = SubResource("RectangleShape2D_n40p2")
 
-[node name="WormSegment3" parent="EarthBossSegments" instance=ExtResource("7_50u6q")]
+[node name="Sprite" parent="Wall3" index="1"]
+self_modulate = Color(0.141176, 0.156863, 0.156863, 1)
 
-[node name="WormSegment2" parent="EarthBossSegments" instance=ExtResource("7_50u6q")]
+[node name="Wall4" parent="." instance=ExtResource("5_8vayh")]
+position = Vector2(-144, 144)
+rotation = 0.785398
+scale = Vector2(27.45, 2)
 
-[node name="WormSegment" parent="EarthBossSegments" node_paths=PackedStringArray("boss") instance=ExtResource("7_50u6q")]
-boss = NodePath("../../EarthBoss")
-gap = 20
+[node name="CollisionShape" parent="Wall4" index="0"]
+shape = SubResource("RectangleShape2D_n40p2")
+
+[node name="Sprite" parent="Wall4" index="1"]
+self_modulate = Color(0.141176, 0.156863, 0.156863, 1)
+
+[editable path="Wall"]
+[editable path="Wall2"]
+[editable path="Wall3"]
+[editable path="Wall4"]

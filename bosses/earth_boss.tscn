@@ -1,23 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://tsu7wev5f1wn"]
+[gd_scene load_steps=6 format=3 uid="uid://yuhbd4k2rwxf"]
 
 [ext_resource type="PackedScene" uid="uid://capye210yfaqj" path="res://bosses/boss.tscn" id="1_7kac6"]
 [ext_resource type="Script" path="res://bosses/earth_boss.gd" id="2_fvjsi"]
-[ext_resource type="Texture2D" uid="uid://cqjshxairybgf" path="res://assets/bosses/worm-head.png" id="2_oa0vt"]
+[ext_resource type="Texture2D" uid="uid://bpmvvolbli8io" path="res://assets/bosses/earth.png" id="2_tohyt"]
 [ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="3_nycgu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r0m2m"]
-radius = 28.0179
+[sub_resource type="CircleShape2D" id="CircleShape2D_168xx"]
+radius = 12.0416
 
 [node name="EarthBoss" instance=ExtResource("1_7kac6")]
+collision_mask = 9
 script = ExtResource("2_fvjsi")
-move_speed = 50
+animation_speed = 2
+movement_speed = 200
+rotation_speed = 200
 
-[node name="CollisionShape" parent="." index="0"]
-shape = SubResource("CircleShape2D_r0m2m")
-
-[node name="Sprite" parent="." index="1"]
-texture = ExtResource("2_oa0vt")
+[node name="Sprite" parent="." index="0"]
+position = Vector2(0, -4)
+texture = ExtResource("2_tohyt")
 
 [node name="DropShadow" parent="Sprite" index="0" instance=ExtResource("3_nycgu")]
+shadow_offset = Vector2(0, 16)
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("CircleShape2D_168xx")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

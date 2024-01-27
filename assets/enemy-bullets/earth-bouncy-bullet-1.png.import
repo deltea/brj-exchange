@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfeusgchb7x52"
-path="res://.godot/imported/earth-arena.png-cef699f99d611496e84108cc25252055.ctex"
+uid="uid://n324jtf7tx06"
+path="res://.godot/imported/earth-bouncy-bullet-1.png-55fcc6f829f2959418a161cad915aa42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/earth-arena.png"
-dest_files=["res://.godot/imported/earth-arena.png-cef699f99d611496e84108cc25252055.ctex"]
+source_file="res://assets/enemy-bullets/earth-bouncy-bullet-1.png"
+dest_files=["res://.godot/imported/earth-bouncy-bullet-1.png-55fcc6f829f2959418a161cad915aa42.ctex"]
 
 [params]
 

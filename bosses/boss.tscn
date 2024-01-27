@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://capye210yfaqj"]
 
-[ext_resource type="Script" path="res://boss.gd" id="1_qjch7"]
+[ext_resource type="Script" path="res://bosses/boss.gd" id="1_m0wo4"]
 [ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="2_lj3gp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gkmdo"]
@@ -11,9 +11,9 @@ shader_parameter/color = Color(1, 1, 1, 1)
 [node name="Boss" type="Area2D"]
 collision_layer = 4
 collision_mask = 8
-script = ExtResource("1_qjch7")
-
-[node name="CollisionShape" type="CollisionShape2D" parent="."]
+script = ExtResource("1_m0wo4")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_gkmdo")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
