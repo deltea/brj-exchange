@@ -2,10 +2,10 @@ extends Boss
 class_name WaterBoss
 
 enum STATE {
-	WHIRLPOOL,
 	CANNON,
 	BULLET_SPIRAL,
 	FISHIES,
+	WHIRLPOOL,
 }
 
 @export var animation_speed = 2
@@ -55,31 +55,6 @@ func _physics_process(delta: float) -> void:
 		position += Vector2.from_angle(rotation + PI / 2) * bullet_spiral_move_speed * delta
 
 # Attack methods
-func whirlpool_state():
-	move(Vector2(0, -100), 2.0)
-	await look(PI / 2, 2.0)
-	Globals.player.whirlpool_force = whirlpool_force
-	whirlpool.target_scale = Vector2.ONE
-	whirlpool.toggle_collider(true)
-
-	for i in whirlpool_fish_num:
-		var fish = fish_scene.instantiate() as Fish
-		var random_rotation = randf_range(0, PI * 2)
-		var random_position = Vector2.from_angle(random_rotation) * whirlpool_fish_radius
-		fish.position = random_position
-		fish.rotation = random_rotation + PI
-		fish.acceleration = whirlpool_fish_acceleration
-		fish.speed = whirlpool_fish_speed
-		Globals.world.add_child(fish)
-
-		await Globals.wait(whirlpool_fish_delay)
-
-	Globals.player.whirlpool_force = 0
-	whirlpool.target_scale = Vector2.ZERO
-	whirlpool.toggle_collider(true)
-
-	next_state()
-
 func cannon_state():
 	for i in cannon_bullet_num:
 		var random_pos = random_radius(160)
@@ -136,6 +111,31 @@ func fishies_state():
 
 	next_state()
 
+func whirlpool_state():
+	move(Vector2(0, -100), 2.0)
+	await look(PI / 2, 2.0)
+	Globals.player.whirlpool_force = whirlpool_force
+	whirlpool.target_scale = Vector2.ONE
+	whirlpool.toggle_collider(true)
+
+	for i in whirlpool_fish_num:
+		var fish = fish_scene.instantiate() as Fish
+		var random_rotation = randf_range(0, PI * 2)
+		var random_position = Vector2.from_angle(random_rotation) * whirlpool_fish_radius
+		fish.position = random_position
+		fish.rotation = random_rotation + PI
+		fish.acceleration = whirlpool_fish_acceleration
+		fish.speed = whirlpool_fish_speed
+		Globals.world.add_child(fish)
+
+		await Globals.wait(whirlpool_fish_delay)
+
+	Globals.player.whirlpool_force = 0
+	whirlpool.target_scale = Vector2.ZERO
+	whirlpool.toggle_collider(true)
+
+	next_state()
+
 func move_and_look(target_position: Vector2, duration: float):
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(self, "rotation", rotation + get_angle_to(target_position), duration / 2)
@@ -159,10 +159,10 @@ func next_state(index = null):
 	state_index = (state_index + 1) % len(STATE.keys())
 
 	match index if index else state_index:
-		STATE.WHIRLPOOL: whirlpool_state()
 		STATE.CANNON: cannon_state()
 		STATE.BULLET_SPIRAL: bullet_spiral_state()
 		STATE.FISHIES: fishies_state()
+		STATE.WHIRLPOOL: whirlpool_state()
 
 func flash():
 	mouth_top.scale = Vector2.ONE * 1.2
