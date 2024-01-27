@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbpg6py2kc5gs"]
+
+[ext_resource type="PackedScene" uid="uid://bjdcog2s4ngn6" path="res://enemies/rock.tscn" id="1_ffda3"]
+[ext_resource type="PackedScene" uid="uid://cl4lqfot78fl6" path="res://particles/wall_hit.tscn" id="2_2k5ih"]
+[ext_resource type="Texture2D" uid="uid://dg0hnt2dx1exw" path="res://assets/enemy-bullets/rock-small.png" id="2_3jxwa"]
+[ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="2_fj5ie"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gg84r"]
+resource_local_to_scene = true
+shader = ExtResource("2_fj5ie")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dvt67"]
+radius = 8.0
+
+[node name="RockSmall" instance=ExtResource("1_ffda3")]
+rotation_speed = 200
+max_health = 2
+explosion_scene = ExtResource("2_2k5ih")
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_gg84r")
+texture = ExtResource("2_3jxwa")
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("CircleShape2D_dvt67")

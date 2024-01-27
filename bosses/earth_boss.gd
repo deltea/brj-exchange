@@ -17,6 +17,7 @@ enum STATE {
 var state_index = -1
 var velocity = Vector2.ZERO
 var bouncy_bullet_scene = preload("res://enemy-bullets/earth_bouncy_bullet.tscn")
+var rock_scene = preload("res://enemies/rock_big.tscn")
 
 func _ready() -> void:
 	velocity = Vector2.from_angle(randf_range(0, PI * 2)) * movement_speed
@@ -49,6 +50,19 @@ func bullet_explosion_state():
 	next_state()
 
 func rocks_state():
+	await Globals.wait(1.0)
+
+	var prev_velocity = velocity
+	velocity = Vector2.ZERO
+	await Globals.wait(0.5)
+
+	var rock = rock_scene.instantiate() as Rock
+	rock.position = position
+	Globals.world.add_child(rock)
+
+	await Globals.wait(0.5)
+	velocity = prev_velocity
+
 	next_state()
 
 func next_state(index = null):

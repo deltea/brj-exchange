@@ -14,7 +14,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Wall: destroy()
 
 func destroy():
-	var wall_hit = wall_hit_scene.instantiate() as GPUParticles2D
+	var wall_hit = wall_hit_scene.instantiate() as CPUParticles2D
 	wall_hit.global_position = global_position
 	wall_hit.emitting = true
 	Globals.world.add_child(wall_hit)

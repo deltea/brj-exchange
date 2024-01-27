@@ -79,7 +79,7 @@ func bullet_spiral_state():
 		bullet.position = position
 		bullet.rotation = rotation
 		bullet.speed = bullet_spiral_speed
-		Globals.add_child(bullet)
+		Globals.world.add_child(bullet)
 
 		await Globals.wait(bullet_spiral_delay)
 

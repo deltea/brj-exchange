@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjdcog2s4ngn6"]
+
+[ext_resource type="Script" path="res://enemies/rock.gd" id="1_dwknm"]
+[ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="2_885hq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d2fyr"]
+resource_local_to_scene = true
+shader = ExtResource("2_885hq")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[node name="Rock" type="Area2D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_dwknm")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_d2fyr")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

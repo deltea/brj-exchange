@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://vos1xoisnv36"]
+
+[ext_resource type="PackedScene" uid="uid://bjdcog2s4ngn6" path="res://enemies/rock.tscn" id="1_e0eet"]
+[ext_resource type="PackedScene" uid="uid://bb8fjkbs4jakx" path="res://enemies/rock_normal.tscn" id="2_uosd3"]
+[ext_resource type="Texture2D" uid="uid://tg0j7b7rtw35" path="res://assets/enemy-bullets/rock-big.png" id="2_v14mr"]
+[ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="3_iwcsk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_44qr1"]
+resource_local_to_scene = true
+shader = ExtResource("3_iwcsk")
+shader_parameter/enabled = false
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqto6"]
+radius = 32.0
+
+[node name="RockBig" instance=ExtResource("1_e0eet")]
+smaller_rock_scene = ExtResource("2_uosd3")
+smaller_rock_num = 3
+movement_speed = 50
+max_health = 20
+
+[node name="Sprite" parent="." index="0"]
+material = SubResource("ShaderMaterial_44qr1")
+texture = ExtResource("2_v14mr")
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("CircleShape2D_fqto6")

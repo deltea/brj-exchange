@@ -20,6 +20,7 @@ noise = SubResource("FastNoiseLite_mobxv")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mcipk"]
 shader = ExtResource("5_s0efo")
 shader_parameter/color = Color(0.141176, 0.156863, 0.156863, 1)
+shader_parameter/looseness = 0.4
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_q0co1")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_1swoo"]
@@ -34,6 +35,7 @@ noise = SubResource("FastNoiseLite_1swoo")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rh8s0"]
 shader = ExtResource("5_s0efo")
 shader_parameter/color = Color(0.227451, 0.313726, 0.262745, 1)
+shader_parameter/looseness = 0.4
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_okswl")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n40p2"]

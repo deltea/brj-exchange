@@ -29,10 +29,10 @@ func take_damage():
 	if health < 0: die()
 
 func die():
-	var explosion = explosion_scene.instantiate() as GPUParticles2D
+	var explosion = explosion_scene.instantiate() as CPUParticles2D
 	explosion.position = position
 	explosion.emitting = true
-	Globals.add_child(explosion)
+	Globals.world.add_child(explosion)
 	queue_free()
 
 func flash():
