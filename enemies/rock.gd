@@ -8,6 +8,7 @@ class_name Rock
 @export var animation_speed = 2
 @export var max_health = 30
 @export var explosion_scene: PackedScene
+@export var damage = 10
 
 @onready var sprite := $Sprite
 

@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfw3ugt5dlt6g"]
+
+[ext_resource type="PackedScene" uid="uid://mur7ksi68rwq" path="res://enemy-bullets/earth_bouncy_bullet.tscn" id="1_nysu5"]
+[ext_resource type="Script" path="res://enemy-bullets/earth-exploding-bullet.gd" id="2_p70ab"]
+[ext_resource type="PackedScene" uid="uid://dibxxqwlxpbhu" path="res://enemy-bullets/earth_bullet.tscn" id="3_v5cev"]
+
+[node name="EarthExplodingBullet" instance=ExtResource("1_nysu5")]
+script = ExtResource("2_p70ab")
+acceleration = 200
+bullet_scene = ExtResource("3_v5cev")
+bullet_num = 3
+explosion_bullet_speed = 100
+explosion_range = 45.0

@@ -1,4 +1,5 @@
 extends EnemyBullet
+class_name EarthBouncyBullet
 
 var health = 2
 

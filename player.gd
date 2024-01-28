@@ -95,6 +95,7 @@ func dash():
 	dash_cooldown_timer.start()
 	move_particles.emitting = false
 	hitbox.set_collision_mask_value(4, false)
+	hitbox.set_collision_mask_value(3, false)
 
 func is_dashing() -> bool:
 	return not dash_timer.is_stopped()
@@ -130,6 +131,7 @@ func _on_go_into_portal(portal: Portal):
 func _on_dash_timer_timeout() -> void:
 	move_particles.emitting = true
 	hitbox.set_collision_mask_value(4, true)
+	hitbox.set_collision_mask_value(3, true)
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area is EnemyBullet:
@@ -144,3 +146,6 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		var fish = area as Fish
 		fish.queue_free()
 		get_hurt(fish.damage)
+	elif area is Rock:
+		var rock = area as Rock
+		get_hurt(rock.damage)

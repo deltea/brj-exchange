@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhaa06yprb18p"]
+[gd_scene load_steps=17 format=3 uid="uid://dhaa06yprb18p"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_bg3pf"]
 [ext_resource type="PackedScene" uid="uid://did6o62ni3sjp" path="res://player.tscn" id="2_3fxdq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bh17qritcspvs" path="res://wall.tscn" id="5_8vayh"]
 [ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="5_ro2s4"]
 [ext_resource type="Shader" path="res://shaders/jungle.gdshader" id="5_s0efo"]
+[ext_resource type="Script" path="res://earth_arena.gd" id="7_8lyvs"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mobxv"]
 resource_local_to_scene = true
@@ -38,8 +39,14 @@ shader_parameter/color = Color(0.227451, 0.313726, 0.262745, 1)
 shader_parameter/looseness = 0.4
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_okswl")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n40p2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5qy4"]
 size = Vector2(16, 16)
+
+[sub_resource type="Curve2D" id="Curve2D_h4ky5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -192, -32, 0, 0, 0, 0, 0, -224, 0, 0, 0, 0, 192, -32)
+}
+point_count = 3
 
 [node name="Level 3" type="Node2D"]
 script = ExtResource("1_bg3pf")
@@ -52,10 +59,11 @@ boss_health_color = Color(0.929412, 0.733333, 0.439216, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_3fxdq")]
 
-[node name="EarthBoss" parent="." instance=ExtResource("3_1pb0w")]
+[node name="EarthBoss" parent="." node_paths=PackedStringArray("earthquake_path") instance=ExtResource("3_1pb0w")]
 position = Vector2(0, -56)
-bullet_explosion_num = 5
-bullet_explosion_speed = 150
+earthquake_bullet_num = 10
+earthquake_bullet_delay = 0.5
+earthquake_path = NodePath("../EarthquakePath")
 
 [node name="BackgroundFront" type="Sprite2D" parent="."]
 z_index = -20
@@ -69,58 +77,67 @@ material = SubResource("ShaderMaterial_rh8s0")
 scale = Vector2(72, 56)
 texture = ExtResource("5_ro2s4")
 
-[node name="ArenaBackground" type="Sprite2D" parent="."]
+[node name="Arena" type="Node2D" parent="."]
+script = ExtResource("7_8lyvs")
+rotation_speed = 0
+
+[node name="ArenaBackground" type="Sprite2D" parent="Arena"]
 self_modulate = Color(0.498039, 0.596078, 0.376471, 1)
 z_index = -20
 rotation = 0.785398
 scale = Vector2(27.45, 27.45)
 texture = ExtResource("5_ro2s4")
 
-[node name="Wall" parent="." instance=ExtResource("5_8vayh")]
+[node name="Wall" parent="Arena" instance=ExtResource("5_8vayh")]
 position = Vector2(-144, -144)
 rotation = 2.35619
-scale = Vector2(27.45, 2)
+scale = Vector2(28, 2.5)
 
-[node name="CollisionShape" parent="Wall" index="0"]
-shape = SubResource("RectangleShape2D_n40p2")
+[node name="CollisionShape" parent="Arena/Wall" index="0"]
+shape = SubResource("RectangleShape2D_q5qy4")
 
-[node name="Sprite" parent="Wall" index="1"]
+[node name="Sprite" parent="Arena/Wall" index="1"]
 self_modulate = Color(0.141176, 0.156863, 0.156863, 1)
 
-[node name="Wall2" parent="." instance=ExtResource("5_8vayh")]
+[node name="Wall2" parent="Arena" instance=ExtResource("5_8vayh")]
 position = Vector2(144, -144)
 rotation = 0.785398
-scale = Vector2(27.45, 2)
+scale = Vector2(28, 2.5)
 
-[node name="CollisionShape" parent="Wall2" index="0"]
-shape = SubResource("RectangleShape2D_n40p2")
+[node name="CollisionShape" parent="Arena/Wall2" index="0"]
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_q5qy4")
 
-[node name="Sprite" parent="Wall2" index="1"]
+[node name="Sprite" parent="Arena/Wall2" index="1"]
 self_modulate = Color(0.141176, 0.156863, 0.156863, 1)
 
-[node name="Wall3" parent="." instance=ExtResource("5_8vayh")]
+[node name="Wall3" parent="Arena" instance=ExtResource("5_8vayh")]
 position = Vector2(144, 144)
 rotation = 2.35619
-scale = Vector2(27.45, 2)
+scale = Vector2(28, 2.5)
 
-[node name="CollisionShape" parent="Wall3" index="0"]
-shape = SubResource("RectangleShape2D_n40p2")
+[node name="CollisionShape" parent="Arena/Wall3" index="0"]
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_q5qy4")
 
-[node name="Sprite" parent="Wall3" index="1"]
+[node name="Sprite" parent="Arena/Wall3" index="1"]
 self_modulate = Color(0.141176, 0.156863, 0.156863, 1)
 
-[node name="Wall4" parent="." instance=ExtResource("5_8vayh")]
+[node name="Wall4" parent="Arena" instance=ExtResource("5_8vayh")]
 position = Vector2(-144, 144)
 rotation = 0.785398
-scale = Vector2(27.45, 2)
+scale = Vector2(28, 2.5)
 
-[node name="CollisionShape" parent="Wall4" index="0"]
-shape = SubResource("RectangleShape2D_n40p2")
+[node name="CollisionShape" parent="Arena/Wall4" index="0"]
+shape = SubResource("RectangleShape2D_q5qy4")
 
-[node name="Sprite" parent="Wall4" index="1"]
+[node name="Sprite" parent="Arena/Wall4" index="1"]
 self_modulate = Color(0.141176, 0.156863, 0.156863, 1)
 
-[editable path="Wall"]
-[editable path="Wall2"]
-[editable path="Wall3"]
-[editable path="Wall4"]
+[node name="EarthquakePath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_h4ky5")
+
+[editable path="Arena/Wall"]
+[editable path="Arena/Wall2"]
+[editable path="Arena/Wall3"]
+[editable path="Arena/Wall4"]
