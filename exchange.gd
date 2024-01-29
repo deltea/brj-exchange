@@ -36,7 +36,7 @@ func _ready() -> void:
 		card.upgrade = random_upgrades[i]
 		exchange_cards_row.add_child(card)
 
-	var current_num = UpgradeManager.current_upgrades.size()
+	var current_num = len(UpgradeManager.current_upgrades)
 	for i in range(current_num):
 		var card = card_scene.instantiate() as Card
 		card.upgrade = UpgradeManager.current_upgrades[i]
@@ -106,9 +106,9 @@ func _on_exchange_card_select(upgrade: UpgradeResource):
 
 func _on_exchange_card_deselect(upgrade: UpgradeResource):
 	if state == STATE.CURRENT:
-		var index = selected_upgrades.find(upgrade)
-		if index != -1:
-			selected_upgrades.remove_at(index)
+		var upgrade_index = selected_upgrades.find(upgrade)
+		if upgrade_index != -1:
+			selected_upgrades.remove_at(upgrade_index)
 			print(selected_upgrades)
 			update_cost_ui()
 
@@ -125,6 +125,12 @@ func _on_continue_button_pressed() -> void:
 
 	for card in current_cards_row.get_children():
 		card.disabled = true
+
+	UpgradeManager.current_upgrades.push_back(exchange_upgrade)
+	for upgrade in selected_upgrades:
+		var index = UpgradeManager.current_upgrades.find(upgrade)
+		if index != -1:
+			UpgradeManager.current_upgrades.remove_at(index)
 
 	var tween = get_tree().create_tween().set_parallel().set_trans(Tween.TRANS_BACK)
 	tween.tween_property(continue_button, "position", Vector2(0, 100), 1.0).as_relative()

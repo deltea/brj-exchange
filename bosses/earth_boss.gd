@@ -41,7 +41,7 @@ func bullet_explosion_state():
 		await Globals.wait(1.0)
 
 		var prev_velocity = velocity
-		velocity = Vector2.ZERO
+		velocity = Vector2(0.5, 0.5)
 		await Globals.wait(0.5)
 
 		for i in bullet_explosion_num:
@@ -60,7 +60,7 @@ func rocks_state():
 	await Globals.wait(1.0)
 
 	var prev_velocity = velocity
-	velocity = Vector2.ZERO
+	velocity = Vector2(0.5, 0.5)
 	await Globals.wait(0.5)
 
 	var rock = rock_scene.instantiate() as Rock

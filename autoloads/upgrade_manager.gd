@@ -12,7 +12,7 @@ enum UPGRADES {
 
 var current_upgrades: Array[UpgradeResource] = []
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	current_upgrades = get_random_upgrades(5)
 
 func get_random_upgrades(amount: int) -> Array[UpgradeResource]:

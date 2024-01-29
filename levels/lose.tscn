@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://d25bdisqv1eam"]
+
+[node name="Lose" type="Area2D"]
+
+[node name="Canvas" type="CanvasLayer" parent="."]

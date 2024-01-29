@@ -1,3 +1,5 @@
 [gd_scene format=3 uid="uid://dceg3wi5s5edx"]
 
 [node name="Win" type="Node2D"]
+
+[node name="Canvas" type="CanvasLayer" parent="."]
