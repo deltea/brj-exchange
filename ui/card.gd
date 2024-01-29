@@ -13,7 +13,7 @@ var target_y = 0
 
 func _ready() -> void:
 	texture_normal = upgrade.texture
-	cost.texture = load("res://assets/cards/cost-%s.png" % upgrade.exchange_cost)
+	cost.texture = load("res://assets/ui/cost-%s.png" % upgrade.cost)
 
 func _process(delta: float) -> void:
 	drop_shadow.shadow_offset.y = move_toward(drop_shadow.shadow_offset.y, 8 - target_y, animation_speed * delta)
@@ -21,7 +21,10 @@ func _process(delta: float) -> void:
 
 func _on_toggled(value: bool) -> void:
 	border.visible = value
-	Events.exchange_card_select.emit(upgrade)
+	if value:
+		Events.exchange_card_select.emit(upgrade)
+	else:
+		Events.exchange_card_deselect.emit(upgrade)
 
 func _on_mouse_entered() -> void:
 	target_y = -10

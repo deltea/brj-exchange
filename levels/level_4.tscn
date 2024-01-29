@@ -22,6 +22,7 @@ shader = ExtResource("5_pvlpr")
 shader_parameter/color = Color(0.91, 0.9445, 1, 1)
 shader_parameter/scroll_speed = 0.05
 shader_parameter/merge_speed = 0.02
+shader_parameter/looseness = 0.2
 shader_parameter/noise = SubResource("NoiseTexture2D_dd5ff")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nkwqb"]
@@ -38,6 +39,7 @@ shader = ExtResource("5_pvlpr")
 shader_parameter/color = Color(0.737255, 0.839216, 1, 1)
 shader_parameter/scroll_speed = 0.02
 shader_parameter/merge_speed = 0.02
+shader_parameter/looseness = 0.2
 shader_parameter/noise = SubResource("NoiseTexture2D_u1n6y")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hl8ji"]

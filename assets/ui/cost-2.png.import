@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g77clxgyr6ah"
-path="res://.godot/imported/card-border.png-fa29eb3002cb9ceceba805286b1c545d.ctex"
+uid="uid://vk21ytdsaau0"
+path="res://.godot/imported/cost-2.png-1e01134dbcc515554ed28486d202c16f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/card-border.png"
-dest_files=["res://.godot/imported/card-border.png-fa29eb3002cb9ceceba805286b1c545d.ctex"]
+source_file="res://assets/ui/cost-2.png"
+dest_files=["res://.godot/imported/cost-2.png-1e01134dbcc515554ed28486d202c16f.ctex"]
 
 [params]
 

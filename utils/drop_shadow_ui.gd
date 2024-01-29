@@ -2,7 +2,7 @@ extends TextureRect
 class_name DropShadowUI
 
 @export var shadow_offset = Vector2(0, 8)
-@export var shadow_color: Color = Color.DARK_GRAY
+@export var shadow_color: Color
 @export var scale_multiplier = Vector2.ONE
 @export var ordering = -20
 

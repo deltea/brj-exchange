@@ -1,7 +1,7 @@
 extends Area2D
 class_name Boss
 
-@export var max_health = 300
+@export var max_health = 200
 
 var health: float
 var explosion_scene = preload("res://particles/explosion.tscn")

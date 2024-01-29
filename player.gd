@@ -118,6 +118,12 @@ func die():
 	print("ur ded")
 	Globals.hitstop(10000)
 
+func change_to_next_scene():
+	if Globals.world.name == "Level 4":
+		SceneManager.change_scene(SceneManager.win_scene)
+	else:
+		SceneManager.change_scene(SceneManager.exchange_scene)
+
 func _on_go_into_portal(portal: Portal):
 	can_move = false
 	velocity = Vector2.ZERO
@@ -126,7 +132,7 @@ func _on_go_into_portal(portal: Portal):
 	tweener.tween_property(sprite, "scale", Vector2.ZERO, 1)
 	tweener.tween_property(sprite, "global_position", portal.position, 1)
 	tweener.tween_property(sprite, "global_rotation_degrees", sprite.global_rotation_degrees + 360, 1)
-	tweener.tween_callback(func(): SceneManager.change_scene(SceneManager.exchange_scene)).set_delay(1)
+	tweener.tween_callback(change_to_next_scene).set_delay(1)
 
 func _on_dash_timer_timeout() -> void:
 	move_particles.emitting = true

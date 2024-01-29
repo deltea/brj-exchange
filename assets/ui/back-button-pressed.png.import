@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7psa82kfmril"
-path="res://.godot/imported/cost-3.png-a0c5aa525ef06734943a9250af2860e6.ctex"
+uid="uid://cakrmsggg7hqm"
+path="res://.godot/imported/back-button-pressed.png-4463e128d5d786342b4c777450a355f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/cost-3.png"
-dest_files=["res://.godot/imported/cost-3.png-a0c5aa525ef06734943a9250af2860e6.ctex"]
+source_file="res://assets/ui/back-button-pressed.png"
+dest_files=["res://.godot/imported/back-button-pressed.png-4463e128d5d786342b4c777450a355f7.ctex"]
 
 [params]
 

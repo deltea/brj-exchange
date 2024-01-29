@@ -4,7 +4,8 @@ class_name Upgrades
 enum UPGRADES {
 	LIFE,
 	SPEED,
-	DAMAGE
+	DAMAGE,
+	SIZE,
 }
 
 @export var upgrades: Array[UpgradeResource] = []

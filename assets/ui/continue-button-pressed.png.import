@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vk21ytdsaau0"
-path="res://.godot/imported/cost-2.png-cd21b14e66fcf042c7e26c6669783d2b.ctex"
+uid="uid://bg0uht2loig6r"
+path="res://.godot/imported/continue-button-pressed.png-b08bab88bf29ad25d38b39604a228e3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/cost-2.png"
-dest_files=["res://.godot/imported/cost-2.png-cd21b14e66fcf042c7e26c6669783d2b.ctex"]
+source_file="res://assets/ui/continue-button-pressed.png"
+dest_files=["res://.godot/imported/continue-button-pressed.png-b08bab88bf29ad25d38b39604a228e3e.ctex"]
 
 [params]
 

@@ -1,11 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxkfboqgr7sje"]
+[gd_scene load_steps=25 format=3 uid="uid://bxkfboqgr7sje"]
 
 [ext_resource type="Script" path="res://exchange.gd" id="1_1gvsp"]
 [ext_resource type="Shader" path="res://shaders/swirl_background.gdshader" id="2_6nt6n"]
+[ext_resource type="Texture2D" uid="uid://jymaq2acxuhy" path="res://assets/ui/cost-filled.png" id="3_csu7s"]
 [ext_resource type="FontFile" uid="uid://rohwyxfilcqr" path="res://assets/fonts/daydream.ttf" id="4_0ls83"]
 [ext_resource type="FontFile" uid="uid://dw82ff1gmdlec" path="res://assets/fonts/monogram.ttf" id="4_0memp"]
 [ext_resource type="FontFile" uid="uid://dsq8wyluty5hc" path="res://assets/fonts/rainyhearts.ttf" id="4_64mit"]
 [ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="4_egadj"]
+[ext_resource type="Texture2D" uid="uid://ma17meq6rxji" path="res://assets/ui/cost-extra.png" id="4_klmb8"]
+[ext_resource type="Texture2D" uid="uid://b7wy8xfxvlyms" path="res://assets/ui/continue-button.png" id="7_o4mco"]
+[ext_resource type="Texture2D" uid="uid://bywouuax3kpci" path="res://assets/ui/continue-button-disabled.png" id="8_gwpa5"]
+[ext_resource type="Texture2D" uid="uid://bg0uht2loig6r" path="res://assets/ui/continue-button-pressed.png" id="8_p41eh"]
+[ext_resource type="PackedScene" uid="uid://8f3h1q5epi06" path="res://utils/drop_shadow_ui.tscn" id="10_nmmru"]
+[ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="11_dfoib"]
+[ext_resource type="Texture2D" uid="uid://8tkcos58rx63" path="res://assets/ui/back-button.png" id="11_k757u"]
+[ext_resource type="Texture2D" uid="uid://cakrmsggg7hqm" path="res://assets/ui/back-button-pressed.png" id="12_fvx6h"]
+[ext_resource type="Texture2D" uid="uid://d0le8uuwcsac" path="res://assets/ui/cost.png" id="13_gglob"]
+[ext_resource type="PackedScene" uid="uid://duj7mrv14yi7f" path="res://ui/cost.tscn" id="14_0ockk"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_m3le3"]
 noise_type = 0
@@ -29,8 +40,23 @@ font = ExtResource("4_64mit")
 [sub_resource type="LabelSettings" id="LabelSettings_8813e"]
 font = ExtResource("4_0memp")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4jtwf"]
+resource_local_to_scene = true
+shader = ExtResource("11_dfoib")
+shader_parameter/enabled = true
+shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eov8y"]
+resource_local_to_scene = true
+shader = ExtResource("11_dfoib")
+shader_parameter/enabled = true
+shader_parameter/color = Color(1, 1, 1, 1)
+
 [node name="Exchange" type="CanvasLayer"]
 script = ExtResource("1_1gvsp")
+cost_texture = ExtResource("13_gglob")
+cost_filled = ExtResource("3_csu7s")
+cost_extra = ExtResource("4_klmb8")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -30
@@ -69,7 +95,7 @@ offset_top = 25.0
 offset_right = 315.0
 offset_bottom = 54.0
 theme_override_colors/font_shadow_color = Color(0.133333, 0.133333, 0.219608, 1)
-theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 6
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("4_0ls83")
@@ -80,9 +106,9 @@ fit_content = true
 
 [node name="VerticalCenter" type="VBoxContainer" parent="ExchangePanel"]
 layout_mode = 0
-offset_top = 72.0
+offset_top = 81.0
 offset_right = 480.0
-offset_bottom = 180.0
+offset_bottom = 189.0
 alignment = 1
 
 [node name="ExchangeCards" type="HBoxContainer" parent="ExchangePanel/VerticalCenter"]
@@ -99,27 +125,88 @@ mouse_filter = 1
 
 [node name="Instructions" type="RichTextLabel" parent="CurrentPanel"]
 layout_mode = 0
-offset_left = 162.0
+offset_left = 144.0
 offset_top = 25.0
-offset_right = 342.0
+offset_right = 363.0
 offset_bottom = 54.0
 theme_override_colors/font_shadow_color = Color(0.133333, 0.133333, 0.219608, 1)
-theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 6
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("4_0ls83")
 theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
-text = "[wave]EXCHANGE CARDS[/wave]"
+text = "[wave]EXCHANGE YOUR CARDS[/wave]"
 fit_content = true
 
 [node name="VerticalCenter" type="VBoxContainer" parent="CurrentPanel"]
 layout_mode = 0
-offset_top = 72.0
+offset_top = 81.0
 offset_right = 480.0
-offset_bottom = 180.0
+offset_bottom = 189.0
 alignment = 1
 
 [node name="CurrentCards" type="HBoxContainer" parent="CurrentPanel/VerticalCenter"]
 layout_mode = 2
 alignment = 1
+
+[node name="ContinueButton" type="TextureButton" parent="CurrentPanel"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 207.0
+offset_right = 363.0
+offset_bottom = 235.0
+texture_normal = ExtResource("7_o4mco")
+texture_hover = ExtResource("8_p41eh")
+texture_disabled = ExtResource("8_gwpa5")
+
+[node name="DropShadowUI" parent="CurrentPanel/ContinueButton" instance=ExtResource("10_nmmru")]
+material = SubResource("ShaderMaterial_4jtwf")
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 52.0
+offset_bottom = 68.0
+shadow_offset = Vector2(0, 12)
+shadow_color = Color(0.133333, 0.133333, 0.219608, 1)
+
+[node name="BackButton" type="TextureButton" parent="CurrentPanel"]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 207.0
+offset_right = 163.0
+offset_bottom = 235.0
+texture_normal = ExtResource("11_k757u")
+texture_hover = ExtResource("12_fvx6h")
+
+[node name="DropShadowUI" parent="CurrentPanel/BackButton" instance=ExtResource("10_nmmru")]
+material = SubResource("ShaderMaterial_eov8y")
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 52.0
+offset_bottom = 68.0
+shadow_offset = Vector2(0, 12)
+shadow_color = Color(0.133333, 0.133333, 0.219608, 1)
+
+[node name="Cost" type="HBoxContainer" parent="CurrentPanel"]
+layout_mode = 2
+offset_top = 69.0
+offset_right = 480.0
+offset_bottom = 75.0
+alignment = 1
+
+[node name="Cost" parent="CurrentPanel/Cost" instance=ExtResource("14_0ockk")]
+layout_mode = 2
+
+[node name="Cost2" parent="CurrentPanel/Cost" instance=ExtResource("14_0ockk")]
+layout_mode = 2
+
+[node name="Cost3" parent="CurrentPanel/Cost" instance=ExtResource("14_0ockk")]
+layout_mode = 2
+
+[node name="Cost4" parent="CurrentPanel/Cost" instance=ExtResource("14_0ockk")]
+layout_mode = 2
+
+[connection signal="pressed" from="CurrentPanel/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="CurrentPanel/BackButton" to="." method="_on_back_button_pressed"]

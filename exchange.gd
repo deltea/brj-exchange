@@ -4,22 +4,29 @@ class_name Exchange
 enum STATE {
 	EXCHANGE,
 	CURRENT,
+	FINISHED,
 }
 
 @export var tween_speed = 600
 @export var exchange_panel_y = -270
 @export var current_panel_y = 270
+@export var cost_texture: Texture2D
+@export var cost_filled: Texture2D
+@export var cost_extra: Texture2D
 
 @onready var exchange_panel := $ExchangePanel
 @onready var current_panel := $CurrentPanel
 @onready var exchange_cards_row := $ExchangePanel/VerticalCenter/ExchangeCards
 @onready var current_cards_row := $CurrentPanel/VerticalCenter/CurrentCards
-@onready var card_name := $CardName
-@onready var card_description := $CardDescription
+@onready var cost_row := $CurrentPanel/Cost
+@onready var back_button := $CurrentPanel/BackButton
+@onready var continue_button := $CurrentPanel/ContinueButton
+@onready var current_panel_instructions := $CurrentPanel/Instructions
 
 var card_scene = preload("res://ui/card.tscn")
 var state = STATE.EXCHANGE
 var exchange_upgrade: UpgradeResource
+var selected_upgrades: Array[UpgradeResource]
 
 func _ready() -> void:
 	var upgrade_num = 5
@@ -37,19 +44,111 @@ func _ready() -> void:
 		current_cards_row.add_child(card)
 
 	Events.exchange_card_select.connect(_on_exchange_card_select)
+	Events.exchange_card_deselect.connect(_on_exchange_card_deselect)
 	Events.card_hover.connect(_on_card_hover)
 
 func _process(delta: float) -> void:
 	var exchange_panel_target = 0 if state == STATE.EXCHANGE else exchange_panel_y
 	exchange_panel.position.y = move_toward(exchange_panel.position.y, exchange_panel_target, tween_speed * delta)
 
-	var current_panel_target = 0 if state == STATE.CURRENT else current_panel_y
+	var current_panel_target = 0 if state == STATE.CURRENT or state == STATE.FINISHED else current_panel_y
 	current_panel.position.y = move_toward(current_panel.position.y, current_panel_target, tween_speed * delta)
 
+func update_cost_ui():
+	var selected_cost = get_selected_cards_cost()
+	for cost_ui in cost_row.get_children():
+		cost_ui.texture = null
+		cost_ui.visible = false
+
+	for i in range(exchange_upgrade.cost):
+		var cost_ui = cost_row.get_child(i) as TextureRect
+		if cost_ui:
+			cost_ui.visible = true
+			if i < selected_cost:
+				cost_ui.texture = cost_filled
+			else:
+				cost_ui.texture = cost_texture
+
+			if selected_cost > exchange_upgrade.cost:
+				cost_row.get_child(3).visible = true
+				cost_row.get_child(3).texture = cost_extra
+
+	if selected_cost >= exchange_upgrade.cost:
+		continue_button.disabled = false
+	else:
+		continue_button.disabled = true
+
+func get_selected_cards_cost():
+	var cost = 0
+	for upgrade in selected_upgrades:
+		cost += upgrade.cost
+	return cost
+
+func get_exchange_card():
+	for card in exchange_cards_row.get_children():
+		if card.button_pressed: return card
+
+func get_selected_cards():
+	var result: Array[Card] = []
+	for card in current_cards_row.get_children():
+		if card.button_pressed: result.push_back(card)
+	return result
+
 func _on_exchange_card_select(upgrade: UpgradeResource):
-	exchange_upgrade = upgrade
-	state = STATE.CURRENT
+	if state == STATE.EXCHANGE:
+		exchange_upgrade = upgrade
+		state = STATE.CURRENT
+		update_cost_ui()
+	elif state == STATE.CURRENT:
+		selected_upgrades.push_back(upgrade)
+		print(selected_upgrades)
+		update_cost_ui()
+
+func _on_exchange_card_deselect(upgrade: UpgradeResource):
+	if state == STATE.CURRENT:
+		var index = selected_upgrades.find(upgrade)
+		if index != -1:
+			selected_upgrades.remove_at(index)
+			print(selected_upgrades)
+			update_cost_ui()
 
 func _on_card_hover(value: bool, upgrade: UpgradeResource):
-	card_name.text = upgrade.name if value else ""
-	card_description.text = upgrade.description if value else ""
+	# card_name.text = upgrade.name if value else ""
+	# card_description.text = upgrade.description if value else ""
+	pass
+
+func _on_back_button_pressed() -> void:
+	state = STATE.EXCHANGE
+
+func _on_continue_button_pressed() -> void:
+	state = STATE.FINISHED
+
+	for card in current_cards_row.get_children():
+		card.disabled = true
+
+	var tween = get_tree().create_tween().set_parallel().set_trans(Tween.TRANS_BACK)
+	tween.tween_property(continue_button, "position", Vector2(0, 100), 1.0).as_relative()
+	tween.tween_property(back_button, "position", Vector2(0, 100), 1.0).as_relative()
+	tween.tween_property(cost_row, "position", -Vector2(0, 100), 1.0).as_relative()
+	tween.tween_property(current_panel_instructions, "position", -Vector2(0, 60), 1.0).as_relative()
+	tween.tween_property($CurrentPanel/VerticalCenter, "global_position", Vector2(0, 200 - 54), 1.0)
+	tween.tween_property($ExchangePanel/VerticalCenter, "global_position", Vector2(0, 70 - 54), 1.0)
+
+	var exchange_card = get_exchange_card()
+	tween.chain().tween_callback(func():
+		exchange_cards_row.remove_child(exchange_card)
+		current_cards_row.add_child(exchange_card)
+	)
+
+	var selected_cards = get_selected_cards()
+	for card in selected_cards:
+		tween.tween_callback(func():
+			current_cards_row.remove_child(card)
+			exchange_cards_row.add_child(card)
+		)
+
+	tween.chain().tween_property($CurrentPanel/VerticalCenter, "global_position", Vector2(0, 270), 1.0).set_delay(1.0)
+	tween.tween_property($ExchangePanel/VerticalCenter, "global_position", Vector2(0, 0 - 108), 1.0).set_delay(1.0)
+
+	tween.tween_callback(SceneManager.next_level)
+

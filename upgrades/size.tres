@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://ckgeh1v6xj686"]
+
+[ext_resource type="Script" path="res://upgrade_resource.gd" id="1_tdwqf"]
+[ext_resource type="Texture2D" uid="uid://dsek5takb4a6m" path="res://assets/cards/size.png" id="2_toa0f"]
+
+[resource]
+script = ExtResource("1_tdwqf")
+name = "Gift of Size"
+description = "This is a test. This card does nothing. Boring."
+cost = 3
+texture = ExtResource("2_toa0f")
+method = 1

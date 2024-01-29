@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://duj7mrv14yi7f"]
+
+[ext_resource type="Texture2D" uid="uid://d0le8uuwcsac" path="res://assets/ui/cost.png" id="1_y1wpt"]
+
+[node name="Cost" type="TextureRect"]
+offset_right = 6.0
+offset_bottom = 6.0
+texture = ExtResource("1_y1wpt")
+stretch_mode = 2
