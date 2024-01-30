@@ -7,7 +7,7 @@
 [ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="5_1jqbw"]
 [ext_resource type="Texture2D" uid="uid://g77clxgyr6ah" path="res://assets/ui/card-border.png" id="6_o7hli"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sysko"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgj6x"]
 resource_local_to_scene = true
 shader = ExtResource("5_1jqbw")
 shader_parameter/enabled = true
@@ -25,7 +25,7 @@ texture_normal = ExtResource("1_m1ron")
 script = ExtResource("1_rf507")
 
 [node name="DropShadowUI" parent="." instance=ExtResource("3_u7v7r")]
-material = SubResource("ShaderMaterial_sysko")
+material = SubResource("ShaderMaterial_hgj6x")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

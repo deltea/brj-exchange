@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_3vnrn")
-name = "Gift of Life"
-description = "This is a test. This card does nothing. Boring."
+name = "Hearty"
+description = "Increase max health and take less damage per hit."
 cost = 1
 texture = ExtResource("2_gqcki")
 method = 0

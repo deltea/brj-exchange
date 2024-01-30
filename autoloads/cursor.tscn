@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5ii0oh7b1hwh"]
+[gd_scene load_steps=9 format=3 uid="uid://b5ii0oh7b1hwh"]
 
 [ext_resource type="Texture2D" uid="uid://dieaqg82ds00k" path="res://assets/ui/cursor-select.png" id="1_3xtfg"]
 [ext_resource type="Texture2D" uid="uid://4mdvsxk6y5dj" path="res://assets/ui/cursor-crosshair.png" id="1_7mwta"]
 [ext_resource type="Script" path="res://autoloads/cursor.gd" id="1_a2jbb"]
+[ext_resource type="Texture2D" uid="uid://bg5cwbyi6v4kg" path="res://assets/ui/panel.png" id="4_0jdtv"]
+[ext_resource type="Script" path="res://autoloads/tooltip.gd" id="4_ahmfi"]
+[ext_resource type="FontFile" uid="uid://dw82ff1gmdlec" path="res://assets/fonts/monogram.ttf" id="4_y7tr8"]
+[ext_resource type="FontFile" uid="uid://dsq8wyluty5hc" path="res://assets/fonts/rainyhearts.ttf" id="5_ifoju"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ggtp"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+texture = ExtResource("4_0jdtv")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
 
 [node name="MouseLayer" type="CanvasLayer"]
 layer = 100
@@ -19,3 +34,19 @@ stretch_mode = 3
 script = ExtResource("1_a2jbb")
 crosshair_texture = ExtResource("1_7mwta")
 default_texture = ExtResource("1_3xtfg")
+
+[node name="TooltipPanel" type="PanelContainer" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 224.0
+offset_bottom = 104.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_5ggtp")
+script = ExtResource("4_ahmfi")
+
+[node name="Tooltip" type="RichTextLabel" parent="TooltipPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_y7tr8")
+theme_override_fonts/italics_font = ExtResource("5_ifoju")
+bbcode_enabled = true
+fit_content = true

@@ -100,7 +100,7 @@ func can_dash():
 func get_hurt(damage: float):
 	AudioManager.play_sound(AudioManager.hurt)
 	health -= damage
-	Globals.canvas.player_health.value = 100.0 / Stats.max_health * health
+	update_health_ui()
 	Globals.hitstop(0.15)
 	Globals.camera.impact()
 	Globals.camera.shake(0.1, 1)
@@ -111,6 +111,9 @@ func get_hurt(damage: float):
 func die():
 	print("ur ded")
 	Globals.hitstop(10000)
+
+func update_health_ui():
+	Globals.canvas.player_health.value = 100.0 / Stats.max_health * health
 
 func change_to_next_scene():
 	if Globals.world.name == "Level 4":
@@ -139,3 +142,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		get_hurt(Stats.enemy_damage)
 	elif area is Rock or area is EnemyTile:
 		get_hurt(Stats.enemy_damage)
+
+func _on_regen_timer_timeout() -> void:
+	health += Stats.regen
+	update_health_ui()

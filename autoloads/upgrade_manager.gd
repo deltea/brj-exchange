@@ -5,6 +5,7 @@ enum UPGRADES {
 	LIFE,
 	SPEED,
 	SIZE,
+	REGEN
 }
 
 @export var upgrades: Array[UpgradeResource] = []
@@ -37,6 +38,8 @@ func activate_all_upgrades():
 	for upgrade in current_upgrades:
 		activate_upgrade(upgrade.method)
 
+# ---------- Upgrades ----------
+
 func life_upgrade(value: int):
 	Stats.max_health += 15 * value
 	Stats.enemy_damage -= 1 * value
@@ -50,3 +53,6 @@ func speed_upgrade(value: int):
 func size_upgrade(value: int):
 	Stats.player_size -= 0.1 * value
 	Stats.bullet_size += 0.2 * value
+
+func regen_upgrade(value: int):
+	Stats.regen += 0.4 * value

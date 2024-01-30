@@ -7,9 +7,9 @@ enum STATE {
 	FINISHED,
 }
 
-@export var tween_speed = 600
-@export var exchange_panel_y = -270
-@export var current_panel_y = 270
+@export var tween_speed = 6
+@export var exchange_panel_y = -270.0
+@export var current_panel_y = 270.0
 @export var cost_texture: Texture2D
 @export var cost_filled: Texture2D
 @export var cost_extra: Texture2D
@@ -48,11 +48,11 @@ func _ready() -> void:
 	Events.card_hover.connect(_on_card_hover)
 
 func _process(delta: float) -> void:
-	var exchange_panel_target = 0 if state == STATE.EXCHANGE else exchange_panel_y
-	exchange_panel.position.y = move_toward(exchange_panel.position.y, exchange_panel_target, tween_speed * delta)
+	var exchange_panel_target = 0.0 if state == STATE.EXCHANGE else exchange_panel_y
+	exchange_panel.position.y = lerp(exchange_panel.position.y, exchange_panel_target, tween_speed * delta)
 
-	var current_panel_target = 0 if state == STATE.CURRENT or state == STATE.FINISHED else current_panel_y
-	current_panel.position.y = move_toward(current_panel.position.y, current_panel_target, tween_speed * delta)
+	var current_panel_target = 0.0 if state == STATE.CURRENT or state == STATE.FINISHED else current_panel_y
+	current_panel.position.y = lerp(current_panel.position.y, current_panel_target, tween_speed * delta)
 
 func update_cost_ui():
 	var selected_cost = get_selected_cards_cost()

@@ -5,6 +5,7 @@ var mouse: Mouse
 var world: World
 var camera: Camera
 var canvas: Canvas
+var tooltip: Tooltip
 
 var time = 0.0
 

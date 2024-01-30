@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_tdwqf")
-name = "Gift of Size"
-description = "This is a test. This card does nothing. Boring."
+name = "Scaled"
+description = "Make the player smaller and  bullets bigger."
 cost = 1
 texture = ExtResource("2_toa0f")
 method = 2
