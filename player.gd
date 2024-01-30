@@ -4,11 +4,6 @@ class_name Player
 @export_category("Movement")
 @export var dash_cooldown = 0.4
 
-@export_category("Shooting")
-@export var fire_rate = 8.0
-@export var spread = 5.0
-@export var bullet_damage = 1.0
-
 @export_category("Animation")
 @export var squash_and_stretch = 0.2
 @export var turn_speed = 20
@@ -70,7 +65,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func fire():
-	next_time_to_fire = Globals.time + 1.0 / fire_rate
+	next_time_to_fire = Globals.time + 1.0 / Stats.fire_rate
 	Globals.mouse.impact_rotation()
 	AudioManager.play_sound(AudioManager.shoot)
 
@@ -78,7 +73,7 @@ func fire():
 	var mouse_pos = get_global_mouse_position()
 	bullet.global_position = global_position + ((mouse_pos - global_position).normalized() * 12)
 	bullet.look_at(mouse_pos)
-	bullet.rotation_degrees += randf_range(-spread, spread)
+	bullet.rotation_degrees += randf_range(-Stats.bullet_spread, Stats.bullet_spread)
 	bullet.scale = Vector2.ONE * Stats.bullet_size
 	bullet.speed = Stats.bullet_speed
 

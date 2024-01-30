@@ -9,4 +9,7 @@ extends Node
 @export var bullet_size = 1.0
 @export var enemy_damage = 10.0
 @export var regen = 0.0
-@export var bullet_bounce = 10
+@export var bullet_bounce = 0
+@export var bullet_damage = 1.0
+@export var bullet_spread = 5.0
+@export var fire_rate = 8.0

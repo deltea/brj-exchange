@@ -42,7 +42,7 @@ func change_texture(mode: MODE):
 	elif mode == MODE.DEFAULT:
 		texture = default_texture
 
-func _on_change_scene(scene: PackedScene):
+func _on_change_scene(_scene: PackedScene):
 	texture = default_texture
 	target_rotation = 0
 	rotation = 0

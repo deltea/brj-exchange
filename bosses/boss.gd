@@ -18,7 +18,7 @@ func take_damage():
 	AudioManager.play_sound(AudioManager.enemy_hit)
 	flash()
 
-	health -= Globals.player.bullet_damage
+	health -= Stats.bullet_damage
 	Globals.canvas.boss_health.value = 100.0 / max_health * health
 	if health < 0: die()
 

@@ -45,7 +45,6 @@ func _ready() -> void:
 
 	Events.exchange_card_select.connect(_on_exchange_card_select)
 	Events.exchange_card_deselect.connect(_on_exchange_card_deselect)
-	Events.card_hover.connect(_on_card_hover)
 
 func _process(delta: float) -> void:
 	var exchange_panel_target = 0.0 if state == STATE.EXCHANGE else exchange_panel_y
@@ -111,11 +110,6 @@ func _on_exchange_card_deselect(upgrade: UpgradeResource):
 			selected_upgrades.remove_at(upgrade_index)
 			print(selected_upgrades)
 			update_cost_ui()
-
-func _on_card_hover(value: bool, upgrade: UpgradeResource):
-	# card_name.text = upgrade.name if value else ""
-	# card_description.text = upgrade.description if value else ""
-	pass
 
 func _on_back_button_pressed() -> void:
 	state = STATE.EXCHANGE

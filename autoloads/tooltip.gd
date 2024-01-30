@@ -9,6 +9,7 @@ class_name Tooltip
 func _ready() -> void:
 	Events.card_hover.connect(_on_card_hover)
 	visible = false
+	Events.change_scene.connect(func(_scene): hide_tooltip())
 
 func _process(delta: float) -> void:
 	var target_position = Globals.mouse.position + Vector2.ONE * offset_amount

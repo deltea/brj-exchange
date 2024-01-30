@@ -22,5 +22,5 @@ func play_sound(sound: AudioStream):
 	sfx_player.stream = sound
 	sfx_player.play()
 
-func _on_change_scene(scene: PackedScene):
+func _on_change_scene(_scene: PackedScene):
 	beat_target_volume = 0
