@@ -15,6 +15,7 @@ func _ready() -> void:
 	RenderingServer.set_default_clear_color(background_color)
 	Events.boss_defeated.connect(_on_boss_defeated)
 	Globals.mouse.change_texture(Mouse.MODE.CROSSHAIR)
+	AudioManager.beat_target_volume = 1
 
 func _on_boss_defeated():
 	await Globals.wait(1.0)

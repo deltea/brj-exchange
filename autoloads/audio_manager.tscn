@@ -1,20 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5bhqrv0qsgwp"]
+[gd_scene load_steps=4 format=3 uid="uid://c5bhqrv0qsgwp"]
 
 [ext_resource type="Script" path="res://autoloads/audio_manager.gd" id="1_5swth"]
-[ext_resource type="AudioStream" uid="uid://lcru46t8ltvp" path="res://assets/sfx/hurt.tres" id="2_2wt3y"]
-[ext_resource type="AudioStream" uid="uid://chtwur1ja107v" path="res://assets/sfx/shoot.wav" id="2_ybchh"]
-[ext_resource type="AudioStream" uid="uid://bbb2oit3ursql" path="res://assets/sfx/enemy-hit.wav" id="4_o7vyd"]
+[ext_resource type="AudioStream" uid="uid://bgk52vaoto7de" path="res://assets/music/beat.mp3" id="5_7ory5"]
+[ext_resource type="AudioStream" uid="uid://cbgl107qht750" path="res://assets/music/melody.mp3" id="5_m4ake"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_5swth")
-shoot = ExtResource("2_ybchh")
-hurt = ExtResource("2_2wt3y")
-enemy_hit = ExtResource("4_o7vyd")
 
 [node name="SFXStreamPlayer" type="AudioStreamPlayer" parent="."]
 max_polyphony = 50
 bus = &"SFX"
 
-[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
-max_polyphony = 50
+[node name="MelodyStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_m4ake")
+autoplay = true
+bus = &"Music"
+
+[node name="BeatStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7ory5")
+volume_db = -80.0
+autoplay = true
 bus = &"Music"
