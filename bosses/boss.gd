@@ -19,7 +19,7 @@ func take_damage():
 	flash()
 
 	health -= Globals.player.bullet_damage
-	Globals.canvas.boss_health.value = health
+	Globals.canvas.boss_health.value = 100.0 / max_health * health
 	if health < 0: die()
 
 func die():

@@ -21,21 +21,38 @@ shader_parameter/color = Color(1, 1, 1, 1)
 script = ExtResource("2_piiff")
 animation_speed = 2
 whirlpool_force = 60
+whirlpool_fish_num = 50
+whirlpool_fish_delay = 0.1
+whirlpool_fish_speed = 0
+whirlpool_fish_acceleration = 3
+whirlpool_fish_radius = 220
+cannon_delay = 1
+cannon_bullet_num = 10
+cannon_bullet_speed = 150
+bullet_spiral_move_speed = 200
+bullet_spiral_num = 100
+bullet_spiral_delay = 0.1
+bullet_spiral_speed = 100
+fishies_delay = 0.5
+fishies_num = 50
+fishies_speed = 200
+fishies_min = Vector2(-240, -240)
+fishies_max = Vector2(240, 240)
 
-[node name="CollisionShape" parent="." index="0"]
-position = Vector2(-4, 0)
-rotation = 1.57079
-shape = SubResource("CapsuleShape2D_poypq")
-
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite" parent="." index="0"]
 position = Vector2(-3, 0)
 texture = ExtResource("2_txqf0")
 
 [node name="DropShadow" parent="Sprite" index="0" instance=ExtResource("3_v6gl3")]
 shadow_offset = Vector2(0, 16)
 
+[node name="CollisionShape" parent="." index="1"]
+position = Vector2(-4, 0)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_poypq")
+
 [node name="MouthTop" type="Sprite2D" parent="." index="2"]
-z_index = 1
+z_index = 2
 material = SubResource("ShaderMaterial_me5wq")
 texture = ExtResource("4_trefq")
 offset = Vector2(-4, 0)
@@ -50,6 +67,7 @@ texture = ExtResource("5_ja5gk")
 shadow_offset = Vector2(0, 16)
 
 [node name="MouthBottom" type="Sprite2D" parent="." index="3"]
+z_index = 1
 material = SubResource("ShaderMaterial_me5wq")
 texture = ExtResource("4_trefq")
 offset = Vector2(-4, 0)

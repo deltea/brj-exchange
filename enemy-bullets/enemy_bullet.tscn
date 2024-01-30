@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dsdglywx5djgh" path="res://assets/enemy-bullets/fire-bullet-2.png" id="4_v7tjd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_11by3"]
-radius = 2.0
+radius = 5.0
 
 [node name="EnemyBullet" instance=ExtResource("1_6am1x")]
 script = ExtResource("2_gksyn")

@@ -7,6 +7,6 @@
 script = ExtResource("1_tdwqf")
 name = "Gift of Size"
 description = "This is a test. This card does nothing. Boring."
-cost = 3
+cost = 1
 texture = ExtResource("2_toa0f")
-method = 1
+method = 2

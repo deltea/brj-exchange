@@ -132,6 +132,10 @@ func _on_continue_button_pressed() -> void:
 		if index != -1:
 			UpgradeManager.current_upgrades.remove_at(index)
 
+	UpgradeManager.activate_upgrade(exchange_upgrade.method)
+	for upgrade in selected_upgrades:
+		UpgradeManager.deactivate_upgrade(upgrade.method)
+
 	var tween = get_tree().create_tween().set_parallel().set_trans(Tween.TRANS_BACK)
 	tween.tween_property(continue_button, "position", Vector2(0, 100), 1.0).as_relative()
 	tween.tween_property(back_button, "position", Vector2(0, 100), 1.0).as_relative()
@@ -156,5 +160,5 @@ func _on_continue_button_pressed() -> void:
 	tween.chain().tween_property($CurrentPanel/VerticalCenter, "global_position", Vector2(0, 270), 1.0).set_delay(1.0)
 	tween.tween_property($ExchangePanel/VerticalCenter, "global_position", Vector2(0, 0 - 108), 1.0).set_delay(1.0)
 
-	tween.tween_callback(SceneManager.next_level)
+	tween.tween_callback(SceneManager.next_level).set_delay(1.0)
 

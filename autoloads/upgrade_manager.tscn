@@ -1,11 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://7wp38g63w1pa"]
+[gd_scene load_steps=5 format=3 uid="uid://7wp38g63w1pa"]
 
 [ext_resource type="Script" path="res://autoloads/upgrade_manager.gd" id="1_2cqpv"]
 [ext_resource type="Resource" uid="uid://wu48h7bim13a" path="res://upgrades/life.tres" id="2_g43ls"]
 [ext_resource type="Resource" uid="uid://dhlsqtnmay43y" path="res://upgrades/speed.tres" id="3_l2v1v"]
-[ext_resource type="Resource" uid="uid://iglp2d625smb" path="res://upgrades/damage.tres" id="4_ajnnv"]
 [ext_resource type="Resource" uid="uid://ckgeh1v6xj686" path="res://upgrades/size.tres" id="5_8c2pg"]
 
 [node name="UpgradeManager" type="Node"]
 script = ExtResource("1_2cqpv")
-upgrades = Array[Resource("res://upgrade_resource.gd")]([ExtResource("2_g43ls"), ExtResource("3_l2v1v"), ExtResource("4_ajnnv"), ExtResource("5_8c2pg")])
+upgrades = Array[Resource("res://upgrade_resource.gd")]([ExtResource("2_g43ls"), ExtResource("3_l2v1v"), ExtResource("5_8c2pg")])

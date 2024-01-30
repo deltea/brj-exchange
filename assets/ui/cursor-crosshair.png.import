@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqiwes2cuf0tk"
-path="res://.godot/imported/damage.png-74303358280a3430a6e531d2f8e1a2cd.ctex"
+uid="uid://4mdvsxk6y5dj"
+path="res://.godot/imported/cursor-crosshair.png-91f7d4c8f00d7f605c1f2d4514ac72dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cards/damage.png"
-dest_files=["res://.godot/imported/damage.png-74303358280a3430a6e531d2f8e1a2cd.ctex"]
+source_file="res://assets/ui/cursor-crosshair.png"
+dest_files=["res://.godot/imported/cursor-crosshair.png-91f7d4c8f00d7f605c1f2d4514ac72dc.ctex"]
 
 [params]
 

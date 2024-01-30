@@ -14,6 +14,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(background_color)
 	Events.boss_defeated.connect(_on_boss_defeated)
+	Globals.mouse.change_texture(Mouse.MODE.CROSSHAIR)
 
 func _on_boss_defeated():
 	await Globals.wait(1.0)

@@ -2,20 +2,12 @@ extends CharacterBody2D
 class_name Player
 
 @export_category("Movement")
-@export var run_speed = 120.0
-@export var dash_speed = 400.0
-@export var dash_time = 0.16
 @export var dash_cooldown = 0.4
 
 @export_category("Shooting")
-@export var bullet_speed = 800.0
 @export var fire_rate = 8.0
 @export var spread = 5.0
-@export var bullet_size = 1.0
 @export var bullet_damage = 1.0
-
-@export_category("Health")
-@export var max_health = 100
 
 @export_category("Animation")
 @export var squash_and_stretch = 0.2
@@ -31,7 +23,7 @@ class_name Player
 var target_rotation = 0.0
 var target_scale = Vector2.ONE
 var next_time_to_fire = 0.0
-var health = max_health
+var health: float
 var bullet_scene = preload("res://player_bullet.tscn")
 var wind_force = Vector2.ZERO
 var can_move = true
@@ -41,10 +33,12 @@ func _enter_tree() -> void:
 	Globals.player = self
 
 func _ready() -> void:
-	dash_timer.wait_time = dash_time
+	dash_timer.wait_time = Stats.dash_duration
 	dash_cooldown_timer.wait_time = dash_cooldown
 	hitbox.set_collision_mask_value(4, true)
 	Events.go_in_portal.connect(_on_go_into_portal)
+	scale = Stats.player_size * Vector2.ONE
+	health = Stats.max_health
 
 func _process(delta: float) -> void:
 	if not can_move: return
@@ -63,7 +57,7 @@ func _physics_process(_delta: float) -> void:
 	else:
 		target_scale = Vector2.ONE
 
-	var speed = dash_speed if is_dashing() else run_speed
+	var speed = Stats.dash_speed if is_dashing() else Stats.run_speed
 	var whirlpool = (Vector2.ZERO - position).normalized() * whirlpool_force
 	velocity = input * speed + wind_force + whirlpool
 
@@ -85,8 +79,8 @@ func fire():
 	bullet.global_position = global_position + ((mouse_pos - global_position).normalized() * 12)
 	bullet.look_at(mouse_pos)
 	bullet.rotation_degrees += randf_range(-spread, spread)
-	bullet.scale = Vector2.ONE * bullet_size
-	bullet.speed = bullet_speed
+	bullet.scale = Vector2.ONE * Stats.bullet_size
+	bullet.speed = Stats.bullet_speed
 
 	Globals.world.add_child(bullet)
 
@@ -106,7 +100,7 @@ func can_dash():
 func get_hurt(damage: float):
 	AudioManager.play_sound(AudioManager.hurt)
 	health -= damage
-	Globals.canvas.player_health.value = health
+	Globals.canvas.player_health.value = 100.0 / Stats.max_health * health
 	Globals.hitstop(0.15)
 	Globals.camera.impact()
 	Globals.camera.shake(0.1, 1)

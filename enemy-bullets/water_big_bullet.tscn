@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2xrsndbaagp0"]
+[gd_scene load_steps=10 format=3 uid="uid://d2xrsndbaagp0"]
 
 [ext_resource type="PackedScene" uid="uid://6w6r8w0ig2q1" path="res://enemy-bullets/enemy_bullet.tscn" id="1_ah5ci"]
 [ext_resource type="Script" path="res://enemy-bullets/water_big_bullet.gd" id="2_clkij"]
 [ext_resource type="Texture2D" uid="uid://cnbt0dqd1lf4w" path="res://assets/enemy-bullets/water-big-bullet-1.png" id="2_u70ft"]
 [ext_resource type="Texture2D" uid="uid://db308suqu5ysy" path="res://assets/enemy-bullets/water-big-bullet-2.png" id="3_ruolb"]
 [ext_resource type="Texture2D" uid="uid://c46htyaexexvl" path="res://assets/circle-particle.png" id="4_6j38a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j06vp"]
 
 [sub_resource type="Curve" id="Curve_26bn7"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -26,6 +28,9 @@ texture_2 = ExtResource("3_ruolb")
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource("2_u70ft")
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("CircleShape2D_j06vp")
 
 [node name="TrailParticles" type="CPUParticles2D" parent="." index="4"]
 z_index = -10

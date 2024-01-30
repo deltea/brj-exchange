@@ -4,7 +4,6 @@ class_name Upgrades
 enum UPGRADES {
 	LIFE,
 	SPEED,
-	DAMAGE,
 	SIZE,
 }
 
@@ -13,7 +12,8 @@ enum UPGRADES {
 var current_upgrades: Array[UpgradeResource] = []
 
 func _enter_tree() -> void:
-	current_upgrades = get_random_upgrades(5)
+	current_upgrades = get_random_upgrades(3)
+	activate_all_upgrades()
 
 func get_random_upgrades(amount: int) -> Array[UpgradeResource]:
 	var result: Array[UpgradeResource] = []
@@ -23,13 +23,29 @@ func get_random_upgrades(amount: int) -> Array[UpgradeResource]:
 
 func activate_upgrade(upgrade: UPGRADES):
 	var method = UPGRADES.keys()[upgrade].to_lower() + "_upgrade"
-	if has_method(method): call(method)
+	if has_method(method):
+		call(method, 1)
+		print("activated ", method)
 
-func life_upgrade():
-	pass
+func deactivate_upgrade(upgrade: UPGRADES):
+	var method = UPGRADES.keys()[upgrade].to_lower() + "_upgrade"
+	if has_method(method):
+		call(method, -1)
+		print("deactivated ", method)
 
-func speed_upgrade():
-	pass
+func activate_all_upgrades():
+	for upgrade in current_upgrades:
+		activate_upgrade(upgrade.method)
 
-func damage_upgrade():
-	pass
+func life_upgrade(value: int):
+	Stats.max_health += 15 * value
+
+func speed_upgrade(value: int):
+	Stats.run_speed += 20 * value
+	Stats.dash_duration += 0.04 * value
+	Stats.dash_speed += 50 * value
+	Stats.bullet_speed += 100 * value
+
+func size_upgrade(value: int):
+	Stats.player_size -= 0.1 * value
+	Stats.bullet_size += 0.2 * value

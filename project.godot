@@ -22,14 +22,15 @@ Events="*res://autoloads/Events.gd"
 UpgradeManager="*res://autoloads/upgrade_manager.tscn"
 Cursor="*res://autoloads/cursor.tscn"
 AudioManager="*res://autoloads/audio_manager.tscn"
+Stats="*res://autoloads/stats.tscn"
 SceneManager="*res://autoloads/scene_manager.tscn"
 
 [display]
 
 window/size/viewport_width=480
 window/size/viewport_height=270
-window/size/window_width_override=1440
-window/size/window_height_override=810
+window/size/window_width_override=960
+window/size/window_height_override=540
 window/stretch/mode="viewport"
 
 [input]

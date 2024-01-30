@@ -12,6 +12,7 @@ func change_scene(scene: PackedScene):
 	animation_player.play_backwards("transition")
 	await Globals.wait(0.5)
 	get_tree().change_scene_to_packed(scene)
+	Events.change_scene.emit(scene)
 	await Globals.wait(0.5)
 	animation_player.play("transition")
 

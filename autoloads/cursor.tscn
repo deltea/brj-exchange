@@ -1,18 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5ii0oh7b1hwh"]
+[gd_scene load_steps=4 format=3 uid="uid://b5ii0oh7b1hwh"]
 
-[ext_resource type="Texture2D" uid="uid://4mdvsxk6y5dj" path="res://assets/cursor.png" id="1_7mwta"]
+[ext_resource type="Texture2D" uid="uid://dieaqg82ds00k" path="res://assets/ui/cursor-select.png" id="1_3xtfg"]
+[ext_resource type="Texture2D" uid="uid://4mdvsxk6y5dj" path="res://assets/ui/cursor-crosshair.png" id="1_7mwta"]
 [ext_resource type="Script" path="res://autoloads/cursor.gd" id="1_a2jbb"]
 
 [node name="MouseLayer" type="CanvasLayer"]
 layer = 100
 
 [node name="Mouse" type="TextureRect" parent="."]
-offset_left = -6.0
-offset_top = -6.0
-offset_right = 6.0
-offset_bottom = 6.0
-pivot_offset = Vector2(6, 6)
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+pivot_offset = Vector2(10, 10)
 mouse_filter = 2
-texture = ExtResource("1_7mwta")
-stretch_mode = 2
+texture = ExtResource("1_3xtfg")
+stretch_mode = 3
 script = ExtResource("1_a2jbb")
+crosshair_texture = ExtResource("1_7mwta")
+default_texture = ExtResource("1_3xtfg")
