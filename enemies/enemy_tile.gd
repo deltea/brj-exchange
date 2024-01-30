@@ -1,7 +1,6 @@
 extends Area2D
 class_name EnemyTile
 
-@export var damage = 10.0
 @export var telegraph_duration = 1.5
 @export var damage_color = Color.WHITE
 

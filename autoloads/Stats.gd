@@ -7,3 +7,4 @@ extends Node
 @export var max_health = 100.0
 @export var player_size = 1.0
 @export var bullet_size = 1.0
+@export var enemy_damage = 10.0

@@ -39,6 +39,7 @@ func activate_all_upgrades():
 
 func life_upgrade(value: int):
 	Stats.max_health += 15 * value
+	Stats.enemy_damage -= 1 * value
 
 func speed_upgrade(value: int):
 	Stats.run_speed += 20 * value

@@ -134,18 +134,8 @@ func _on_dash_timer_timeout() -> void:
 	hitbox.set_collision_mask_value(3, true)
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area is EnemyBullet:
-		var bullet = area as EnemyBullet
-		bullet.queue_free()
-		get_hurt(bullet.damage)
-	elif area is EnemyTile:
-		var tile = area as EnemyTile
-		tile.queue_free()
-		get_hurt(tile.damage)
-	elif area is Fish:
-		var fish = area as Fish
-		fish.queue_free()
-		get_hurt(fish.damage)
-	elif area is Rock:
-		var rock = area as Rock
-		get_hurt(rock.damage)
+	if area is EnemyBullet or area is Fish:
+		area.queue_free()
+		get_hurt(Stats.enemy_damage)
+	elif area is Rock or area is EnemyTile:
+		get_hurt(Stats.enemy_damage)

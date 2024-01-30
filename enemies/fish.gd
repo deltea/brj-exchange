@@ -4,7 +4,6 @@ class_name Fish
 @export var animation_speed = 5
 @export var max_health = 0
 @export var mouth_angle_max = 30
-@export var damage = 10
 
 @onready var mouth_top := $MouthTop
 @onready var mouth_bottom := $MouthBottom
