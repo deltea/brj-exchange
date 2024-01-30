@@ -115,24 +115,20 @@ color = Color(0.996078, 0.329412, 0.435294, 1)
 [node name="Walls" type="Node" parent="."]
 
 [node name="Wall" parent="Walls" instance=ExtResource("4_knrh1")]
-position = Vector2(-415.998, 0.000427246)
+position = Vector2(-416, 0)
 scale = Vector2(22, 48)
-script = null
 
 [node name="Wall2" parent="Walls" instance=ExtResource("4_knrh1")]
-position = Vector2(416.002, 0.000427246)
+position = Vector2(416, 0)
 scale = Vector2(22, 48)
-script = null
 
 [node name="Wall3" parent="Walls" instance=ExtResource("4_knrh1")]
-position = Vector2(0.00186157, -264)
+position = Vector2(0, -264)
 scale = Vector2(64, 17)
-script = null
 
 [node name="Wall4" parent="Walls" instance=ExtResource("4_knrh1")]
-position = Vector2(0.00186157, 264)
+position = Vector2(0, 264)
 scale = Vector2(64, 17)
-script = null
 
 [node name="FireWall" type="Sprite2D" parent="Walls"]
 self_modulate = Color(0.996078, 0.329412, 0.435294, 1)

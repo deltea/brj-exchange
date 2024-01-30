@@ -5,7 +5,8 @@ enum UPGRADES {
 	LIFE,
 	SPEED,
 	SIZE,
-	REGEN
+	REGEN,
+	RICOCHET,
 }
 
 @export var upgrades: Array[UpgradeResource] = []
@@ -56,3 +57,6 @@ func size_upgrade(value: int):
 
 func regen_upgrade(value: int):
 	Stats.regen += 0.4 * value
+
+func ricochet_upgrade(value: int):
+	Stats.bullet_bounce += 1 * value

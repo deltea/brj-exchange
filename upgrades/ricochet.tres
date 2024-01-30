@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://b37jy2phs5jat"]
+
+[ext_resource type="Script" path="res://upgrade_resource.gd" id="1_oiftj"]
+[ext_resource type="Texture2D" uid="uid://b58p0gt4xttmd" path="res://assets/cards/ricochet.png" id="2_jt15y"]
+
+[resource]
+script = ExtResource("1_oiftj")
+name = "Ricochet"
+description = "Bullets ricochet off of walls +1 time."
+cost = 2
+texture = ExtResource("2_jt15y")
+method = 3
