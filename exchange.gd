@@ -36,6 +36,10 @@ func _ready() -> void:
 		card.upgrade = random_upgrades[i]
 		exchange_cards_row.add_child(card)
 
+	var new_random_upgrade = UpgradeManager.get_random_upgrades(1)[0]
+	UpgradeManager.current_upgrades.push_back(new_random_upgrade)
+	UpgradeManager.activate_upgrade(new_random_upgrade.method)
+
 	var current_num = len(UpgradeManager.current_upgrades)
 	for i in range(current_num):
 		var card = card_scene.instantiate() as Card
