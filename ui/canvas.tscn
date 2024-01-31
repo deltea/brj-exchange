@@ -8,12 +8,6 @@
 [ext_resource type="Script" path="res://ui/wobble_ui.gd" id="4_2xril"]
 [ext_resource type="FontFile" uid="uid://bqss7t22e4vin" path="res://assets/fonts/8-bit-wonder.ttf" id="7_4lkym"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_3k18v"]
-font = ExtResource("7_4lkym")
-shadow_size = 0
-shadow_color = Color(0.529412, 0.529412, 0.529412, 1)
-shadow_offset = Vector2(0, 0)
-
 [sub_resource type="Animation" id="Animation_4gagn"]
 resource_name = "show_boss_name"
 length = 2.5
@@ -27,7 +21,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.5, 1, 2, 2.5),
 "transitions": PackedFloat32Array(0.2, 0.2, 0.2, 0.2),
 "update": 0,
-"values": [Vector2(486, 18), Vector2(189, 18), Vector2(189, 18), Vector2(-117, 18)]
+"values": [Vector2(477, 18), Vector2(0, 18), Vector2(0, 18), Vector2(-477, 18)]
 }
 
 [sub_resource type="Animation" id="Animation_5nxdw"]
@@ -50,6 +44,12 @@ _data = {
 "RESET": SubResource("Animation_5nxdw"),
 "show_boss_name": SubResource("Animation_4gagn")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_3k18v"]
+font = ExtResource("7_4lkym")
+shadow_size = 0
+shadow_color = Color(0.529412, 0.529412, 0.529412, 1)
+shadow_offset = Vector2(0, 0)
 
 [node name="Canvas" type="CanvasLayer"]
 script = ExtResource("1_ciq5o")
@@ -87,20 +87,17 @@ texture_progress = ExtResource("2_yd27w")
 script = ExtResource("4_2xril")
 magnitude = 10.0
 
-[node name="BossName" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 246.0
-offset_top = 18.0
-offset_right = 363.0
-offset_bottom = 46.0
-grow_horizontal = 2
-text = "Fire Eye
-"
-label_settings = SubResource("LabelSettings_3k18v")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_sxwbc")
 }
+
+[node name="BossName" type="Label" parent="."]
+offset_left = 486.0
+offset_top = 18.0
+offset_right = 966.0
+offset_bottom = 37.0
+text = "Fire Eye
+"
+label_settings = SubResource("LabelSettings_3k18v")
+horizontal_alignment = 1
