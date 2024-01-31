@@ -2,7 +2,7 @@ extends Area2D
 class_name Boss
 
 @export var max_health = 200
-@export var start_delay = 2
+@export var start_delay = 2.5
 
 var health: float
 var explosion_scene = preload("res://particles/explosion.tscn")

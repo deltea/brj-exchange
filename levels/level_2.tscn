@@ -59,10 +59,10 @@ boss_health_color = Color(0.427451, 0.737255, 0.72549, 1)
 [node name="Canvas" parent="." instance=ExtResource("3_tyfrf")]
 
 [node name="Player" parent="." instance=ExtResource("1_mspsa")]
-position = Vector2(0, 96)
+position = Vector2(0, 48)
 
 [node name="WaterBoss" parent="." node_paths=PackedStringArray("whirlpool") instance=ExtResource("4_h28vm")]
-position = Vector2(0, -96)
+position = Vector2(0, -48)
 whirlpool = NodePath("../Whirlpool")
 fishies_delay = 0.1
 fishies_num = 100

@@ -59,10 +59,10 @@ boss_health_color = Color(0.929412, 0.733333, 0.439216, 1)
 [node name="Canvas" parent="." instance=ExtResource("4_34whx")]
 
 [node name="Player" parent="." instance=ExtResource("2_3fxdq")]
-position = Vector2(0, 64)
+position = Vector2(0, 48)
 
 [node name="EarthBoss" parent="." node_paths=PackedStringArray("earthquake_path") instance=ExtResource("3_1pb0w")]
-position = Vector2(0, -64)
+position = Vector2(0, -48)
 earthquake_bullet_num = 10
 earthquake_bullet_delay = 0.5
 earthquake_path = NodePath("../EarthquakePath")

@@ -64,9 +64,10 @@ boss_health_color = Color(0.980392, 0.866667, 0.635294, 1)
 [node name="Canvas" parent="." instance=ExtResource("8_2bxnw")]
 
 [node name="Player" parent="." instance=ExtResource("2_46u0j")]
+position = Vector2(0, 32)
 
 [node name="AirBoss" parent="." node_paths=PackedStringArray("wind_particles", "cloud_puff_positions") instance=ExtResource("3_popip")]
-position = Vector2(0, -200)
+position = Vector2(0, -64)
 wind_particles = NodePath("../WindParticles")
 cloud_puff_positions = [NodePath("../Positions/Marker2D"), NodePath("../Positions/Marker2D2"), NodePath("../Positions/Marker2D3"), NodePath("../Positions/Marker2D4")]
 tiles_position_min = Vector2(-136, -136)
