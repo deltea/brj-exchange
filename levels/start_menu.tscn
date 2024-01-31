@@ -1,12 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://kwwvwopk2odt"]
+[gd_scene load_steps=15 format=3 uid="uid://kwwvwopk2odt"]
 
+[ext_resource type="Script" path="res://start_menu.gd" id="1_00qoc"]
 [ext_resource type="Texture2D" uid="uid://cea3vx6fjcy1o" path="res://assets/ui/title.png" id="1_55bpo"]
 [ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="1_b25yf"]
 [ext_resource type="Shader" path="res://shaders/swirl_background.gdshader" id="1_rhh71"]
 [ext_resource type="Script" path="res://ui/wobble_ui.gd" id="2_djfjg"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_xa4ly"]
-frequency = 0.0108
+resource_local_to_scene = true
+noise_type = 0
+frequency = 0.02
 fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gs7ga"]
@@ -14,20 +17,66 @@ noise = SubResource("FastNoiseLite_xa4ly")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2aqgd"]
 shader = ExtResource("1_rhh71")
-shader_parameter/color_1 = Color(1, 0.243137, 0, 1)
-shader_parameter/color_2 = Color(0.870588, 0, 0, 1)
-shader_parameter/swirl_speed = 0.5
+shader_parameter/color_1 = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/color_2 = Color(0.721569, 0.721569, 0.721569, 1)
+shader_parameter/swirl_speed = 1.5
+shader_parameter/looseness = 0.4
+shader_parameter/arms = 5
+shader_parameter/size = 20.0
 shader_parameter/noise = SubResource("NoiseTexture2D_gs7ga")
 
-[node name="StartMenu" type="Node"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cdhn4"]
+resource_local_to_scene = true
+noise_type = 0
+fractal_octaves = 1
 
-[node name="Control" type="Control" parent="."]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tg2il"]
+resource_local_to_scene = true
+noise = SubResource("FastNoiseLite_cdhn4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vrlut"]
+resource_local_to_scene = true
+shader = ExtResource("1_rhh71")
+shader_parameter/color_1 = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/color_2 = Color(0.431373, 0.431373, 0.431373, 1)
+shader_parameter/swirl_speed = 0.5
+shader_parameter/looseness = 0.2
+shader_parameter/arms = 4
+shader_parameter/size = 20.0
+shader_parameter/noise = SubResource("NoiseTexture2D_tg2il")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_agbew"]
+resource_local_to_scene = true
+noise_type = 0
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m1dou"]
+resource_local_to_scene = true
+noise = SubResource("FastNoiseLite_agbew")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1lr4"]
+resource_local_to_scene = true
+shader = ExtResource("1_rhh71")
+shader_parameter/color_1 = Color(0.203922, 0.203922, 0.203922, 1)
+shader_parameter/color_2 = Color(0.301961, 0.301961, 0.301961, 1)
+shader_parameter/swirl_speed = 0.2
+shader_parameter/looseness = 0.0
+shader_parameter/arms = 3
+shader_parameter/size = 20.0
+shader_parameter/noise = SubResource("NoiseTexture2D_m1dou")
+
+[node name="StartMenu" type="Node2D"]
+script = ExtResource("1_00qoc")
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Canvas"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 480.0
 offset_bottom = 270.0
 
-[node name="Title" type="TextureRect" parent="Control"]
+[node name="Title" type="TextureRect" parent="Canvas/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -35,9 +84,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -62.5
-offset_top = -63.0
+offset_top = -72.0
 offset_right = 62.5
-offset_bottom = -46.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.5, 1.5)
@@ -48,9 +97,22 @@ script = ExtResource("2_djfjg")
 magnitude = 5.0
 
 [node name="Background" type="Sprite2D" parent="."]
-visible = false
 z_index = -30
 material = SubResource("ShaderMaterial_2aqgd")
+scale = Vector2(30, 16.875)
+texture = ExtResource("1_b25yf")
+centered = false
+
+[node name="Background2" type="Sprite2D" parent="."]
+z_index = -40
+material = SubResource("ShaderMaterial_vrlut")
+scale = Vector2(30, 16.875)
+texture = ExtResource("1_b25yf")
+centered = false
+
+[node name="Background3" type="Sprite2D" parent="."]
+z_index = -50
+material = SubResource("ShaderMaterial_x1lr4")
 scale = Vector2(30, 16.875)
 texture = ExtResource("1_b25yf")
 centered = false
