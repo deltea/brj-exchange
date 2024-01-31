@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bg5cwbyi6v4kg" path="res://assets/ui/panel.png" id="4_0jdtv"]
 [ext_resource type="Script" path="res://autoloads/tooltip.gd" id="4_ahmfi"]
 [ext_resource type="FontFile" uid="uid://dw82ff1gmdlec" path="res://assets/fonts/monogram.ttf" id="4_y7tr8"]
-[ext_resource type="FontFile" uid="uid://dsq8wyluty5hc" path="res://assets/fonts/rainyhearts.ttf" id="5_ifoju"]
+[ext_resource type="FontFile" uid="uid://corh68u8se1oo" path="res://assets/fonts/grapesoda.ttf" id="7_jjfq7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ggtp"]
 content_margin_left = 10.0
@@ -47,6 +47,6 @@ script = ExtResource("4_ahmfi")
 layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_y7tr8")
-theme_override_fonts/italics_font = ExtResource("5_ifoju")
+theme_override_fonts/italics_font = ExtResource("7_jjfq7")
 bbcode_enabled = true
 fit_content = true

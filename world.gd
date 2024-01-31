@@ -1,6 +1,7 @@
 extends Node2D
 class_name World
 
+@export var boss_name = ""
 @export var background_color: Color = Color.BLACK
 @export var shadow_color: Color = Color.BLACK
 @export var portal_color: Color = Color.WHITE
@@ -15,6 +16,10 @@ func _ready() -> void:
 	RenderingServer.set_default_clear_color(background_color)
 	Events.boss_defeated.connect(_on_boss_defeated)
 	Globals.mouse.change_texture(Mouse.MODE.CROSSHAIR)
+	Globals.canvas.set_boss_name(boss_name)
+	
+	await Globals.wait(1.5)
+
 	AudioManager.beat_target_volume = 1
 
 func _on_boss_defeated():

@@ -40,6 +40,7 @@ var bullet_scene = preload("res://enemy-bullets/water_bullet.tscn")
 var big_bullet_scene = preload("res://enemy-bullets/water_big_bullet.tscn")
 
 func _ready() -> void:
+	await Globals.wait(start_delay)
 	next_state()
 
 func _process(delta: float) -> void:

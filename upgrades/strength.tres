@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_jbhbw")
 name = "Strength"
-description = "Decrease movement speed but increase bullet speed, damage, spread, and +1 bullet."
+description = "Decrease movement speed but increase bullet speed, increase spread, and shoot +1 bullet."
 cost = 3
 texture = ExtResource("2_ddyjj")
 method = 5

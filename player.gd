@@ -139,5 +139,6 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		get_hurt(Stats.enemy_damage)
 
 func _on_regen_timer_timeout() -> void:
-	health += Stats.regen
-	update_health_ui()
+	if health < Stats.max_health:
+		health += Stats.regen
+		update_health_ui()

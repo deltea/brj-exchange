@@ -50,6 +50,7 @@ point_count = 3
 
 [node name="Level 3" type="Node2D"]
 script = ExtResource("1_bg3pf")
+boss_name = "Earth Egg"
 background_color = Color(0.498039, 0.596078, 0.376471, 1)
 shadow_color = Color(0.227451, 0.313726, 0.262745, 1)
 portal_color = Color(0.662745, 0.352941, 0.247059, 1)
@@ -58,9 +59,10 @@ boss_health_color = Color(0.929412, 0.733333, 0.439216, 1)
 [node name="Canvas" parent="." instance=ExtResource("4_34whx")]
 
 [node name="Player" parent="." instance=ExtResource("2_3fxdq")]
+position = Vector2(0, 64)
 
 [node name="EarthBoss" parent="." node_paths=PackedStringArray("earthquake_path") instance=ExtResource("3_1pb0w")]
-position = Vector2(0, -56)
+position = Vector2(0, -64)
 earthquake_bullet_num = 10
 earthquake_bullet_delay = 0.5
 earthquake_path = NodePath("../EarthquakePath")

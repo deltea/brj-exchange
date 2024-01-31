@@ -34,17 +34,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -81.5
-offset_top = -90.0
-offset_right = 81.5
-offset_bottom = -57.0
+offset_left = -62.5
+offset_top = -63.0
+offset_right = 62.5
+offset_bottom = -46.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.5, 1.5)
-pivot_offset = Vector2(81, 17)
+pivot_offset = Vector2(62.3333, 8.77778)
 texture = ExtResource("1_55bpo")
 stretch_mode = 2
 script = ExtResource("2_djfjg")
+magnitude = 5.0
 
 [node name="Background" type="Sprite2D" parent="."]
 visible = false

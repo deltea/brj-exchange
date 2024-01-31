@@ -1,14 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://bxkfboqgr7sje"]
+[gd_scene load_steps=21 format=3 uid="uid://bxkfboqgr7sje"]
 
 [ext_resource type="Script" path="res://exchange.gd" id="1_1gvsp"]
 [ext_resource type="Shader" path="res://shaders/swirl_background.gdshader" id="2_6nt6n"]
 [ext_resource type="Texture2D" uid="uid://jymaq2acxuhy" path="res://assets/ui/cost-filled.png" id="3_csu7s"]
-[ext_resource type="FontFile" uid="uid://rohwyxfilcqr" path="res://assets/fonts/daydream.ttf" id="4_0ls83"]
-[ext_resource type="FontFile" uid="uid://dw82ff1gmdlec" path="res://assets/fonts/monogram.ttf" id="4_0memp"]
-[ext_resource type="FontFile" uid="uid://dsq8wyluty5hc" path="res://assets/fonts/rainyhearts.ttf" id="4_64mit"]
 [ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="4_egadj"]
 [ext_resource type="Texture2D" uid="uid://ma17meq6rxji" path="res://assets/ui/cost-extra.png" id="4_klmb8"]
 [ext_resource type="Texture2D" uid="uid://b7wy8xfxvlyms" path="res://assets/ui/continue-button.png" id="7_o4mco"]
+[ext_resource type="FontFile" uid="uid://bqss7t22e4vin" path="res://assets/fonts/8-bit-wonder.ttf" id="7_u2y63"]
 [ext_resource type="Texture2D" uid="uid://bywouuax3kpci" path="res://assets/ui/continue-button-disabled.png" id="8_gwpa5"]
 [ext_resource type="Texture2D" uid="uid://bg0uht2loig6r" path="res://assets/ui/continue-button-pressed.png" id="8_p41eh"]
 [ext_resource type="PackedScene" uid="uid://8f3h1q5epi06" path="res://utils/drop_shadow_ui.tscn" id="10_nmmru"]
@@ -34,19 +32,13 @@ shader_parameter/color_2 = Color(0.490196, 0.486275, 0.678431, 1)
 shader_parameter/swirl_speed = 1.0
 shader_parameter/noise = SubResource("NoiseTexture2D_jsu0q")
 
-[sub_resource type="LabelSettings" id="LabelSettings_kef01"]
-font = ExtResource("4_64mit")
-
-[sub_resource type="LabelSettings" id="LabelSettings_8813e"]
-font = ExtResource("4_0memp")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dx0r5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lgy7p"]
 resource_local_to_scene = true
 shader = ExtResource("11_dfoib")
 shader_parameter/enabled = true
 shader_parameter/color = Color(1, 1, 1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6yyn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sg2py"]
 resource_local_to_scene = true
 shader = ExtResource("11_dfoib")
 shader_parameter/enabled = true
@@ -65,22 +57,6 @@ offset_right = 480.0
 offset_bottom = 270.0
 texture = ExtResource("4_egadj")
 
-[node name="CardName" type="Label" parent="."]
-offset_top = 189.0
-offset_right = 480.0
-offset_bottom = 216.0
-label_settings = SubResource("LabelSettings_kef01")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CardDescription" type="Label" parent="."]
-offset_top = 216.0
-offset_right = 480.0
-offset_bottom = 243.0
-label_settings = SubResource("LabelSettings_8813e")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ExchangePanel" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -90,16 +66,16 @@ mouse_filter = 1
 
 [node name="Instructions" type="RichTextLabel" parent="ExchangePanel"]
 layout_mode = 0
-offset_left = 189.0
+offset_left = 176.0
 offset_top = 25.0
-offset_right = 315.0
+offset_right = 328.0
 offset_bottom = 54.0
 theme_override_colors/font_shadow_color = Color(0.133333, 0.133333, 0.219608, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 6
 theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/normal_font = ExtResource("4_0ls83")
-theme_override_font_sizes/normal_font_size = 11
+theme_override_fonts/normal_font = ExtResource("7_u2y63")
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[wave]Choose one[/wave]"
 fit_content = true
@@ -125,16 +101,16 @@ mouse_filter = 1
 
 [node name="Instructions" type="RichTextLabel" parent="CurrentPanel"]
 layout_mode = 0
-offset_left = 144.0
+offset_left = 107.0
 offset_top = 25.0
-offset_right = 363.0
-offset_bottom = 54.0
+offset_right = 400.0
+offset_bottom = 57.0
 theme_override_colors/font_shadow_color = Color(0.133333, 0.133333, 0.219608, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 6
 theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/normal_font = ExtResource("4_0ls83")
-theme_override_font_sizes/normal_font_size = 11
+theme_override_fonts/normal_font = ExtResource("7_u2y63")
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[wave]EXCHANGE YOUR CARDS[/wave]"
 fit_content = true
@@ -161,7 +137,7 @@ texture_hover = ExtResource("8_p41eh")
 texture_disabled = ExtResource("8_gwpa5")
 
 [node name="DropShadowUI" parent="CurrentPanel/ContinueButton" instance=ExtResource("10_nmmru")]
-material = SubResource("ShaderMaterial_dx0r5")
+material = SubResource("ShaderMaterial_lgy7p")
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
@@ -180,7 +156,7 @@ texture_normal = ExtResource("11_k757u")
 texture_hover = ExtResource("12_fvx6h")
 
 [node name="DropShadowUI" parent="CurrentPanel/BackButton" instance=ExtResource("10_nmmru")]
-material = SubResource("ShaderMaterial_o6yyn")
+material = SubResource("ShaderMaterial_sg2py")
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0

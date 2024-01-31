@@ -25,6 +25,7 @@ var rock_scene = preload("res://enemies/rock_big.tscn")
 var exploding_bullet_scene = preload("res://enemy-bullets/earth_exploding_bullet.tscn")
 
 func _ready() -> void:
+	await Globals.wait(start_delay)
 	next_state()
 	velocity = Vector2.from_angle(randf_range(0, PI * 2)) * movement_speed
 

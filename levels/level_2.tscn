@@ -50,6 +50,7 @@ shader_parameter/gravity = Vector3(0, -1e-06, 0)
 
 [node name="Level 2" type="Node2D"]
 script = ExtResource("1_h52k8")
+boss_name = "Water Fish"
 background_color = Color(0.282353, 0.533333, 0.717647, 1)
 shadow_color = Color(0.278431, 0.266667, 0.462745, 1)
 portal_color = Color(0.54902, 0.937255, 0.713726, 1)
@@ -58,27 +59,13 @@ boss_health_color = Color(0.427451, 0.737255, 0.72549, 1)
 [node name="Canvas" parent="." instance=ExtResource("3_tyfrf")]
 
 [node name="Player" parent="." instance=ExtResource("1_mspsa")]
+position = Vector2(0, 96)
 
 [node name="WaterBoss" parent="." node_paths=PackedStringArray("whirlpool") instance=ExtResource("4_h28vm")]
-position = Vector2(0, -66)
+position = Vector2(0, -96)
 whirlpool = NodePath("../Whirlpool")
-whirlpool_fish_num = 50
-whirlpool_fish_delay = 0.1
-whirlpool_fish_speed = 0
-whirlpool_fish_acceleration = 3
-whirlpool_fish_radius = 220
-cannon_delay = 1
-cannon_bullet_num = 10
-cannon_bullet_speed = 150
-bullet_spiral_move_speed = 200
-bullet_spiral_num = 100
-bullet_spiral_delay = 0.1
-bullet_spiral_speed = 100
 fishies_delay = 0.1
 fishies_num = 100
-fishies_speed = 200
-fishies_min = Vector2(-240, -240)
-fishies_max = Vector2(240, 240)
 
 [node name="BubbleParticles" type="GPUParticles2D" parent="."]
 z_index = 10
