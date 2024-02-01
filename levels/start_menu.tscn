@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://kwwvwopk2odt"]
+[gd_scene load_steps=19 format=3 uid="uid://kwwvwopk2odt"]
 
 [ext_resource type="Script" path="res://start_menu.gd" id="1_00qoc"]
 [ext_resource type="Texture2D" uid="uid://cea3vx6fjcy1o" path="res://assets/ui/title.png" id="1_55bpo"]
@@ -6,6 +6,8 @@
 [ext_resource type="Shader" path="res://shaders/swirl_background.gdshader" id="1_rhh71"]
 [ext_resource type="Script" path="res://ui/wobble_ui.gd" id="2_djfjg"]
 [ext_resource type="FontFile" uid="uid://corh68u8se1oo" path="res://assets/fonts/grapesoda.ttf" id="4_xss3k"]
+[ext_resource type="Texture2D" uid="uid://dljasrnk8r6re" path="res://assets/ui/tutorial-mouse.png" id="5_vqjf7"]
+[ext_resource type="Texture2D" uid="uid://bsh5mv645o20d" path="res://assets/ui/tutorial-keyboard.png" id="6_b6xch"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n8e8b"]
 
@@ -90,6 +92,7 @@ script = ExtResource("2_djfjg")
 magnitude = 5.0
 
 [node name="Play" type="Button" parent="Canvas"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -109,6 +112,44 @@ theme_override_fonts/font = ExtResource("4_xss3k")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_n8e8b")
 text = "Play"
 flat = true
+
+[node name="Instructions" type="RichTextLabel" parent="Canvas"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = 72.0
+offset_right = 41.5
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_xss3k")
+bbcode_enabled = true
+text = "[wave]Click to play[/wave]"
+
+[node name="Mouse" type="TextureRect" parent="Canvas"]
+offset_left = 195.0
+offset_top = 147.0
+offset_right = 219.0
+offset_bottom = 171.0
+pivot_offset = Vector2(12, 12)
+texture = ExtResource("5_vqjf7")
+stretch_mode = 2
+script = ExtResource("2_djfjg")
+magnitude = 10.0
+
+[node name="Keyboard" type="TextureRect" parent="Canvas"]
+offset_left = 240.0
+offset_top = 144.0
+offset_right = 281.0
+offset_bottom = 171.0
+pivot_offset = Vector2(21, 15)
+texture = ExtResource("6_b6xch")
+stretch_mode = 2
+script = ExtResource("2_djfjg")
+magnitude = 10.0
 
 [node name="Background3" type="Sprite2D" parent="."]
 z_index = -30

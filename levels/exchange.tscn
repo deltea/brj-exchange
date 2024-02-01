@@ -104,9 +104,9 @@ mouse_filter = 1
 
 [node name="Instructions" type="RichTextLabel" parent="CurrentPanel"]
 layout_mode = 0
-offset_left = 107.0
+offset_left = 176.0
 offset_top = 25.0
-offset_right = 400.0
+offset_right = 321.0
 offset_bottom = 57.0
 theme_override_colors/font_shadow_color = Color(0.133333, 0.133333, 0.219608, 1)
 theme_override_constants/shadow_offset_x = 0
@@ -115,7 +115,7 @@ theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("7_u2y63")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "[wave]EXCHANGE YOUR CARDS[/wave]"
+text = "[wave]LOSE SOME[/wave]"
 fit_content = true
 
 [node name="VerticalCenter" type="VBoxContainer" parent="CurrentPanel"]
