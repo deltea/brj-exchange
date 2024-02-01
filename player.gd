@@ -23,6 +23,7 @@ var bullet_scene = preload("res://player_bullet.tscn")
 var wind_force = Vector2.ZERO
 var can_move = true
 var whirlpool_force = 0
+var explosion_scene = preload("res://particles/explosion.tscn")
 
 func _enter_tree() -> void:
 	Globals.player = self
@@ -96,16 +97,24 @@ func get_hurt(damage: float):
 	AudioManager.play_sound(AudioManager.hurt)
 	health -= damage
 	update_health_ui()
-	Globals.hitstop(0.15)
 	Globals.camera.impact()
 	Globals.camera.shake(0.1, 1)
 	if health <= 0:
 		die()
-		return
+	else:
+		Globals.hitstop(0.15)
 
 func die():
 	print("ur ded")
-	Globals.hitstop(10000)
+	Engine.time_scale = 0.2
+	visible = false
+	can_move = false
+	var explosion = explosion_scene.instantiate() as CPUParticles2D
+	explosion.position = position
+	explosion.emitting = true
+	Globals.world.add_child(explosion)
+	Globals.camera.target_zoom = Vector2(1.5, 1.5)
+	await Globals.wait(1.5)
 
 func update_health_ui():
 	Globals.canvas.player_health.value = 100.0 / Stats.max_health * health
