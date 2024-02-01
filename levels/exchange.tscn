@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bxkfboqgr7sje"]
+[gd_scene load_steps=24 format=3 uid="uid://bxkfboqgr7sje"]
 
 [ext_resource type="Script" path="res://exchange.gd" id="1_1gvsp"]
 [ext_resource type="Shader" path="res://shaders/swirl_background.gdshader" id="2_6nt6n"]
@@ -18,6 +18,8 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_m3le3"]
 noise_type = 0
+seed = 1
+frequency = 0.005
 fractal_type = 2
 fractal_octaves = 1
 fractal_ping_pong_strength = 1.516
@@ -28,12 +30,31 @@ noise = SubResource("FastNoiseLite_m3le3")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jg6n0"]
 shader = ExtResource("2_6nt6n")
 shader_parameter/color_1 = Color(0.270588, 0.270588, 0.443137, 1)
+shader_parameter/color_2 = Color(0.337255, 0.337255, 0.54902, 1)
+shader_parameter/swirl_speed = 0.5
+shader_parameter/looseness = 0.3
+shader_parameter/arms = 3
+shader_parameter/size = 10.0
+shader_parameter/noise = SubResource("NoiseTexture2D_jsu0q")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ioiln"]
+noise_type = 0
+fractal_type = 2
+fractal_octaves = 1
+fractal_ping_pong_strength = 1.516
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fqqdl"]
+noise = SubResource("FastNoiseLite_ioiln")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1q4bi"]
+shader = ExtResource("2_6nt6n")
+shader_parameter/color_1 = Color(1, 1, 1, 0)
 shader_parameter/color_2 = Color(0.490196, 0.486275, 0.678431, 1)
 shader_parameter/swirl_speed = 1.0
 shader_parameter/looseness = 0.4
 shader_parameter/arms = 3
 shader_parameter/size = 20.0
-shader_parameter/noise = SubResource("NoiseTexture2D_jsu0q")
+shader_parameter/noise = SubResource("NoiseTexture2D_fqqdl")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fjit6"]
 resource_local_to_scene = true
@@ -56,6 +77,13 @@ cost_extra = ExtResource("4_klmb8")
 [node name="Background" type="TextureRect" parent="."]
 z_index = -30
 material = SubResource("ShaderMaterial_jg6n0")
+offset_right = 480.0
+offset_bottom = 270.0
+texture = ExtResource("4_egadj")
+
+[node name="Background2" type="TextureRect" parent="."]
+z_index = -30
+material = SubResource("ShaderMaterial_1q4bi")
 offset_right = 480.0
 offset_bottom = 270.0
 texture = ExtResource("4_egadj")
