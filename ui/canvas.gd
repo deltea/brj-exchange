@@ -12,11 +12,18 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	boss_health.tint_progress = Globals.world.boss_health_color
-
-func _on_boss_defeated():
-	boss_health.visible = false
-	player_health.visible = false
+	Events.player_die.connect(_on_player_die)
 
 func set_boss_name(boss_name: String):
 	boss_name_label.text = boss_name
 	animation_player.play("show_boss_name")
+
+func hide_hud():
+	boss_health.visible = false
+	player_health.visible = false
+
+func _on_boss_defeated():
+	hide_hud()
+
+func _on_player_die():
+	hide_hud()

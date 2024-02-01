@@ -9,6 +9,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.759191, 1), 0.0, 0.0, 0, 0, Ve
 point_count = 3
 
 [node name="Explosion" type="CPUParticles2D"]
+z_index = 10
 position = Vector2(240, 160)
 emitting = false
 amount = 50

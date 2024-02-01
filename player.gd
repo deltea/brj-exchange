@@ -14,6 +14,7 @@ class_name Player
 @onready var dash_cooldown_timer := $DashCooldownTimer
 @onready var move_particles := $MoveParticles
 @onready var hitbox := $Hitbox
+@onready var hitbox_collider := $Hitbox/CollisionShape
 
 var target_rotation = 0.0
 var target_scale = Vector2.ONE
@@ -99,22 +100,21 @@ func get_hurt(damage: float):
 	update_health_ui()
 	Globals.camera.impact()
 	Globals.camera.shake(0.1, 1)
-	if health <= 0:
-		die()
-	else:
-		Globals.hitstop(0.15)
+	if health <= 0: die()
+	else: Globals.hitstop(0.15)
 
 func die():
-	print("ur ded")
+	Events.player_die.emit()
 	Engine.time_scale = 0.2
 	visible = false
 	can_move = false
+	hitbox_collider.set_deferred("disabled", true)
 	var explosion = explosion_scene.instantiate() as CPUParticles2D
 	explosion.position = position
 	explosion.emitting = true
 	Globals.world.add_child(explosion)
-	Globals.camera.target_zoom = Vector2(1.5, 1.5)
 	await Globals.wait(1.5)
+	SceneManager.change_scene(SceneManager.game_over_scene)
 
 func update_health_ui():
 	Globals.canvas.player_health.value = 100.0 / Stats.max_health * health

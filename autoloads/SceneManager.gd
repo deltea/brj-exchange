@@ -4,11 +4,13 @@ extends Node
 
 var exchange_scene = preload("res://levels/exchange.tscn")
 var win_scene = preload("res://levels/win.tscn")
+var game_over_scene = preload("res://levels/game_over.tscn")
 var prev_scene_name: String
 
 func change_scene(scene: PackedScene):
 	prev_scene_name = get_tree().current_scene.name
 
+	animation_player.speed_scale = 1 / Engine.time_scale
 	animation_player.play_backwards("transition")
 	await Globals.wait(0.5)
 	get_tree().change_scene_to_packed(scene)

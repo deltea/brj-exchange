@@ -18,6 +18,7 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	original_pos = position
+	Events.player_die.connect(_on_player_die)
 
 func _process(delta: float) -> void:
 	offset = (get_global_mouse_position() - global_position) * mouse_strength
@@ -40,3 +41,6 @@ func shake(duration: float, magnitude: float):
 
 func impact():
 	rotation_degrees = (1 if randf() > 0.5 else -1) * impact_rotation
+
+func _on_player_die():
+	target_zoom = Vector2(1.5, 1.5)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d25bdisqv1eam"]
+
+[ext_resource type="FontFile" uid="uid://bqss7t22e4vin" path="res://assets/fonts/8-bit-wonder.ttf" id="1_li16o"]
+[ext_resource type="Script" path="res://ui/wobble_ui.gd" id="2_nswp4"]
+
+[node name="Game Over" type="CanvasLayer"]
+
+[node name="GameOverText" type="RichTextLabel" parent="."]
+offset_left = 168.0
+offset_top = 32.0
+offset_right = 316.0
+offset_bottom = 48.0
+pivot_offset = Vector2(73.6875, 8)
+theme_override_fonts/normal_font = ExtResource("1_li16o")
+bbcode_enabled = true
+text = "Game Over"
+script = ExtResource("2_nswp4")
+magnitude = 5.0
