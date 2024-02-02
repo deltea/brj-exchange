@@ -65,5 +65,5 @@ func ricochet_upgrade(value: int):
 func strength_upgrade(value: int):
 	Stats.run_speed -= 30 * value
 	Stats.bullet_speed += 50 * value
-	Stats.bullet_spread += 8.0 * value
+	Stats.bullet_spread += 5.0 * value
 	Stats.fire_rate += 4.0 * value

@@ -2,6 +2,7 @@ extends Node
 
 @onready var animation_player := $AnimationPlayer
 
+var main_menu_scene = preload("res://levels/start_menu.tscn")
 var exchange_scene = preload("res://levels/exchange.tscn")
 var win_scene = preload("res://levels/win.tscn")
 var game_over_scene = preload("res://levels/game_over.tscn")
