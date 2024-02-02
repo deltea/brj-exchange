@@ -21,6 +21,7 @@ func take_damage():
 
 	health -= Stats.bullet_damage
 	Globals.canvas.boss_health.value = 100.0 / max_health * health
+	Globals.prev_boss_health = 100.0 / max_health * health
 	if health < 0: die()
 
 func die():

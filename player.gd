@@ -115,6 +115,7 @@ func die():
 	Globals.world.add_child(explosion)
 	await Globals.wait(1.5)
 	SceneManager.change_scene(SceneManager.game_over_scene)
+	Engine.time_scale = 1
 
 func update_health_ui():
 	Globals.canvas.player_health.value = 100.0 / Stats.max_health * health

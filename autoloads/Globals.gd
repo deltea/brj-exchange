@@ -8,6 +8,7 @@ var canvas: Canvas
 var tooltip: Tooltip
 
 var time = 0.0
+var prev_boss_health = 0
 
 func _process(delta: float) -> void:
 	time += delta

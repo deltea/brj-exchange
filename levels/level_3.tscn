@@ -50,7 +50,7 @@ point_count = 3
 
 [node name="Level 3" type="Node2D"]
 script = ExtResource("1_bg3pf")
-boss_name = "Earth Egg"
+boss_name = "Earth"
 background_color = Color(0.498039, 0.596078, 0.376471, 1)
 shadow_color = Color(0.227451, 0.313726, 0.262745, 1)
 portal_color = Color(0.662745, 0.352941, 0.247059, 1)

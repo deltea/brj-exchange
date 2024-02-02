@@ -44,7 +44,7 @@ noise = SubResource("FastNoiseLite_cdhn4")
 resource_local_to_scene = true
 shader = ExtResource("1_rhh71")
 shader_parameter/color_1 = Color(0.2, 0.2, 0.2, 0)
-shader_parameter/color_2 = Color(0.4, 0.4, 0.4, 1)
+shader_parameter/color_2 = Color(0.380392, 0.380392, 0.380392, 1)
 shader_parameter/swirl_speed = 0.5
 shader_parameter/looseness = 0.2
 shader_parameter/arms = 4
@@ -63,7 +63,7 @@ noise = SubResource("FastNoiseLite_xa4ly")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2aqgd"]
 shader = ExtResource("1_rhh71")
 shader_parameter/color_1 = Color(0.2, 0.2, 0.2, 0)
-shader_parameter/color_2 = Color(0.639216, 0.639216, 0.639216, 1)
+shader_parameter/color_2 = Color(0.501961, 0.501961, 0.501961, 1)
 shader_parameter/swirl_speed = 1.5
 shader_parameter/looseness = 0.4
 shader_parameter/arms = 5

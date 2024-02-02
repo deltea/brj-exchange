@@ -32,7 +32,7 @@ var state: STATE
 var state_index = 0
 var fireball_scene = preload("res://enemy-bullets/fireball.tscn")
 var bullet_scene = preload("res://enemy-bullets/fire_bullet.tscn")
-
+   
 func _ready() -> void:
 	await Globals.wait(start_delay)
 	next_state()

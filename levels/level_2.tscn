@@ -50,7 +50,7 @@ shader_parameter/gravity = Vector3(0, -1e-06, 0)
 
 [node name="Level 2" type="Node2D"]
 script = ExtResource("1_h52k8")
-boss_name = "Water Fish"
+boss_name = "Water"
 background_color = Color(0.282353, 0.533333, 0.717647, 1)
 shadow_color = Color(0.278431, 0.266667, 0.462745, 1)
 portal_color = Color(0.54902, 0.937255, 0.713726, 1)

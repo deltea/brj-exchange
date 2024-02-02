@@ -55,7 +55,7 @@ normal = Vector2(1, 0)
 
 [node name="Level 4" type="Node2D"]
 script = ExtResource("1_8r6rk")
-boss_name = "Air Ghost"
+boss_name = "Air"
 background_color = Color(0.470588, 0.67451, 1, 1)
 shadow_color = Color(0.419608, 0.380392, 1, 1)
 portal_color = Color(0.980392, 0.866667, 0.635294, 1)
