@@ -1,15 +1,63 @@
-[gd_scene load_steps=6 format=3 uid="uid://d25bdisqv1eam"]
+[gd_scene load_steps=14 format=3 uid="uid://d25bdisqv1eam"]
 
 [ext_resource type="Script" path="res://game_over.gd" id="1_685rw"]
 [ext_resource type="FontFile" uid="uid://bqss7t22e4vin" path="res://assets/fonts/8-bit-wonder.ttf" id="1_li16o"]
+[ext_resource type="Shader" path="res://shaders/wave_background.gdshader" id="2_5eeh4"]
 [ext_resource type="Script" path="res://ui/wobble_ui.gd" id="2_nswp4"]
 [ext_resource type="Texture2D" uid="uid://bhqca854jvu3h" path="res://assets/ui/progress.png" id="3_nu2sp"]
+[ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="3_nu021"]
 [ext_resource type="Texture2D" uid="uid://c2h7rooq40vjf" path="res://assets/ui/progress-filled.png" id="4_x52u2"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fnbf7"]
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0ou5v"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_fnbf7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ug0vq"]
+shader = ExtResource("2_5eeh4")
+shader_parameter/color_1 = Color(0.168627, 0.168627, 0.168627, 1)
+shader_parameter/color_2 = Color(0.231373, 0.231373, 0.231373, 1)
+shader_parameter/scroll_speed = 0.01
+shader_parameter/scroll_direction = Vector2(1, 1)
+shader_parameter/looseness = 0.9
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_0ou5v")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5x2is"]
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y5wek"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_5x2is")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jwd3q"]
+shader = ExtResource("2_5eeh4")
+shader_parameter/color_1 = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/color_2 = Color(0.270588, 0.270588, 0.270588, 1)
+shader_parameter/scroll_speed = 0.01
+shader_parameter/scroll_direction = Vector2(1, 1)
+shader_parameter/looseness = 0.99
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_y5wek")
 
 [node name="Game Over" type="CanvasLayer"]
 script = ExtResource("1_685rw")
 animation_duration = 3
 background_color = Color(0.203922, 0.203922, 0.203922, 1)
+
+[node name="Background2" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ug0vq")
+offset_right = 480.0
+offset_bottom = 270.0
+texture = ExtResource("3_nu021")
+
+[node name="Background" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_jwd3q")
+offset_right = 480.0
+offset_bottom = 270.0
+texture = ExtResource("3_nu021")
 
 [node name="GameOverText" type="RichTextLabel" parent="."]
 offset_left = 168.0
