@@ -1,3 +1,102 @@
-[gd_scene format=3 uid="uid://dceg3wi5s5edx"]
+[gd_scene load_steps=14 format=3 uid="uid://dceg3wi5s5edx"]
+
+[ext_resource type="Script" path="res://win.gd" id="1_vt0dq"]
+[ext_resource type="Shader" path="res://shaders/scrolling_background.gdshader" id="2_6bgh0"]
+[ext_resource type="Shader" path="res://shaders/wave_background.gdshader" id="2_nmgub"]
+[ext_resource type="FontFile" uid="uid://bqss7t22e4vin" path="res://assets/fonts/8-bit-wonder.ttf" id="4_lhrlu"]
+[ext_resource type="Texture2D" uid="uid://k4803j76pvmm" path="res://assets/ui/main-menu-button.png" id="5_201rv"]
+[ext_resource type="Texture2D" uid="uid://d263j40o2uxm2" path="res://assets/ui/main-menu-button-pressed.png" id="6_s0da6"]
+[ext_resource type="Texture2D" uid="uid://da6cnanu06lun" path="res://assets/ui/fire-icon.png" id="7_0q3sd"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_k4mol"]
+noise_type = 0
+frequency = 0.005
+fractal_octaves = 1
+domain_warp_type = 2
+domain_warp_frequency = 0.01
+domain_warp_fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_20rrp"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_k4mol")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdiqv"]
+shader = ExtResource("2_6bgh0")
+shader_parameter/color_1 = Color(0.996078, 0.329412, 0.435294, 1)
+shader_parameter/color_2 = Color(0.282353, 0.533333, 0.717647, 1)
+shader_parameter/color_3 = Color(0.498039, 0.596078, 0.376471, 1)
+shader_parameter/color_4 = Color(0.737255, 0.839216, 1, 1)
+shader_parameter/speed = 0.01
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_20rrp")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3vrer"]
+seed = 1
+frequency = 0.005
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dakth"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_3vrer")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jpk8r"]
+shader = ExtResource("2_nmgub")
+shader_parameter/color_1 = Color(1, 1, 1, 0)
+shader_parameter/color_2 = Color(0.129412, 0.129412, 0.129412, 1)
+shader_parameter/scroll_speed = 0.02
+shader_parameter/scroll_direction = Vector2(1, 1)
+shader_parameter/looseness = 0.8
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_dakth")
 
 [node name="Win" type="CanvasLayer"]
+script = ExtResource("1_vt0dq")
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -100
+material = SubResource("ShaderMaterial_tdiqv")
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="Background2" type="ColorRect" parent="."]
+z_index = -100
+material = SubResource("ShaderMaterial_jpk8r")
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="WinText" type="RichTextLabel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_top = 24.0
+offset_right = 64.0
+offset_bottom = 48.0
+grow_horizontal = 2
+pivot_offset = Vector2(73.6875, 8)
+theme_override_fonts/normal_font = ExtResource("4_lhrlu")
+bbcode_enabled = true
+text = "[wave]You Won[/wave]"
+
+[node name="MainMenuButton" type="TextureButton" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -77.0
+offset_top = 228.0
+offset_right = 77.0
+offset_bottom = 248.0
+grow_horizontal = 2
+texture_normal = ExtResource("5_201rv")
+texture_hover = ExtResource("6_s0da6")
+
+[node name="FireIcon" type="TextureRect" parent="."]
+visible = false
+offset_left = 64.0
+offset_top = 112.0
+offset_right = 80.0
+offset_bottom = 128.0
+texture = ExtResource("7_0q3sd")
+stretch_mode = 3
+
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

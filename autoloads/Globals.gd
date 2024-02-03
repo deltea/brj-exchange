@@ -9,6 +9,7 @@ var tooltip: Tooltip
 
 var time = 0.0
 var prev_boss_health = 0
+var boss_times: Array[float] = []
 
 func _process(delta: float) -> void:
 	time += delta

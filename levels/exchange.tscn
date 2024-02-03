@@ -1,9 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://bxkfboqgr7sje"]
+[gd_scene load_steps=23 format=3 uid="uid://bxkfboqgr7sje"]
 
 [ext_resource type="Script" path="res://exchange.gd" id="1_1gvsp"]
 [ext_resource type="Shader" path="res://shaders/swirl_background.gdshader" id="2_6nt6n"]
 [ext_resource type="Texture2D" uid="uid://jymaq2acxuhy" path="res://assets/ui/cost-filled.png" id="3_csu7s"]
-[ext_resource type="Texture2D" uid="uid://cdes4f5kgom2" path="res://assets/square.png" id="4_egadj"]
 [ext_resource type="Texture2D" uid="uid://ma17meq6rxji" path="res://assets/ui/cost-extra.png" id="4_klmb8"]
 [ext_resource type="Texture2D" uid="uid://b7wy8xfxvlyms" path="res://assets/ui/continue-button.png" id="7_o4mco"]
 [ext_resource type="FontFile" uid="uid://bqss7t22e4vin" path="res://assets/fonts/8-bit-wonder.ttf" id="7_u2y63"]
@@ -74,19 +73,17 @@ cost_texture = ExtResource("13_gglob")
 cost_filled = ExtResource("3_csu7s")
 cost_extra = ExtResource("4_klmb8")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 z_index = -30
 material = SubResource("ShaderMaterial_jg6n0")
 offset_right = 480.0
 offset_bottom = 270.0
-texture = ExtResource("4_egadj")
 
-[node name="Background2" type="TextureRect" parent="."]
+[node name="Background2" type="ColorRect" parent="."]
 z_index = -30
 material = SubResource("ShaderMaterial_1q4bi")
 offset_right = 480.0
 offset_bottom = 270.0
-texture = ExtResource("4_egadj")
 
 [node name="ExchangePanel" type="Control" parent="."]
 layout_mode = 3
