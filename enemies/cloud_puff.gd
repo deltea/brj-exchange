@@ -23,6 +23,7 @@ func _process(delta: float) -> void:
 		position = position.move_toward(Globals.player.position, follow_speed * delta)
 
 func take_damage():
+	AudioManager.play_sound(AudioManager.hit)
 	flash()
 
 	health -= Stats.bullet_damage

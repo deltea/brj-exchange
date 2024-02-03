@@ -80,7 +80,7 @@ rotation = -1.5708
 amount = 200
 preprocess = 1.0
 emission_shape = 3
-emission_rect_extents = Vector2(480, 0)
+emission_rect_extents = Vector2(200, 0)
 direction = Vector2(0, 1)
 gravity = Vector2(0, 0)
 initial_velocity_min = 20.0
@@ -100,7 +100,7 @@ rotation = -1.5708
 amount = 200
 preprocess = 1.0
 emission_shape = 3
-emission_rect_extents = Vector2(480, 0)
+emission_rect_extents = Vector2(200, 0)
 direction = Vector2(0, -1)
 gravity = Vector2(0, 0)
 initial_velocity_min = 20.0
@@ -152,7 +152,7 @@ self_modulate = Color(0.996078, 0.329412, 0.435294, 1)
 z_index = 20
 position = Vector2(-399.998, 0.000427246)
 rotation = -1.5708
-scale = Vector2(64, 14)
+scale = Vector2(48, 14)
 texture = ExtResource("5_2e7dh")
 
 [node name="FireWall4" type="Sprite2D" parent="Walls"]
@@ -160,7 +160,7 @@ self_modulate = Color(0.996078, 0.329412, 0.435294, 1)
 z_index = 20
 position = Vector2(400.002, 0.000427246)
 rotation = -1.5708
-scale = Vector2(64, 14)
+scale = Vector2(48, 14)
 texture = ExtResource("5_2e7dh")
 
 [node name="Positions" type="Node" parent="."]

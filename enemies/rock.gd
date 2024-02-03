@@ -28,6 +28,7 @@ func _physics_process(delta: float) -> void:
 	position += velocity * delta
 
 func take_damage():
+	AudioManager.play_sound(AudioManager.hit)
 	flash()
 
 	health -= Stats.bullet_damage

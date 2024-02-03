@@ -6,7 +6,6 @@ var health = 2
 func _on_body_entered(body: Node2D) -> void:
 	if not body is Wall: return
 	var wall = body as Wall
-	print("wall!")
 
 	health -= 1
 	if health <= 0:

@@ -32,7 +32,7 @@ var state: STATE
 var state_index = 0
 var fireball_scene = preload("res://enemy-bullets/fireball.tscn")
 var bullet_scene = preload("res://enemy-bullets/fire_bullet.tscn")
-   
+
 func _ready() -> void:
 	await Globals.wait(start_delay)
 	next_state()
@@ -64,6 +64,7 @@ func bullet_ring_state():
 
 	var offset = 0
 	for i in range(3):
+		AudioManager.play_sound(AudioManager.fireball)
 		for x in range(bullet_ring_num):
 			sprite.scale = Vector2.ONE * 1.5
 			Globals.camera.shake(0.1, 0.5)
@@ -104,6 +105,7 @@ func bullet_spiral_state():
 	await move(Vector2.ZERO, 2.0)
 
 	for i in range(bullet_spiral_num):
+		AudioManager.play_sound(AudioManager.fireball_small)
 		sprite.scale = Vector2.ONE * 1.2
 		Globals.camera.shake(0.1, 0.2)
 
@@ -125,6 +127,7 @@ func bullet_corners_state():
 		var random_position = fireball_positions.pick_random().position
 		await move(random_position, 1.0)
 		sprite.scale = Vector2.ONE * 1.5
+		AudioManager.play_sound(AudioManager.fireball)
 		Globals.camera.shake(0.1, 0.5)
 
 		var angle = rad_to_deg((get_angle_to(Globals.player.position))) - ((bullet_corners_num - 1) * bullet_corners_spread / 2.0)
@@ -139,6 +142,7 @@ func bullet_corners_state():
 	next_state()
 
 func fire_fireball():
+	AudioManager.play_sound(AudioManager.fireball)
 	Globals.camera.shake(0.1, 0.6)
 	sprite.scale = Vector2.ONE * 1.5
 	var fireball = fireball_scene.instantiate() as Fireball

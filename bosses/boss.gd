@@ -16,7 +16,7 @@ func _on_area_entered(area: Area2D) -> void:
 		take_damage()
 
 func take_damage():
-	AudioManager.play_sound(AudioManager.enemy_hit)
+	AudioManager.play_sound(AudioManager.hit)
 	flash()
 
 	health -= Stats.bullet_damage
@@ -25,12 +25,14 @@ func take_damage():
 	if health < 0: die()
 
 func die():
+	AudioManager.play_sound(AudioManager.explosion)
 	Events.boss_defeated.emit()
 	Globals.camera.shake(0.5, 2)
 	var explosion = explosion_scene.instantiate() as CPUParticles2D
 	explosion.position = position
 	explosion.emitting = true
 	Globals.world.add_child(explosion)
+	AudioManager.beat_target_volume = 0
 
 	queue_free()
 

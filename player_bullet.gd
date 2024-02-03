@@ -14,8 +14,10 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is Wall:
 		bounces -= 1
 		if bounces < 0:
+			AudioManager.play_sound(AudioManager.hit)
 			destroy()
 		else:
+			AudioManager.play_sound(AudioManager.boing)
 			var wall = body as Wall
 			var wall_normal = Vector2.from_angle(wall.rotation + PI / 2)
 			rotation = Vector2.from_angle(rotation).bounce(wall_normal).angle()

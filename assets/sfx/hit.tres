@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://f25q0y72ie2a"]
+
+[ext_resource type="AudioStream" uid="uid://bpy2qo0jemmsx" path="res://assets/sfx/hit.wav" id="1_7keuq"]
+
+[resource]
+streams_count = 1
+stream_0/stream = ExtResource("1_7keuq")
+stream_0/weight = 1.0

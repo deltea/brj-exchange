@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://dfffdm47fttvh"]
+
+[ext_resource type="AudioStream" uid="uid://evob68dbvifw" path="res://assets/sfx/boing.wav" id="1_4lm84"]
+
+[resource]
+streams_count = 1
+stream_0/stream = ExtResource("1_4lm84")
+stream_0/weight = 1.0

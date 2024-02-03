@@ -104,6 +104,7 @@ func get_hurt(damage: float):
 	else: Globals.hitstop(0.15)
 
 func die():
+	AudioManager.play_sound(AudioManager.explosion)
 	Events.player_die.emit()
 	Engine.time_scale = 0.2
 	visible = false
