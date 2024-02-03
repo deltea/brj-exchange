@@ -46,7 +46,6 @@ func _ready() -> void:
 	health = Stats.max_health
 	shield.scale = Stats.shield_size * Vector2.ONE
 
-	print(Stats.helper_amount)
 	for i in Stats.helper_amount:
 		var helper = helper_scene.instantiate()
 		helper.player_offset = Vector2.from_angle(PI * 2 / Stats.helper_amount * i) * helper_radius
@@ -117,6 +116,7 @@ func get_hurt(damage: float):
 	AudioManager.play_sound(AudioManager.hurt)
 	health -= damage
 	update_health_ui()
+	Scoring.total_health_lost += damage
 	Globals.camera.impact()
 	Globals.camera.shake(0.1, 1)
 	if health <= 0: die()

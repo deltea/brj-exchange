@@ -33,6 +33,7 @@ func die():
 	explosion.emitting = true
 	Globals.world.add_child(explosion)
 	AudioManager.beat_target_volume = 0
+	Scoring.add_time()
 
 	queue_free()
 

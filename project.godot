@@ -23,6 +23,7 @@ UpgradeManager="*res://autoloads/upgrade_manager.tscn"
 Cursor="*res://autoloads/cursor.tscn"
 AudioManager="*res://autoloads/audio_manager.tscn"
 Stats="*res://autoloads/stats.tscn"
+Scoring="*res://autoloads/Scoring.gd"
 SceneManager="*res://autoloads/scene_manager.tscn"
 
 [display]

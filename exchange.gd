@@ -104,7 +104,6 @@ func _on_exchange_card_select(upgrade: UpgradeResource):
 		update_cost_ui()
 	elif state == STATE.CURRENT:
 		selected_upgrades.push_back(upgrade)
-		print(selected_upgrades)
 		update_cost_ui()
 
 func _on_exchange_card_deselect(upgrade: UpgradeResource):
@@ -112,7 +111,6 @@ func _on_exchange_card_deselect(upgrade: UpgradeResource):
 		var upgrade_index = selected_upgrades.find(upgrade)
 		if upgrade_index != -1:
 			selected_upgrades.remove_at(upgrade_index)
-			print(selected_upgrades)
 			update_cost_ui()
 
 func _on_back_button_pressed() -> void:

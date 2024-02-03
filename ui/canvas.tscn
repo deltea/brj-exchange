@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://do1wktcurduto"]
+[gd_scene load_steps=14 format=3 uid="uid://do1wktcurduto"]
 
 [ext_resource type="Texture2D" uid="uid://cjvux8u0xi6en" path="res://assets/ui/boss-health-outline.png" id="1_5r2hf"]
 [ext_resource type="Script" path="res://ui/canvas.gd" id="1_ciq5o"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dscvwng75nptx" path="res://assets/ui/player-health.png" id="2_yd27w"]
 [ext_resource type="Script" path="res://ui/wobble_ui.gd" id="4_2xril"]
 [ext_resource type="FontFile" uid="uid://bqss7t22e4vin" path="res://assets/fonts/8-bit-wonder.ttf" id="7_4lkym"]
+[ext_resource type="FontFile" uid="uid://dw82ff1gmdlec" path="res://assets/fonts/monogram.ttf" id="8_5nkbl"]
 
 [sub_resource type="Animation" id="Animation_5nxdw"]
 length = 0.001
@@ -50,6 +51,9 @@ font = ExtResource("7_4lkym")
 shadow_size = 0
 shadow_color = Color(0.529412, 0.529412, 0.529412, 1)
 shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2f7r3"]
+font = ExtResource("8_5nkbl")
 
 [node name="Canvas" type="CanvasLayer"]
 script = ExtResource("1_ciq5o")
@@ -100,3 +104,10 @@ text = "Fire Eye
 "
 label_settings = SubResource("LabelSettings_3k18v")
 horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 9.0
+offset_right = 162.0
+offset_bottom = 28.0
+label_settings = SubResource("LabelSettings_2f7r3")

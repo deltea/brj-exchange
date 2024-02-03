@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dceg3wi5s5edx"]
+[gd_scene load_steps=22 format=3 uid="uid://dceg3wi5s5edx"]
 
 [ext_resource type="Script" path="res://win.gd" id="1_vt0dq"]
 [ext_resource type="Shader" path="res://shaders/scrolling_background.gdshader" id="2_6bgh0"]
@@ -7,6 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://k4803j76pvmm" path="res://assets/ui/main-menu-button.png" id="5_201rv"]
 [ext_resource type="Texture2D" uid="uid://d263j40o2uxm2" path="res://assets/ui/main-menu-button-pressed.png" id="6_s0da6"]
 [ext_resource type="Texture2D" uid="uid://da6cnanu06lun" path="res://assets/ui/fire-icon.png" id="7_0q3sd"]
+[ext_resource type="Texture2D" uid="uid://bwnhycmls3hkh" path="res://assets/ui/water-icon.png" id="8_0wiqn"]
+[ext_resource type="Texture2D" uid="uid://byijc3bg7qwho" path="res://assets/ui/earth-icon.png" id="9_q8kfp"]
+[ext_resource type="Texture2D" uid="uid://bg8x50h77odu4" path="res://assets/ui/air-icon.png" id="10_lfd01"]
+[ext_resource type="FontFile" uid="uid://dw82ff1gmdlec" path="res://assets/fonts/monogram.ttf" id="11_diyfj"]
+[ext_resource type="FontFile" uid="uid://corh68u8se1oo" path="res://assets/fonts/grapesoda.ttf" id="12_p1o56"]
+[ext_resource type="Texture2D" uid="uid://da1j27ssolc2m" path="res://assets/ui/dotted-line.png" id="13_vbtjq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_k4mol"]
 noise_type = 0
@@ -49,8 +55,15 @@ shader_parameter/scroll_direction = Vector2(1, 1)
 shader_parameter/looseness = 0.8
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_dakth")
 
+[sub_resource type="LabelSettings" id="LabelSettings_yamn7"]
+font = ExtResource("11_diyfj")
+
+[sub_resource type="LabelSettings" id="LabelSettings_prit0"]
+font = ExtResource("12_p1o56")
+
 [node name="Win" type="CanvasLayer"]
 script = ExtResource("1_vt0dq")
+score_count_duration = 0.8
 
 [node name="Background" type="ColorRect" parent="."]
 z_index = -100
@@ -90,13 +103,94 @@ grow_horizontal = 2
 texture_normal = ExtResource("5_201rv")
 texture_hover = ExtResource("6_s0da6")
 
-[node name="FireIcon" type="TextureRect" parent="."]
-visible = false
-offset_left = 64.0
-offset_top = 112.0
-offset_right = 80.0
-offset_bottom = 128.0
+[node name="Icons" type="VBoxContainer" parent="."]
+offset_left = 117.0
+offset_top = 94.0
+offset_right = 133.0
+offset_bottom = 182.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="FireIcon" type="TextureRect" parent="Icons"]
+layout_mode = 2
 texture = ExtResource("7_0q3sd")
 stretch_mode = 3
+
+[node name="WaterIcon" type="TextureRect" parent="Icons"]
+layout_mode = 2
+texture = ExtResource("8_0wiqn")
+stretch_mode = 3
+
+[node name="EarthIcon" type="TextureRect" parent="Icons"]
+layout_mode = 2
+texture = ExtResource("9_q8kfp")
+stretch_mode = 3
+
+[node name="AirIcon" type="TextureRect" parent="Icons"]
+layout_mode = 2
+texture = ExtResource("10_lfd01")
+stretch_mode = 3
+
+[node name="Times" type="VBoxContainer" parent="."]
+offset_left = 141.0
+offset_top = 94.0
+offset_right = 181.0
+offset_bottom = 182.0
+theme_override_constants/separation = 8
+
+[node name="FireTime" type="Label" parent="Times"]
+layout_mode = 2
+text = "TIME"
+label_settings = SubResource("LabelSettings_yamn7")
+
+[node name="WaterTime" type="Label" parent="Times"]
+layout_mode = 2
+text = "TIME"
+label_settings = SubResource("LabelSettings_yamn7")
+
+[node name="EarthTime" type="Label" parent="Times"]
+layout_mode = 2
+text = "TIME"
+label_settings = SubResource("LabelSettings_yamn7")
+
+[node name="AirTime" type="Label" parent="Times"]
+layout_mode = 2
+text = "TIME"
+label_settings = SubResource("LabelSettings_yamn7")
+
+[node name="BossTime" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 97.0
+offset_right = 369.0
+offset_bottom = 116.0
+text = "Boss Total Time: +0s"
+label_settings = SubResource("LabelSettings_prit0")
+vertical_alignment = 1
+
+[node name="HealthPenalty" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 116.0
+offset_right = 362.0
+offset_bottom = 135.0
+text = "Health Penalty: +0s"
+label_settings = SubResource("LabelSettings_prit0")
+vertical_alignment = 1
+
+[node name="DottedLine" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(223, 146)
+texture = ExtResource("13_vbtjq")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 150, 4)
+
+[node name="TotalTime" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 161.0
+offset_right = 362.0
+offset_bottom = 180.0
+text = "Total Time: 0s"
+label_settings = SubResource("LabelSettings_prit0")
+vertical_alignment = 1
 
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

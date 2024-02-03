@@ -17,7 +17,8 @@ func _ready() -> void:
 	Events.boss_defeated.connect(_on_boss_defeated)
 	Globals.mouse.change_texture(Mouse.MODE.CROSSHAIR)
 	Globals.canvas.set_boss_name(boss_name)
-	
+	Scoring.boss_timer = 0
+
 	await Globals.wait(1.5)
 
 	AudioManager.beat_target_volume = 1
