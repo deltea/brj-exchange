@@ -11,6 +11,7 @@ class_name Player
 @export var shield_follow_speed = 20
 @export var damage_ring_follow_speed = 15
 @export var damage_ring_spin_speed = 100
+@export var helper_radius = 40
 
 @onready var sprite := $Sprite
 @onready var dash_timer := $DashTimer
@@ -31,6 +32,7 @@ var wind_force = Vector2.ZERO
 var can_move = true
 var whirlpool_force = 0
 var explosion_scene = preload("res://particles/explosion.tscn")
+var helper_scene = preload("res://helper.tscn")
 
 func _enter_tree() -> void:
 	Globals.player = self
@@ -43,6 +45,12 @@ func _ready() -> void:
 	scale = Stats.player_size * Vector2.ONE
 	health = Stats.max_health
 	shield.scale = Stats.shield_size * Vector2.ONE
+
+	print(Stats.helper_amount)
+	for i in Stats.helper_amount:
+		var helper = helper_scene.instantiate()
+		helper.player_offset = Vector2.from_angle(PI * 2 / Stats.helper_amount * i) * helper_radius
+		Globals.world.call_deferred("add_child", helper)
 
 func _process(delta: float) -> void:
 	if not can_move: return

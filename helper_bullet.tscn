@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjq13dvdcquea"]
+
+[ext_resource type="PackedScene" uid="uid://c1j48h4fyg7fk" path="res://player_bullet.tscn" id="1_wl4ic"]
+[ext_resource type="Texture2D" uid="uid://c0vbbo5xapho8" path="res://assets/helper-bullet.png" id="2_4kxkq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_flg7i"]
+radius = 11.0
+
+[node name="HelperBullet" instance=ExtResource("1_wl4ic")]
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource("2_4kxkq")
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("CircleShape2D_flg7i")

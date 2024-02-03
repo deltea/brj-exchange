@@ -15,3 +15,4 @@ extends Node
 @export var fire_rate = 8.0
 @export var shield_size = 0.0
 @export var damage_ring_size = 0.0
+@export var helper_amount = 0

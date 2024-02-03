@@ -75,7 +75,7 @@ func shield_upgrade(value: int):
 	Stats.shield_size += (0.5 if Stats.shield_size > 0 else 1.0) * value
 
 func helper_upgrade(value: int):
-	pass
+	Stats.helper_amount += 1 * value
 
 func ring_upgrade(value: int):
 	Stats.damage_ring_size += (0.5 if Stats.damage_ring_size > 0 else 1.0) * value
