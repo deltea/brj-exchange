@@ -18,7 +18,7 @@ enum UPGRADES {
 var current_upgrades: Array[UpgradeResource] = []
 
 func _enter_tree() -> void:
-	current_upgrades = get_random_upgrades(3)
+	current_upgrades = get_random_upgrades(1)
 	activate_all_upgrades()
 
 func get_random_upgrades(amount: int) -> Array[UpgradeResource]:
@@ -72,7 +72,7 @@ func strength_upgrade(value: int):
 	Stats.fire_rate += 4.0 * value
 
 func shield_upgrade(value: int):
-	pass
+	Stats.shield_size += (0.5 if Stats.shield_size > 0 else 1.0) * value
 
 func helper_upgrade(value: int):
 	pass

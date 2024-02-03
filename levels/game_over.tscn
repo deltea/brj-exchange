@@ -50,12 +50,14 @@ script = ExtResource("1_685rw")
 background_color = Color(0.203922, 0.203922, 0.203922, 1)
 
 [node name="Background2" type="TextureRect" parent="."]
+z_index = -100
 material = SubResource("ShaderMaterial_ug0vq")
 offset_right = 480.0
 offset_bottom = 270.0
 texture = ExtResource("3_nu021")
 
 [node name="Background" type="TextureRect" parent="."]
+z_index = -100
 material = SubResource("ShaderMaterial_jwd3q")
 offset_right = 480.0
 offset_bottom = 270.0

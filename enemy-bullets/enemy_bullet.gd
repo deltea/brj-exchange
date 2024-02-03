@@ -11,3 +11,7 @@ func _on_animation_timer_timeout() -> void:
 
 func _on_visible_on_screen_notifier_screen_exited() -> void:
 	pass
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is Shield and Stats.shield_size > 0:
+		destroy()

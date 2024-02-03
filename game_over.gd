@@ -19,7 +19,6 @@ func _ready() -> void:
 	tween.tween_property(progress, "value", target_value, animation_duration)
 
 	for upgrade in UpgradeManager.current_upgrades:
-		await Globals.wait(animation_duration / len(UpgradeManager.current_upgrades) / 2)
 		var card = card_scene.instantiate() as Card
 		card.upgrade = upgrade
 		cards.add_child(card)

@@ -15,6 +15,8 @@ class_name Player
 @onready var move_particles := $MoveParticles
 @onready var hitbox := $Hitbox
 @onready var hitbox_collider := $Hitbox/CollisionShape
+@onready var shield_anchor := $ShieldAnchor
+@onready var shield := $ShieldAnchor/Shield
 
 var target_rotation = 0.0
 var target_scale = Vector2.ONE
@@ -36,12 +38,15 @@ func _ready() -> void:
 	Events.go_in_portal.connect(_on_go_into_portal)
 	scale = Stats.player_size * Vector2.ONE
 	health = Stats.max_health
+	shield.scale = Stats.shield_size * Vector2.ONE
 
 func _process(delta: float) -> void:
 	if not can_move: return
 
 	sprite.rotation = lerp_angle(sprite.rotation, target_rotation, turn_speed * delta)
 	sprite.scale = sprite.scale.move_toward(target_scale, squash_and_stretch_speed * delta)
+	shield_anchor.position = shield_anchor.position.lerp(position, 20 * delta)
+	shield_anchor.rotation = get_angle_to(get_global_mouse_position()) - PI / 2
 
 func _physics_process(_delta: float) -> void:
 	if not can_move: return
