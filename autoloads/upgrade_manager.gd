@@ -7,7 +7,10 @@ enum UPGRADES {
 	SIZE,
 	REGEN,
 	RICOCHET,
-	STRENGTH
+	STRENGTH,
+	SHIELD,
+	HELPER,
+	RING,
 }
 
 @export var upgrades: Array[UpgradeResource] = []
@@ -67,3 +70,12 @@ func strength_upgrade(value: int):
 	Stats.bullet_speed += 50 * value
 	Stats.bullet_spread += 5.0 * value
 	Stats.fire_rate += 4.0 * value
+
+func shield_upgrade(value: int):
+	pass
+
+func helper_upgrade(value: int):
+	pass
+
+func ring_upgrade(value: int):
+	pass

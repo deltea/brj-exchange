@@ -54,6 +54,25 @@ scale_amount_max = 40.0
 scale_amount_curve = SubResource("Curve_ey3ex")
 color = Color(0.996078, 0.329412, 0.435294, 1)
 
+[node name="FlameArenaParticles5" type="CPUParticles2D" parent="."]
+z_index = 20
+position = Vector2(0.00186157, 184)
+amount = 200
+preprocess = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(480, 0)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("Curve_qkq0h")
+scale_amount_min = 20.0
+scale_amount_max = 40.0
+scale_amount_curve = SubResource("Curve_ey3ex")
+color = Color(0.996078, 0.329412, 0.435294, 1)
+
 [node name="FlameArenaParticles2" type="CPUParticles2D" parent="."]
 z_index = 20
 position = Vector2(0.00186157, -184)

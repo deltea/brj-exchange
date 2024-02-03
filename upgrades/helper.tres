@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://dskjh2i3d4wfo"]
+
+[ext_resource type="Script" path="res://upgrade_resource.gd" id="1_bubtr"]
+[ext_resource type="Texture2D" uid="uid://drume1guso4n0" path="res://assets/cards/helper.png" id="2_vuyfe"]
+
+[resource]
+script = ExtResource("1_bubtr")
+name = "Helper"
+description = "Spawn a little helper that shoots bullets."
+cost = 2
+texture = ExtResource("2_vuyfe")
+method = 7

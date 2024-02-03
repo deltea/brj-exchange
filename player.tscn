@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://did6o62ni3sjp"]
+[gd_scene load_steps=13 format=3 uid="uid://did6o62ni3sjp"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_toly5"]
 [ext_resource type="Texture2D" uid="uid://li2x6sjm8ue" path="res://assets/player.png" id="1_vbidl"]
 [ext_resource type="Texture2D" uid="uid://c46htyaexexvl" path="res://assets/circle-particle.png" id="3_snqyy"]
 [ext_resource type="PackedScene" uid="uid://bi5x0wqyu8o1f" path="res://camera.tscn" id="4_gr7c1"]
 [ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="4_tufma"]
+[ext_resource type="Texture2D" uid="uid://dtbkgw4i5oj72" path="res://assets/helper.png" id="6_wy8e2"]
+[ext_resource type="Texture2D" uid="uid://ocxmfk3xm4f" path="res://assets/helper-hands.png" id="7_ytig0"]
 
 [sub_resource type="Curve" id="Curve_o74t4"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -66,6 +68,14 @@ one_shot = true
 
 [node name="RegenTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Helper" type="Sprite2D" parent="."]
+position = Vector2(15, -8)
+texture = ExtResource("6_wy8e2")
+
+[node name="Hands" type="Sprite2D" parent="Helper"]
+position = Vector2(0, 6)
+texture = ExtResource("7_ytig0")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

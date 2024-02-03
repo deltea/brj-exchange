@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://bid3kh7kti67l"]
+
+[ext_resource type="Script" path="res://upgrade_resource.gd" id="1_1580g"]
+[ext_resource type="Texture2D" uid="uid://crkj3ow5vdg5k" path="res://assets/cards/shield.png" id="2_o8mep"]
+
+[resource]
+script = ExtResource("1_1580g")
+name = "Shield"
+description = "Have a bigger shield that block enemy bullets."
+cost = 3
+texture = ExtResource("2_o8mep")
+method = 6

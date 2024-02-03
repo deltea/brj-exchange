@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=3 format=3 uid="uid://rv0eaior48u6"]
+
+[ext_resource type="Script" path="res://upgrade_resource.gd" id="1_01bcb"]
+[ext_resource type="Texture2D" uid="uid://d4fh1fcb0qq6t" path="res://assets/cards/ring.png" id="2_0w2ns"]
+
+[resource]
+script = ExtResource("1_01bcb")
+name = "Hazardous"
+description = "Increase the size of a ring around you that deals damage."
+cost = 2
+texture = ExtResource("2_0w2ns")
+method = 8

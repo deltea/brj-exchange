@@ -56,13 +56,13 @@ shader_parameter/arms = 3
 shader_parameter/size = 20.0
 shader_parameter/noise = SubResource("NoiseTexture2D_fqqdl")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d3x65"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d403v"]
 resource_local_to_scene = true
 shader = ExtResource("11_dfoib")
 shader_parameter/enabled = true
 shader_parameter/color = Color(1, 1, 1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_he2yp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ono8b"]
 resource_local_to_scene = true
 shader = ExtResource("11_dfoib")
 shader_parameter/enabled = true
@@ -168,7 +168,7 @@ texture_hover = ExtResource("8_p41eh")
 texture_disabled = ExtResource("8_gwpa5")
 
 [node name="DropShadowUI" parent="CurrentPanel/ContinueButton" instance=ExtResource("10_nmmru")]
-material = SubResource("ShaderMaterial_d3x65")
+material = SubResource("ShaderMaterial_d403v")
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
@@ -187,7 +187,7 @@ texture_normal = ExtResource("11_k757u")
 texture_hover = ExtResource("12_fvx6h")
 
 [node name="DropShadowUI" parent="CurrentPanel/BackButton" instance=ExtResource("10_nmmru")]
-material = SubResource("ShaderMaterial_he2yp")
+material = SubResource("ShaderMaterial_ono8b")
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
