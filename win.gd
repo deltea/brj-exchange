@@ -65,7 +65,7 @@ func set_boss_total_time(value: float):
 	boss_total_time.text = "Boss Total Time: +%ss" % str(snapped(value, 0.01))
 
 func set_health_penalty(value: float):
-	health_penalty.text = "Health Penalty: +%ss" % str(value)
+	health_penalty.text = "Health Penalty: +%ss" % str(snapped(value, 0.01))
 
 func set_total_time(value: float):
 	total_time_label.text = "Total Time: %ss" % str(snapped(value, 0.01))
