@@ -78,4 +78,4 @@ func helper_upgrade(value: int):
 	pass
 
 func ring_upgrade(value: int):
-	pass
+	Stats.damage_ring_size += (0.5 if Stats.damage_ring_size > 0 else 1.0) * value

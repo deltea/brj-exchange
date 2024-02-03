@@ -8,6 +8,9 @@ class_name Player
 @export var squash_and_stretch = 0.2
 @export var turn_speed = 20
 @export var squash_and_stretch_speed = 50
+@export var shield_follow_speed = 20
+@export var damage_ring_follow_speed = 15
+@export var damage_ring_spin_speed = 100
 
 @onready var sprite := $Sprite
 @onready var dash_timer := $DashTimer
@@ -17,6 +20,7 @@ class_name Player
 @onready var hitbox_collider := $Hitbox/CollisionShape
 @onready var shield_anchor := $ShieldAnchor
 @onready var shield := $ShieldAnchor/Shield
+@onready var damage_ring := $DamageRing
 
 var target_rotation = 0.0
 var target_scale = Vector2.ONE
@@ -45,8 +49,10 @@ func _process(delta: float) -> void:
 
 	sprite.rotation = lerp_angle(sprite.rotation, target_rotation, turn_speed * delta)
 	sprite.scale = sprite.scale.move_toward(target_scale, squash_and_stretch_speed * delta)
-	shield_anchor.position = shield_anchor.position.lerp(position, 20 * delta)
+	shield_anchor.position = shield_anchor.position.lerp(position, shield_follow_speed * delta)
 	shield_anchor.rotation = get_angle_to(get_global_mouse_position()) - PI / 2
+	damage_ring.position = damage_ring.position.lerp(position, damage_ring_follow_speed * delta)
+	damage_ring.rotation_degrees += damage_ring_spin_speed * delta
 
 func _physics_process(_delta: float) -> void:
 	if not can_move: return

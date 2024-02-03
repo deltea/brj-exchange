@@ -28,10 +28,10 @@ func _physics_process(delta: float) -> void:
 	position += Vector2.from_angle(rotation) * speed * delta
 	speed += acceleration
 
-func take_damage():
+func take_damage(damage: float = 0):
 	flash()
 
-	health -= Stats.bullet_damage
+	health -= damage if damage > 0 else Stats.bullet_damage
 	if health < 0: die()
 
 func die():

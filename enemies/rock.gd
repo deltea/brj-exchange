@@ -27,11 +27,11 @@ func _physics_process(delta: float) -> void:
 	rotation_degrees += rotation_speed * delta
 	position += velocity * delta
 
-func take_damage():
+func take_damage(damage: float = 0):
 	AudioManager.play_sound(AudioManager.hit)
 	flash()
 
-	health -= Stats.bullet_damage
+	health -= damage if damage > 0 else Stats.bullet_damage
 	if health < 0: die()
 
 func die():

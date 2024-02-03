@@ -15,11 +15,11 @@ func _on_area_entered(area: Area2D) -> void:
 		(area as PlayerBullet).queue_free()
 		take_damage()
 
-func take_damage():
+func take_damage(damage: float = 0):
 	AudioManager.play_sound(AudioManager.hit)
 	flash()
 
-	health -= Stats.bullet_damage
+	health -= damage if damage > 0 else Stats.bullet_damage
 	Globals.canvas.boss_health.value = 100.0 / max_health * health
 	Globals.prev_boss_health = 100.0 / max_health * health
 	if health < 0: die()

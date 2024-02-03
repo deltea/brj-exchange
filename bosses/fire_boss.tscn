@@ -8,13 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="3_vnfiq"]
 [ext_resource type="Texture2D" uid="uid://cj45b77p7h80m" path="res://assets/enemy-bullets/laser.png" id="7_qp7ny"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tbwp4"]
-radius = 21.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iivps"]
 shader = ExtResource("2_s3aha")
 shader_parameter/enabled = false
 shader_parameter/color = Color(1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbwp4"]
+radius = 21.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_febb2"]
 shader = ExtResource("2_s3aha")
@@ -45,17 +45,20 @@ laser_telegraph = 0.6
 laser_speed = 0.8
 bullet_spiral_num = 60
 bullet_spiral_speed = 200
+bullet_corners_num = 5
+bullet_corners_spread = 10
+bullet_corners_speed = 150
 
-[node name="CollisionShape" parent="." index="0"]
-shape = SubResource("CircleShape2D_tbwp4")
-
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite" parent="." index="0"]
 material = SubResource("ShaderMaterial_iivps")
 texture = ExtResource("1_t2lle")
 
 [node name="DropShadow" parent="Sprite" index="0" instance=ExtResource("3_vnfiq")]
 shadow_offset = Vector2(0, 32)
 scale_multiplier = Vector2(1, 0.5)
+
+[node name="CollisionShape" parent="." index="1"]
+shape = SubResource("CircleShape2D_tbwp4")
 
 [node name="Eye" type="Sprite2D" parent="." index="2"]
 material = SubResource("ShaderMaterial_febb2")

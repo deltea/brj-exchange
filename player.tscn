@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://did6o62ni3sjp"]
+[gd_scene load_steps=13 format=3 uid="uid://did6o62ni3sjp"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_toly5"]
 [ext_resource type="Texture2D" uid="uid://li2x6sjm8ue" path="res://assets/player.png" id="1_vbidl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bi5x0wqyu8o1f" path="res://camera.tscn" id="4_gr7c1"]
 [ext_resource type="PackedScene" uid="uid://cigrqs48dhwyp" path="res://utils/drop_shadow.tscn" id="4_tufma"]
 [ext_resource type="PackedScene" uid="uid://0nj0ore75hkm" path="res://shield.tscn" id="6_fyl6k"]
+[ext_resource type="PackedScene" uid="uid://d4cgyw5gmqvuq" path="res://damage_ring.tscn" id="7_upwsa"]
 
 [sub_resource type="Curve" id="Curve_o74t4"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -59,6 +60,18 @@ collision_mask = 12
 shape = SubResource("CircleShape2D_mubul")
 debug_color = Color(0.701961, 0, 0, 0.419608)
 
+[node name="ShieldAnchor" type="Node2D" parent="."]
+top_level = true
+
+[node name="Shield" parent="ShieldAnchor" instance=ExtResource("6_fyl6k")]
+position = Vector2(0, -18)
+scale = Vector2(1e-05, 1e-05)
+
+[node name="DamageRing" parent="." instance=ExtResource("7_upwsa")]
+top_level = true
+z_index = -20
+scale = Vector2(1e-05, 1e-05)
+
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -67,13 +80,6 @@ one_shot = true
 
 [node name="RegenTimer" type="Timer" parent="."]
 autostart = true
-
-[node name="ShieldAnchor" type="Node2D" parent="."]
-top_level = true
-
-[node name="Shield" parent="ShieldAnchor" instance=ExtResource("6_fyl6k")]
-position = Vector2(0, -18)
-scale = Vector2(2, 2)
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

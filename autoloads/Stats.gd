@@ -14,3 +14,4 @@ extends Node
 @export var bullet_spread = 5.0
 @export var fire_rate = 8.0
 @export var shield_size = 0.0
+@export var damage_ring_size = 0.0

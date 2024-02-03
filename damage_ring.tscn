@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4cgyw5gmqvuq"]
+
+[ext_resource type="Script" path="res://damage_ring.gd" id="1_3mp7i"]
+[ext_resource type="Texture2D" uid="uid://bae14nu0x1fox" path="res://assets/damage-ring.png" id="1_mcmpc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_74ahm"]
+radius = 43.0
+
+[node name="DamageRing" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_3mp7i")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_mcmpc")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_74ahm")
+
+[node name="DamageTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
