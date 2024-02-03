@@ -82,9 +82,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -56.0
-offset_top = 24.0
+offset_top = 17.0
 offset_right = 64.0
-offset_bottom = 48.0
+offset_bottom = 41.0
 grow_horizontal = 2
 pivot_offset = Vector2(73.6875, 8)
 theme_override_fonts/normal_font = ExtResource("4_lhrlu")
@@ -96,18 +96,18 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -77.0
-offset_top = 228.0
+offset_top = 236.0
 offset_right = 77.0
-offset_bottom = 248.0
+offset_bottom = 256.0
 grow_horizontal = 2
 texture_normal = ExtResource("5_201rv")
 texture_hover = ExtResource("6_s0da6")
 
 [node name="Icons" type="VBoxContainer" parent="."]
 offset_left = 117.0
-offset_top = 94.0
+offset_top = 49.0
 offset_right = 133.0
-offset_bottom = 182.0
+offset_bottom = 137.0
 theme_override_constants/separation = 8
 alignment = 1
 
@@ -133,9 +133,9 @@ stretch_mode = 3
 
 [node name="Times" type="VBoxContainer" parent="."]
 offset_left = 141.0
-offset_top = 94.0
+offset_top = 49.0
 offset_right = 181.0
-offset_bottom = 182.0
+offset_bottom = 137.0
 theme_override_constants/separation = 8
 
 [node name="FireTime" type="Label" parent="Times"]
@@ -160,25 +160,25 @@ label_settings = SubResource("LabelSettings_yamn7")
 
 [node name="BossTime" type="Label" parent="."]
 offset_left = 224.0
-offset_top = 97.0
+offset_top = 52.0
 offset_right = 369.0
-offset_bottom = 116.0
+offset_bottom = 71.0
 text = "Boss Total Time: +0s"
 label_settings = SubResource("LabelSettings_prit0")
 vertical_alignment = 1
 
 [node name="HealthPenalty" type="Label" parent="."]
 offset_left = 224.0
-offset_top = 116.0
+offset_top = 71.0
 offset_right = 362.0
-offset_bottom = 135.0
+offset_bottom = 90.0
 text = "Health Penalty: +0s"
 label_settings = SubResource("LabelSettings_prit0")
 vertical_alignment = 1
 
 [node name="DottedLine" type="Sprite2D" parent="."]
 texture_repeat = 2
-position = Vector2(223, 146)
+position = Vector2(223, 101)
 texture = ExtResource("13_vbtjq")
 centered = false
 region_enabled = true
@@ -186,11 +186,29 @@ region_rect = Rect2(0, 0, 150, 4)
 
 [node name="TotalTime" type="Label" parent="."]
 offset_left = 224.0
-offset_top = 161.0
+offset_top = 116.0
 offset_right = 362.0
-offset_bottom = 180.0
+offset_bottom = 135.0
 text = "Total Time: 0s"
 label_settings = SubResource("LabelSettings_prit0")
 vertical_alignment = 1
+
+[node name="CardsOwnedText" type="RichTextLabel" parent="."]
+offset_left = 54.0
+offset_top = 170.0
+offset_right = 110.0
+offset_bottom = 210.0
+theme_override_colors/font_shadow_color = Color(0.203922, 0.203922, 0.203922, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_fonts/normal_font = ExtResource("12_p1o56")
+bbcode_enabled = true
+text = "[wave]Cards
+Owned[/wave]"
+
+[node name="Cards" type="HBoxContainer" parent="."]
+offset_left = 116.0
+offset_top = 151.0
+offset_right = 480.0
+offset_bottom = 219.0
 
 [connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]

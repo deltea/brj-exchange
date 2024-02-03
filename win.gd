@@ -12,6 +12,9 @@ extends CanvasLayer
 @onready var health_penalty := $HealthPenalty
 @onready var total_time_label := $TotalTime
 @onready var dotted_line := $DottedLine
+@onready var cards := $Cards
+
+var card_scene = preload("res://ui/card.tscn")
 
 func _ready() -> void:
 	if len(Scoring.boss_times) < 4: return
@@ -21,6 +24,7 @@ func _ready() -> void:
 	health_penalty.visible = false
 	total_time_label.visible = false
 	dotted_line.region_rect = Rect2(0, 0, 0, 4)
+	cards.visible = false
 
 	await Globals.wait(1.0)
 
@@ -44,6 +48,12 @@ func _ready() -> void:
 	tween.tween_property(dotted_line, "region_rect", Rect2(0, 0, 150, 4), score_count_duration)
 	tween.tween_callback(func(): total_time_label.visible = true)
 	tween.tween_method(set_total_time, 0, total_time, score_count_duration)
+
+	for upgrade in UpgradeManager.current_upgrades:
+		var card = card_scene.instantiate() as Card
+		card.upgrade = upgrade
+		cards.add_child(card)
+	tween.tween_callback(func(): cards.visible = true)
 
 func set_boss_time(value: float, label: Label):
 	label.text = str(value) + "s"
