@@ -151,6 +151,7 @@ func _on_go_into_portal(portal: Portal):
 	can_move = false
 	velocity = Vector2.ZERO
 	move_particles.emitting = false
+	hitbox_collider.disabled = true
 	var tweener = get_tree().create_tween().set_parallel(true)
 	tweener.tween_property(sprite, "scale", Vector2.ZERO, 1)
 	tweener.tween_property(sprite, "global_position", portal.position, 1)

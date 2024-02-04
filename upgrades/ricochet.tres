@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_oiftj")
 name = "Ricochet"
-description = "Bullets ricochet off of walls +1 time."
+description = "Bullets bounce off of walls +1 time."
 cost = 2
 texture = ExtResource("2_jt15y")
 method = 4
