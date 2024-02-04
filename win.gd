@@ -18,6 +18,7 @@ extends CanvasLayer
 var card_scene = preload("res://ui/card.tscn")
 
 func _ready() -> void:
+	AudioManager.play_sound(AudioManager.shield)
 	if len(Scoring.boss_times) < 4: return
 
 	times_column.visible = false
@@ -59,15 +60,19 @@ func _ready() -> void:
 	tween.tween_callback(func(): cards_owned_text.visible = true)
 
 func set_boss_time(value: float, label: Label):
+	AudioManager.play_sound(AudioManager.score)
 	label.text = str(snapped(value, 0.01)) + "s"
 
 func set_boss_total_time(value: float):
+	AudioManager.play_sound(AudioManager.score)
 	boss_total_time.text = "Boss Total Time: +%ss" % str(snapped(value, 0.01))
 
 func set_health_penalty(value: float):
+	AudioManager.play_sound(AudioManager.score)
 	health_penalty.text = "Health Penalty: +%ss" % str(snapped(value, 0.01))
 
 func set_total_time(value: float):
+	AudioManager.play_sound(AudioManager.score)
 	total_time_label.text = "Total Time: %ss" % str(snapped(value, 0.01))
 
 func _on_main_menu_button_pressed() -> void:

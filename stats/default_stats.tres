@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="StatsResource" load_steps=2 format=3 uid="uid://cq1u84jovrqi5"]
+
+[ext_resource type="Script" path="res://stats_resource.gd" id="1_i6mj6"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_i6mj6")
+run_speed = 120.0
+dash_duration = 0.16
+dash_speed = 400.0
+bullet_speed = 800.0
+max_health = 100.0
+player_size = 1.0
+bullet_size = 1.0
+enemy_damage = 10.0
+regen = 0.0
+bullet_bounce = 0
+bullet_damage = 1.0
+bullet_spread = 5.0
+fire_rate = 8.0
+shield_size = 0.0
+damage_ring_size = 0.0
+helper_amount = 0

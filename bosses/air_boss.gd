@@ -62,6 +62,7 @@ func bullet_curve_state():
 	next_state()
 
 func bullet_wind_state():
+	AudioManager.play_sound(AudioManager.wind)
 	wind_particles.emitting = true
 	Globals.player.wind_force = wind_force
 

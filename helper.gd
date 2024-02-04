@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 
 func _on_fire_timer_timeout() -> void:
 	for i in bullet_num:
+		AudioManager.play_sound(AudioManager.helper)
 		scale = Vector2.ONE * 1.5
 		var bullet = bullet_scene.instantiate() as PlayerBullet
 		var mouse_pos = get_global_mouse_position()

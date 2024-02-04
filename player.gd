@@ -38,17 +38,17 @@ func _enter_tree() -> void:
 	Globals.player = self
 
 func _ready() -> void:
-	dash_timer.wait_time = Stats.dash_duration
+	dash_timer.wait_time = Stats.current.dash_duration
 	dash_cooldown_timer.wait_time = dash_cooldown
 	hitbox.set_collision_mask_value(4, true)
 	Events.go_in_portal.connect(_on_go_into_portal)
-	scale = Stats.player_size * Vector2.ONE
-	health = Stats.max_health
-	shield.scale = Stats.shield_size * Vector2.ONE
+	scale = Stats.current.player_size * Vector2.ONE
+	health = Stats.current.max_health
+	shield.scale = Stats.current.shield_size * Vector2.ONE
 
-	for i in Stats.helper_amount:
+	for i in Stats.current.helper_amount:
 		var helper = helper_scene.instantiate()
-		helper.player_offset = Vector2.from_angle(PI * 2 / Stats.helper_amount * i) * helper_radius
+		helper.player_offset = Vector2.from_angle(PI * 2 / Stats.current.helper_amount * i) * helper_radius
 		Globals.world.call_deferred("add_child", helper)
 
 func _process(delta: float) -> void:
@@ -72,7 +72,7 @@ func _physics_process(_delta: float) -> void:
 	else:
 		target_scale = Vector2.ONE
 
-	var speed = Stats.dash_speed if is_dashing() else Stats.run_speed
+	var speed = Stats.current.dash_speed if is_dashing() else Stats.current.run_speed
 	var whirlpool = (Vector2.ZERO - position).normalized() * whirlpool_force
 	velocity = input * speed + wind_force + whirlpool
 
@@ -85,7 +85,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func fire():
-	next_time_to_fire = Globals.time + 1.0 / Stats.fire_rate
+	next_time_to_fire = Globals.time + 1.0 / Stats.current.fire_rate
 	Globals.mouse.impact_rotation()
 	AudioManager.play_sound(AudioManager.shoot)
 
@@ -93,13 +93,14 @@ func fire():
 	var mouse_pos = get_global_mouse_position()
 	bullet.global_position = global_position + ((mouse_pos - global_position).normalized() * 12)
 	bullet.look_at(mouse_pos)
-	bullet.rotation_degrees += randf_range(-Stats.bullet_spread, Stats.bullet_spread)
-	bullet.scale = Vector2.ONE * Stats.bullet_size
-	bullet.speed = Stats.bullet_speed
+	bullet.rotation_degrees += randf_range(-Stats.current.bullet_spread, Stats.current.bullet_spread)
+	bullet.scale = Vector2.ONE * Stats.current.bullet_size
+	bullet.speed = Stats.current.bullet_speed
 
 	Globals.world.add_child(bullet)
 
 func dash():
+	AudioManager.play_sound(AudioManager.dash)
 	dash_timer.start()
 	dash_cooldown_timer.start()
 	move_particles.emitting = false
@@ -138,7 +139,7 @@ func die():
 	Engine.time_scale = 1
 
 func update_health_ui():
-	Globals.canvas.player_health.value = 100.0 / Stats.max_health * health
+	Globals.canvas.player_health.value = 100.0 / Stats.current.max_health * health
 
 func change_to_next_scene():
 	if Globals.world.name == "Level 4":
@@ -164,11 +165,11 @@ func _on_dash_timer_timeout() -> void:
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area is EnemyBullet or area is Fish:
 		area.queue_free()
-		get_hurt(Stats.enemy_damage)
+		get_hurt(Stats.current.enemy_damage)
 	elif area is Rock or area is EnemyTile:
-		get_hurt(Stats.enemy_damage)
+		get_hurt(Stats.current.enemy_damage)
 
 func _on_regen_timer_timeout() -> void:
-	if health < Stats.max_health:
-		health += Stats.regen
+	if health < Stats.current.max_health:
+		health += Stats.current.regen
 		update_health_ui()

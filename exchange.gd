@@ -38,7 +38,6 @@ func _ready() -> void:
 
 	var new_random_upgrade = UpgradeManager.get_random_upgrades(1)[0]
 	UpgradeManager.current_upgrades.push_back(new_random_upgrade)
-	UpgradeManager.activate_upgrade(new_random_upgrade.method)
 
 	var current_num = len(UpgradeManager.current_upgrades)
 	for i in range(current_num):
@@ -128,9 +127,7 @@ func _on_continue_button_pressed() -> void:
 		if index != -1:
 			UpgradeManager.current_upgrades.remove_at(index)
 
-	UpgradeManager.activate_upgrade(exchange_upgrade.method)
-	for upgrade in selected_upgrades:
-		UpgradeManager.deactivate_upgrade(upgrade.method)
+	UpgradeManager.activate_all_upgrades()
 
 	var tween = get_tree().create_tween().set_parallel().set_trans(Tween.TRANS_BACK)
 	tween.tween_property(continue_button, "position", Vector2(0, 100), 1.0).as_relative()

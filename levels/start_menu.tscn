@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://kwwvwopk2odt"]
+[gd_scene load_steps=18 format=3 uid="uid://kwwvwopk2odt"]
 
 [ext_resource type="Script" path="res://start_menu.gd" id="1_00qoc"]
 [ext_resource type="Texture2D" uid="uid://cea3vx6fjcy1o" path="res://assets/ui/title.png" id="1_55bpo"]
@@ -8,8 +8,6 @@
 [ext_resource type="FontFile" uid="uid://corh68u8se1oo" path="res://assets/fonts/grapesoda.ttf" id="4_xss3k"]
 [ext_resource type="Texture2D" uid="uid://dljasrnk8r6re" path="res://assets/ui/tutorial-mouse.png" id="5_vqjf7"]
 [ext_resource type="Texture2D" uid="uid://bsh5mv645o20d" path="res://assets/ui/tutorial-keyboard.png" id="6_b6xch"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n8e8b"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_agbew"]
 resource_local_to_scene = true
@@ -90,28 +88,6 @@ texture = ExtResource("1_55bpo")
 stretch_mode = 2
 script = ExtResource("2_djfjg")
 magnitude = 5.0
-
-[node name="Play" type="Button" parent="Canvas"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -17.0
-offset_right = 18.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_xss3k")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_n8e8b")
-text = "Play"
-flat = true
 
 [node name="Instructions" type="RichTextLabel" parent="Canvas"]
 anchors_preset = 8

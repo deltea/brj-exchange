@@ -9,6 +9,14 @@ extends Node
 @export var explosion: AudioStream
 @export var fireball: AudioStream
 @export var fireball_small: AudioStream
+@export var shield: AudioStream
+@export var dash: AudioStream
+@export var helper: AudioStream
+@export var wind: AudioStream
+@export var win: AudioStream
+@export var select: AudioStream
+@export var card_hover: AudioStream
+@export var score: AudioStream
 
 @onready var melody_player := $MelodyStreamPlayer
 @onready var beat_player := $BeatStreamPlayer

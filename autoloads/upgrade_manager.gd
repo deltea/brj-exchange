@@ -26,58 +26,47 @@ func get_random_upgrades(amount: int) -> Array[UpgradeResource]:
 func activate_upgrade(upgrade: UPGRADES):
 	var method = UPGRADES.keys()[upgrade].to_lower() + "_upgrade"
 	if has_method(method):
-		call(method, 1)
+		call(method)
 		print("activated ", method)
 
-func deactivate_upgrade(upgrade: UPGRADES):
-	var method = UPGRADES.keys()[upgrade].to_lower() + "_upgrade"
-	if has_method(method):
-		call(method, -1)
-		print("deactivated ", method)
-
 func activate_all_upgrades():
+	Stats.reset_stats()
 	for upgrade in current_upgrades:
 		activate_upgrade(upgrade.method)
 
 # ---------- Upgrades ----------
 
-func life_upgrade(value: int):
-	Stats.max_health += 15 * value
-	Stats.enemy_damage -= 1 * value
+func life_upgrade():
+	Stats.current.max_health += 15
+	Stats.current.enemy_damage -= 1
 
-func speed_upgrade(value: int):
-	Stats.run_speed += 20 * value
-	Stats.dash_duration += 0.04 * value
-	Stats.dash_speed += 50 * value
-	Stats.bullet_speed += 100 * value
+func speed_upgrade():
+	Stats.current.run_speed += 20
+	Stats.current.dash_duration += 0.04
+	Stats.current.dash_speed += 50
+	Stats.current.bullet_speed += 100
 
-func size_upgrade(value: int):
-	Stats.player_size -= 0.1 * value
-	Stats.bullet_size += 0.2 * value
+func size_upgrade():
+	Stats.current.player_size -= 0.1
+	Stats.current.bullet_size += 0.2
 
-func regen_upgrade(value: int):
-	Stats.regen += 0.4 * value
+func regen_upgrade():
+	Stats.current.regen += 0.4
 
-func ricochet_upgrade(value: int):
-	Stats.bullet_bounce += 1 * value
+func ricochet_upgrade():
+	Stats.current.bullet_bounce += 1
 
-func strength_upgrade(value: int):
-	Stats.run_speed -= 30 * value
-	Stats.bullet_speed += 50 * value
-	Stats.bullet_spread += 5.0 * value
-	Stats.fire_rate += 4.0 * value
+func strength_upgrade():
+	Stats.current.run_speed -= 30
+	Stats.current.bullet_speed += 50
+	Stats.current.bullet_spread += 5.0
+	Stats.current.fire_rate += 4.0
 
-func shield_upgrade(value: int):
-	if value > 0:
-		Stats.shield_size += (0.5 if Stats.shield_size > 0 else 1.0)
-	else:
-		Stats.shield_size -= (0.5 if Stats.shield_size < 1 else 1.0)
+func shield_upgrade():
+	Stats.current.shield_size += (0.5 if Stats.current.shield_size > 0 else 1.0)
 
-func helper_upgrade(value: int):
-	Stats.helper_amount += 1 * value
+func helper_upgrade():
+	Stats.current.helper_amount += 1
 
-func ring_upgrade(value: int):
-	if value > 0:
-		Stats.damage_ring_size += (0.5 if Stats.damage_ring_size > 0 else 1.0)
-	else:
-		Stats.damage_ring_size -= (0.5 if Stats.damage_ring_size > 1 else 1.0)
+func ring_upgrade():
+	Stats.current.damage_ring_size += (0.5 if Stats.current.damage_ring_size > 0 else 1.0)

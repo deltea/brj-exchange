@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhxegk7vqq8y4"]
+[gd_scene load_steps=3 format=3 uid="uid://bhxegk7vqq8y4"]
 
 [ext_resource type="Script" path="res://autoloads/Stats.gd" id="1_ba4qq"]
+[ext_resource type="Resource" uid="uid://cq1u84jovrqi5" path="res://stats/default_stats.tres" id="2_hemiu"]
 
 [node name="Stats" type="Node"]
 script = ExtResource("1_ba4qq")
+default_stats = ExtResource("2_hemiu")

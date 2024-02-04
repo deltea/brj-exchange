@@ -27,6 +27,7 @@ func _on_toggled(value: bool) -> void:
 		Events.exchange_card_deselect.emit(upgrade)
 
 func _on_mouse_entered() -> void:
+	AudioManager.play_sound(AudioManager.card_hover)
 	target_y = -10
 	Events.card_hover.emit(true, upgrade)
 

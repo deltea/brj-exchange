@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var target_position = Globals.mouse.position + Vector2.ONE * offset_amount
-	if Globals.mouse.position.x > get_viewport_rect().size.x / 2:# - size.x:
+	if Globals.mouse.position.x > get_viewport_rect().size.x / 2:
 		target_position.x -= offset_amount + size.x
 	position = position.lerp(target_position, mouse_follow_speed * delta)
 

@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 func take_damage(damage: float = 0):
 	flash()
 
-	health -= damage if damage > 0 else Stats.bullet_damage
+	health -= damage if damage > 0 else Stats.current.bullet_damage
 	if health < 0: die()
 
 func die():
