@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5bhqrv0qsgwp"]
+[gd_scene load_steps=16 format=3 uid="uid://c5bhqrv0qsgwp"]
 
 [ext_resource type="Script" path="res://autoloads/audio_manager.gd" id="1_5swth"]
 [ext_resource type="AudioStream" uid="uid://cav00xkriwakt" path="res://assets/sfx/shoot.tres" id="2_4vcnm"]
@@ -12,11 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://xyv8xb34qgf0" path="res://assets/sfx/shield.wav" id="8_mogaq"]
 [ext_resource type="AudioStream" uid="uid://cvo64cxu7vwpy" path="res://assets/sfx/dash.wav" id="9_uv8hn"]
 [ext_resource type="AudioStream" uid="uid://dpq86cvbgebxm" path="res://assets/sfx/helper.wav" id="10_mpwjj"]
-[ext_resource type="AudioStream" uid="uid://b0ildnf0mvfkb" path="res://assets/sfx/wind.wav" id="11_ypbp5"]
 [ext_resource type="AudioStream" uid="uid://ehsyxxintae8" path="res://assets/sfx/win.wav" id="12_ivruf"]
 [ext_resource type="AudioStream" uid="uid://c62dng7mp851o" path="res://assets/sfx/select.wav" id="13_pf68g"]
 [ext_resource type="AudioStream" uid="uid://13lgsaq55m46" path="res://assets/sfx/card-hover.wav" id="14_3fe4c"]
-[ext_resource type="AudioStream" uid="uid://ckabpvqpgry4a" path="res://assets/sfx/score.wav" id="15_5c4ig"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_5swth")
@@ -29,11 +27,9 @@ fireball_small = ExtResource("7_5c5sb")
 shield = ExtResource("8_mogaq")
 dash = ExtResource("9_uv8hn")
 helper = ExtResource("10_mpwjj")
-wind = ExtResource("11_ypbp5")
 win = ExtResource("12_ivruf")
 select = ExtResource("13_pf68g")
 card_hover = ExtResource("14_3fe4c")
-score = ExtResource("15_5c4ig")
 
 [node name="MelodyStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_m4ake")

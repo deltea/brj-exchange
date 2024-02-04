@@ -18,7 +18,7 @@ extends CanvasLayer
 var card_scene = preload("res://ui/card.tscn")
 
 func _ready() -> void:
-	AudioManager.play_sound(AudioManager.shield)
+	AudioManager.play_sound(AudioManager.win)
 	if len(Scoring.boss_times) < 4: return
 
 	times_column.visible = false
