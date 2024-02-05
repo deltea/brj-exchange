@@ -109,7 +109,7 @@ theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/normal_font = ExtResource("7_u2y63")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "[wave]EXCHANGE EXISTING CARDS[/wave]"
+text = "[wave]EXCHANGE YOUR CARDS[/wave]"
 fit_content = true
 
 [node name="Cost" type="HBoxContainer" parent="ExistingPanel"]
@@ -201,7 +201,7 @@ theme_override_fonts/normal_font = ExtResource("10_vxpq1")
 theme_override_fonts/italics_font = ExtResource("9_k0tvl")
 bbcode_enabled = true
 text = "[center][i]You have 3   to spend[/i]
- Any extra   will counted as a bonus in scoring"
+ Any extra   will be counted as a bonus in scoring"
 
 [node name="CostIcon" type="TextureRect" parent="ShopPanel"]
 offset_left = 240.0

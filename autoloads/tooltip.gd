@@ -28,7 +28,7 @@ func _on_card_hover(value: bool, upgrade: UpgradeResource, cannot_afford: bool):
 	if value:
 		var text = ""
 
-		if cannot_afford: text = "\n\n[center][wave][i]You canot afford this card.[/i][/wave][/center]"
+		if cannot_afford: text = "\n\n[center][wave][i]You cannot afford this card[/i][/wave][/center]"
 		else: text = "[wave][i]%s[/i][/wave]\n\n%s" % [upgrade.name, upgrade.description]
 
 		show_tooltip(text)

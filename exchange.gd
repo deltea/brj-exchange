@@ -77,7 +77,7 @@ func create_shop_cards():
 		shop_cards_row.add_child(card)
 
 func update_cost_label():
-	cost_label.text = "[center][i]You have %s   to spend[/i]\n Any extra   will counted as a bonus in scoring" % get_selected_existing_cards_cost()
+	cost_label.text = "[center][i]You have %s   to spend[/i]\n Any extra   will be counted as a bonus in scoring" % get_selected_existing_cards_cost()
 
 func finish():
 	# Disabled all cards
