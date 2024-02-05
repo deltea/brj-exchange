@@ -111,11 +111,15 @@ offset_bottom = 270.0
 mouse_filter = 1
 
 [node name="Instructions" type="RichTextLabel" parent="ExistingPanel"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 26.0
-offset_right = 416.0
-offset_bottom = 58.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_top = 24.0
+offset_right = 144.0
+offset_bottom = 56.0
+grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0.133333, 0.133333, 0.219608, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 6
@@ -125,14 +129,6 @@ theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[wave]EXCHANGE YOUR CARDS[/wave]"
 fit_content = true
-
-[node name="Cost" type="HBoxContainer" parent="ExistingPanel"]
-visible = false
-layout_mode = 0
-offset_top = 66.0
-offset_right = 480.0
-offset_bottom = 72.0
-alignment = 1
 
 [node name="ContinueButton" type="TextureButton" parent="ExistingPanel"]
 layout_mode = 1
@@ -164,15 +160,38 @@ shadow_color = Color(0.133333, 0.133333, 0.219608, 1)
 
 [node name="VerticalCenter" type="VBoxContainer" parent="ExistingPanel"]
 layout_mode = 0
-offset_top = 81.0
+offset_top = 88.0
 offset_right = 480.0
-offset_bottom = 189.0
+offset_bottom = 196.0
 pivot_offset = Vector2(240, 54)
 alignment = 1
 
 [node name="ExistingCards" type="HBoxContainer" parent="ExistingPanel/VerticalCenter"]
 layout_mode = 2
 alignment = 1
+
+[node name="CombineText" type="RichTextLabel" parent="ExistingPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -148.0
+offset_top = 56.0
+offset_right = 152.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("10_vxpq1")
+bbcode_enabled = true
+text = "You can select multiple cards to combine   values"
+
+[node name="CostIcon" type="TextureRect" parent="ExistingPanel"]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 61.0
+offset_right = 343.0
+offset_bottom = 67.0
+texture = ExtResource("11_2foes")
+stretch_mode = 3
 
 [node name="ShopPanel" type="Control" parent="."]
 layout_mode = 3
@@ -183,11 +202,15 @@ offset_bottom = 540.0
 mouse_filter = 1
 
 [node name="Instructions" type="RichTextLabel" parent="ShopPanel"]
-layout_mode = 0
-offset_left = 136.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -116.0
 offset_top = 24.0
-offset_right = 368.0
+offset_right = 116.0
 offset_bottom = 53.0
+grow_horizontal = 2
 theme_override_colors/font_shadow_color = Color(0.133333, 0.133333, 0.219608, 1)
 theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 6
@@ -235,9 +258,9 @@ stretch_mode = 2
 
 [node name="VerticalCenter" type="VBoxContainer" parent="ShopPanel"]
 layout_mode = 0
-offset_top = 81.0
+offset_top = 74.0
 offset_right = 480.0
-offset_bottom = 189.0
+offset_bottom = 182.0
 pivot_offset = Vector2(240, 54)
 alignment = 1
 
