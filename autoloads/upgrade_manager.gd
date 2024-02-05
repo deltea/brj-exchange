@@ -17,10 +17,15 @@ enum UPGRADES {
 
 var current_upgrades: Array[UpgradeResource] = []
 
-func get_random_upgrades(amount: int) -> Array[UpgradeResource]:
+func get_random_upgrades(amount: int, cost: int = 0) -> Array[UpgradeResource]:
 	var result: Array[UpgradeResource] = []
-	for i in range(amount):
-		result.append(upgrades.pick_random())
+	if cost > 0:
+		while len(result) < amount:
+			var random_upgrade = upgrades.pick_random()
+			if random_upgrade.cost == cost: result.push_back(random_upgrade)
+	else:
+		for i in range(amount):
+			result.push_back(upgrades.pick_random())
 	return result
 
 func activate_upgrade(upgrade: UPGRADES):

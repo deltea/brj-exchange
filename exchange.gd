@@ -8,8 +8,6 @@ enum STATE {
 }
 
 @export var tween_speed = 6
-@export var exchange_panel_y = 270.0
-@export var current_panel_y = -270.0
 
 @onready var existing_panel := $ExistingPanel
 @onready var shop_panel := $ShopPanel
@@ -17,6 +15,7 @@ enum STATE {
 @onready var shop_cards_row := $ShopPanel/VerticalCenter/ShopCards
 @onready var continue_button := $ExistingPanel/ContinueButton
 @onready var exchange_text := $ExchangeText
+@onready var cost_label := $ShopPanel/CostLabel
 
 var card_scene = preload("res://ui/card.tscn")
 var state = STATE.EXCHANGE
@@ -69,13 +68,16 @@ func update_continue_button():
 func create_shop_cards():
 	# Random cards in the shop
 	var shop_upgrade_num = 5
-	var random_upgrades = UpgradeManager.get_random_upgrades(shop_upgrade_num)
-	for i in range(shop_upgrade_num):
+	var random_upgrades = UpgradeManager.get_random_upgrades(shop_upgrade_num - 1)
+	random_upgrades.push_back((UpgradeManager.get_random_upgrades(1, 1)[0]))
+	for upgrade in random_upgrades:
 		var card = card_scene.instantiate() as Card
-		var upgrade = random_upgrades[i]
 		card.upgrade = upgrade
 		card.is_disabled = get_selected_existing_cards_cost() < upgrade.cost
 		shop_cards_row.add_child(card)
+
+func update_cost_label():
+	cost_label.text = "[center][i]You have %s   to spend[/i]\n Any extra   will counted as a bonus in scoring" % get_selected_existing_cards_cost()
 
 func finish():
 	# Disabled all cards
@@ -133,4 +135,5 @@ func _on_card_deselect(upgrade: UpgradeResource):
 
 func _on_continue_button_pressed() -> void:
 	state = STATE.SHOP
+	update_cost_label()
 	create_shop_cards()

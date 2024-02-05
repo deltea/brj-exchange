@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bxkfboqgr7sje"]
+[gd_scene load_steps=19 format=3 uid="uid://bxkfboqgr7sje"]
 
 [ext_resource type="Script" path="res://exchange.gd" id="1_1gvsp"]
 [ext_resource type="Shader" path="res://shaders/swirl_background.gdshader" id="2_6nt6n"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bg0uht2loig6r" path="res://assets/ui/continue-button-pressed.png" id="8_p41eh"]
 [ext_resource type="FontFile" uid="uid://corh68u8se1oo" path="res://assets/fonts/grapesoda.ttf" id="9_k0tvl"]
 [ext_resource type="PackedScene" uid="uid://8f3h1q5epi06" path="res://utils/drop_shadow_ui.tscn" id="10_nmmru"]
+[ext_resource type="FontFile" uid="uid://dw82ff1gmdlec" path="res://assets/fonts/monogram.ttf" id="10_vxpq1"]
+[ext_resource type="Texture2D" uid="uid://d0le8uuwcsac" path="res://assets/ui/cost.png" id="11_2foes"]
 [ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="11_dfoib"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_m3le3"]
@@ -50,7 +52,7 @@ shader_parameter/arms = 3
 shader_parameter/size = 20.0
 shader_parameter/noise = SubResource("NoiseTexture2D_fqqdl")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lui1x"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtyvv"]
 resource_local_to_scene = true
 shader = ExtResource("11_dfoib")
 shader_parameter/enabled = true
@@ -70,6 +72,22 @@ z_index = -30
 material = SubResource("ShaderMaterial_1q4bi")
 offset_right = 480.0
 offset_bottom = 270.0
+
+[node name="ExchangeText" type="RichTextLabel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -8.0
+offset_right = -240.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("9_k0tvl")
+bbcode_enabled = true
+text = "[wave]EXCHANGE![/wave]"
 
 [node name="ExistingPanel" type="Control" parent="."]
 layout_mode = 3
@@ -96,6 +114,7 @@ fit_content = true
 
 [node name="Cost" type="HBoxContainer" parent="ExistingPanel"]
 visible = false
+layout_mode = 0
 offset_top = 66.0
 offset_right = 480.0
 offset_bottom = 72.0
@@ -120,7 +139,7 @@ texture_hover = ExtResource("8_p41eh")
 texture_disabled = ExtResource("8_gwpa5")
 
 [node name="DropShadowUI" parent="ExistingPanel/ContinueButton" instance=ExtResource("10_nmmru")]
-material = SubResource("ShaderMaterial_lui1x")
+material = SubResource("ShaderMaterial_xtyvv")
 layout_mode = 0
 offset_left = 0.0
 offset_top = 0.0
@@ -165,6 +184,41 @@ bbcode_enabled = true
 text = "[wave]Choose one card[/wave]"
 fit_content = true
 
+[node name="CostLabel" type="RichTextLabel" parent="ShopPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -62.0
+offset_right = 120.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("10_vxpq1")
+theme_override_fonts/italics_font = ExtResource("9_k0tvl")
+bbcode_enabled = true
+text = "[center][i]You have 3   to spend[/i]
+ Any extra   will counted as a bonus in scoring"
+
+[node name="CostIcon" type="TextureRect" parent="ShopPanel"]
+offset_left = 240.0
+offset_top = 213.0
+offset_right = 246.0
+offset_bottom = 219.0
+texture = ExtResource("11_2foes")
+stretch_mode = 2
+
+[node name="CostIcon2" type="TextureRect" parent="ShopPanel"]
+offset_left = 187.0
+offset_top = 229.0
+offset_right = 193.0
+offset_bottom = 235.0
+texture = ExtResource("11_2foes")
+stretch_mode = 2
+
 [node name="VerticalCenter" type="VBoxContainer" parent="ShopPanel"]
 layout_mode = 0
 offset_top = 81.0
@@ -176,21 +230,5 @@ alignment = 1
 [node name="ShopCards" type="HBoxContainer" parent="ShopPanel/VerticalCenter"]
 layout_mode = 2
 alignment = 1
-
-[node name="ExchangeText" type="RichTextLabel" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -8.0
-offset_right = -240.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/normal_font = ExtResource("9_k0tvl")
-bbcode_enabled = true
-text = "[wave]EXCHANGE![/wave]"
 
 [connection signal="pressed" from="ExistingPanel/ContinueButton" to="." method="_on_continue_button_pressed"]

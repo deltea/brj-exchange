@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://g77clxgyr6ah" path="res://assets/ui/card-border.png" id="6_o7hli"]
 [ext_resource type="Texture2D" uid="uid://bqlf1nh12ossg" path="res://assets/ui/new-label.png" id="7_6b30a"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d6bl2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_btexd"]
 resource_local_to_scene = true
 shader = ExtResource("5_1jqbw")
 shader_parameter/enabled = true
@@ -26,7 +26,7 @@ texture_normal = ExtResource("1_m1ron")
 script = ExtResource("1_rf507")
 
 [node name="DropShadowUI" parent="." instance=ExtResource("3_u7v7r")]
-material = SubResource("ShaderMaterial_d6bl2")
+material = SubResource("ShaderMaterial_btexd")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
