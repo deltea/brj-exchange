@@ -62,10 +62,11 @@ func ricochet_upgrade():
 	Stats.current.bullet_bounce += 1
 
 func strength_upgrade():
-	Stats.current.run_speed -= 30
+	Stats.current.run_speed -= 20
 	Stats.current.bullet_speed += 50
 	Stats.current.bullet_spread += 5.0
 	Stats.current.fire_rate += 4.0
+	Stats.current.bullet_damage += 0.1
 
 func shield_upgrade():
 	Stats.current.shield_size += (0.5 if Stats.current.shield_size > 0 else 1.0)

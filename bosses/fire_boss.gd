@@ -53,7 +53,7 @@ func fireballs_state():
 		await move(random_position, 1.5)
 		await Globals.wait(0.2)
 
-		for x in range(3):
+		for x in range(5 if is_second_phase() else 3):
 			fire_fireball()
 			await Globals.wait(0.5)
 
@@ -63,7 +63,7 @@ func bullet_ring_state():
 	await move(Vector2.ZERO, 2.0)
 
 	var offset = 0
-	for i in range(3):
+	for i in range(5 if is_second_phase() else 3):
 		AudioManager.play_sound(AudioManager.fireball)
 		for x in range(bullet_ring_num):
 			sprite.scale = Vector2.ONE * 1.5
@@ -123,7 +123,7 @@ func bullet_spiral_state():
 	next_state()
 
 func bullet_corners_state():
-	for i in range(4):
+	for i in range(5 if is_second_phase() else 4):
 		var random_position = fireball_positions.pick_random().position
 		await move(random_position, 1.0)
 		sprite.scale = Vector2.ONE * 1.5
@@ -131,7 +131,7 @@ func bullet_corners_state():
 		Globals.camera.shake(0.1, 0.5)
 
 		var angle = rad_to_deg((get_angle_to(Globals.player.position))) - ((bullet_corners_num - 1) * bullet_corners_spread / 2.0)
-		for x in range(bullet_corners_num):
+		for x in range(7 if is_second_phase() else bullet_corners_num):
 			var bullet = bullet_scene.instantiate() as EnemyBullet
 			bullet.position = position
 			bullet.rotation_degrees = angle + x * bullet_corners_spread
@@ -155,7 +155,7 @@ func fire_fireball():
 
 func move(target_position: Vector2, duration: float):
 	var tween = get_tree().create_tween().set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, "position", target_position, duration)
+	tween.tween_property(self, "position", target_position, duration * 0.8 if is_second_phase() else duration)
 	return tween.finished
 
 func next_state():

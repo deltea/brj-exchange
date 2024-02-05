@@ -49,8 +49,8 @@ func _process(delta: float) -> void:
 func bullet_curve_state():
 	await move(Vector2(0, -104), 1.0)
 
-	for i in range(bullet_curve_num):
-		await Globals.wait(0.5)
+	for i in range(15 if is_second_phase() else bullet_curve_num):
+		await Globals.wait(0.35 if is_second_phase() else 0.5)
 
 		var bullet = curvy_bullet_scene.instantiate() as CurvyBullet
 		bullet.position = Vector2(448, 0)
@@ -73,8 +73,8 @@ func bullet_wind_state():
 		await move(wind_particles.position / 2, 1.5)
 		hand_position = -wind_particles.position.normalized() * 6
 
-		for i in range(wind_bullet_num):
-			await Globals.wait(0.05)
+		for i in range(40 if is_second_phase() else wind_bullet_num):
+			await Globals.wait(0.04 if is_second_phase() else 0.05)
 
 			var bullet = bullet_scene.instantiate() as EnemyBullet
 			bullet.position.x = wind_particles.position.x
@@ -83,7 +83,7 @@ func bullet_wind_state():
 			bullet.speed = wind_bullet_speed
 			Globals.world.add_child(bullet)
 
-		await Globals.wait(3.0)
+		await Globals.wait(2.0 if is_second_phase() else 3.0)
 
 		wind_particles.position.x = -wind_particles.position.x
 		wind_particles.rotation_degrees = 180
@@ -108,8 +108,8 @@ func cloud_puffs_state():
 func tiles_state():
 	await move(Vector2(0, 104), 1.5)
 
-	for i in range(tiles_num):
-		await Globals.wait(tiles_delay)
+	for i in range(60 if is_second_phase() else tiles_num):
+		await Globals.wait(0.06 if is_second_phase() else tiles_delay)
 
 		var tile = tile_scene.instantiate()
 		var random_x = randf_range(tiles_position_min.x, tiles_position_max.x)

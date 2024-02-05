@@ -25,7 +25,7 @@ enum STATE {
 @export var bullet_spiral_speed = 100
 @export var fishies_delay = 0.5
 @export var fishies_num = 50
-@export var fishies_speed = 200
+@export var fishies_speed = 150
 @export var fishies_min = Vector2(-240, -240)
 @export var fishies_max = Vector2(240, 240)
 
@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if state_index == STATE.BULLET_SPIRAL:
 		look_at(Vector2.ZERO)
-		position += Vector2.from_angle(rotation + PI / 2) * bullet_spiral_move_speed * delta
+		position += Vector2.from_angle(rotation + PI / 2) * (300 if is_second_phase() else bullet_spiral_move_speed) * delta
 
 # Attack methods
 func cannon_state():
@@ -62,11 +62,14 @@ func cannon_state():
 		move(random_pos, cannon_delay)
 		await look(random_pos.angle() + PI, cannon_delay)
 
-		var bullet = big_bullet_scene.instantiate() as WaterBigBullet
-		bullet.position = random_pos
-		bullet.rotation = rotation
-		bullet.speed = cannon_bullet_speed
-		Globals.world.add_child(bullet)
+		for x in (2 if is_second_phase() else 1):
+			var bullet = big_bullet_scene.instantiate() as WaterBigBullet
+			bullet.position = random_pos
+			bullet.rotation = rotation
+			bullet.speed = 200 if is_second_phase() else cannon_bullet_speed
+			Globals.world.add_child(bullet)
+
+			await Globals.wait(0.2 if is_second_phase() else 0.0)
 
 	next_state()
 
@@ -105,7 +108,7 @@ func fishies_state():
 		var fish = fish_scene.instantiate()
 		fish.position = random_pos
 		fish.rotation = direction.angle()
-		fish.speed = fishies_speed
+		fish.speed = 200 if is_second_phase() else fishies_speed
 		Globals.world.add_child(fish)
 
 		await Globals.wait(fishies_delay)

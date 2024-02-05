@@ -45,7 +45,7 @@ func bullet_explosion_state():
 		velocity = Vector2(0.5, 0.5)
 		await Globals.wait(0.5)
 
-		for i in bullet_explosion_num:
+		for i in 6 if is_second_phase() else bullet_explosion_num:
 			var bullet = bouncy_bullet_scene.instantiate() as EnemyBullet
 			bullet.position = position
 			bullet.rotation = PI * 2 / bullet_explosion_num * i
@@ -78,7 +78,7 @@ func earthquake_state():
 
 	Globals.camera.shake(earthquake_bullet_num * earthquake_bullet_delay, 1)
 
-	for i in range(earthquake_bullet_num):
+	for i in range(15 if is_second_phase() else earthquake_bullet_num):
 		var bullet = exploding_bullet_scene.instantiate() as EnemyBullet
 		var path_length = earthquake_path.curve.get_baked_length()
 		bullet.position = earthquake_path.curve.sample_baked(randf_range(0, path_length))
@@ -86,7 +86,7 @@ func earthquake_state():
 		bullet.speed = 0
 		Globals.world.add_child(bullet)
 
-		await Globals.wait(earthquake_bullet_delay)
+		await Globals.wait(0.8 if is_second_phase() else earthquake_bullet_delay)
 
 	next_state()
 

@@ -19,10 +19,15 @@ func take_damage(damage: float = 0):
 	AudioManager.play_sound(AudioManager.hit)
 	flash()
 
+	var prev_health = health
 	health -= damage if damage > 0 else Stats.current.bullet_damage
 	Globals.canvas.boss_health.value = 100.0 / max_health * health
 	Globals.prev_boss_health = 100.0 / max_health * health
 	if health < 0: die()
+
+	var half_health = max_health / 2.0
+	if prev_health > half_health and health <= half_health:
+		Globals.canvas.set_boss_name("Phase 2")
 
 func die():
 	AudioManager.play_sound(AudioManager.explosion)
@@ -42,3 +47,6 @@ func flash():
 		$Sprite.material.set_shader_parameter("enabled", true)
 		await Globals.wait(0.2)
 		$Sprite.material.set_shader_parameter("enabled", false)
+
+func is_second_phase():
+	return health < max_health / 2.0
