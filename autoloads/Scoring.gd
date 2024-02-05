@@ -1,6 +1,6 @@
 extends Node
 
-var boss_times: Array[float] = []
+var boss_times: Array[float] = [20, 20, 20, 20]
 var boss_timer = 0.0
 var total_health_lost = 0.0
 var extra_cost_bonus = 0

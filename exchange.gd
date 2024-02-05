@@ -81,7 +81,7 @@ func create_shop_cards():
 		shop_cards_row.add_child(card)
 
 func update_cost_label():
-	cost_label.text = "[center][i]You have %s   to spend[/i]\n Any extra   will be counted as a bonus in scoring" % get_selected_existing_cards_cost()
+	cost_label.text = "[center][i]You have %s   to spend[/i]\n Any extra   will give bonus points in scoring" % get_selected_existing_cards_cost()
 
 func finish():
 	# Disabled all cards
@@ -102,7 +102,7 @@ func finish():
 		var extra = get_selected_existing_cards_cost() - shop_upgrade_selected.cost
 		Scoring.extra_cost_bonus += extra
 		exchange_label_cost_icon.visible = true
-		text += "\n[i]You still had %s   left over, and will counted as a bonus in scoring" % extra
+		text += "\n[i]You still had %s   left over, and will give bonus points in scoring" % extra
 	exchange_text.text = text
 
 	# Animation stuff

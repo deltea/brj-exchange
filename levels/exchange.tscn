@@ -92,13 +92,13 @@ theme_override_fonts/normal_font = ExtResource("9_k0tvl")
 theme_override_fonts/italics_font = ExtResource("10_vxpq1")
 bbcode_enabled = true
 text = "[center][wave]EXCHANGE![/wave]
-[i]You still had 2   left over, and will counted as a bonus in scoring"
+[i]You still had 2   left over, and will give bonus points in scoring"
 
 [node name="CostIcon" type="TextureRect" parent="ExchangeLabel"]
 layout_mode = 1
-offset_left = 131.0
+offset_left = 135.0
 offset_top = 20.5
-offset_right = 137.0
+offset_right = 141.0
 offset_bottom = 26.5
 texture = ExtResource("11_2foes")
 stretch_mode = 3
@@ -186,9 +186,9 @@ text = "You can select multiple cards to combine   values"
 
 [node name="CostIcon" type="TextureRect" parent="ExistingPanel"]
 layout_mode = 0
-offset_left = 337.0
+offset_left = 338.0
 offset_top = 61.0
-offset_right = 343.0
+offset_right = 344.0
 offset_bottom = 67.0
 texture = ExtResource("11_2foes")
 stretch_mode = 3
@@ -228,9 +228,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -124.0
+offset_left = -240.0
 offset_top = -62.0
-offset_right = 120.0
+offset_right = 240.0
 offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -238,20 +238,20 @@ theme_override_fonts/normal_font = ExtResource("10_vxpq1")
 theme_override_fonts/italics_font = ExtResource("9_k0tvl")
 bbcode_enabled = true
 text = "[center][i]You have 3   to spend[/i]
- Any extra   will be counted as a bonus in scoring"
+ Any extra   you don't use will give bonus points in scoring"
 
 [node name="CostIcon" type="TextureRect" parent="ShopPanel"]
-offset_left = 240.0
+offset_left = 243.0
 offset_top = 213.0
-offset_right = 246.0
+offset_right = 249.0
 offset_bottom = 219.0
 texture = ExtResource("11_2foes")
 stretch_mode = 2
 
 [node name="CostIcon2" type="TextureRect" parent="ShopPanel"]
-offset_left = 187.0
+offset_left = 126.0
 offset_top = 229.0
-offset_right = 193.0
+offset_right = 132.0
 offset_bottom = 235.0
 texture = ExtResource("11_2foes")
 stretch_mode = 2
