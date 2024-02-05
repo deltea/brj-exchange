@@ -173,7 +173,7 @@ label_settings = SubResource("LabelSettings_yamn7")
 [node name="BossTime" type="RichTextLabel" parent="."]
 offset_left = 224.0
 offset_top = 49.0
-offset_right = 369.0
+offset_right = 384.0
 offset_bottom = 69.0
 theme_override_fonts/normal_font = ExtResource("12_p1o56")
 theme_override_fonts/italics_font = ExtResource("11_diyfj")
@@ -183,7 +183,7 @@ text = "Boss Total Time:[i] +0s"
 [node name="HealthPenalty" type="RichTextLabel" parent="."]
 offset_left = 224.0
 offset_top = 69.0
-offset_right = 362.0
+offset_right = 384.0
 offset_bottom = 89.0
 theme_override_fonts/normal_font = ExtResource("12_p1o56")
 theme_override_fonts/italics_font = ExtResource("11_diyfj")
@@ -193,7 +193,7 @@ text = "Health Penalty:[i] +0s"
 [node name="ExtraCostBonus" type="RichTextLabel" parent="."]
 offset_left = 224.0
 offset_top = 89.0
-offset_right = 362.0
+offset_right = 376.0
 offset_bottom = 109.0
 theme_override_fonts/normal_font = ExtResource("12_p1o56")
 theme_override_fonts/italics_font = ExtResource("11_diyfj")

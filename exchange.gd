@@ -81,7 +81,7 @@ func create_shop_cards():
 		shop_cards_row.add_child(card)
 
 func update_cost_label():
-	cost_label.text = "[center][i]You have %s   to spend[/i]\n Any extra   will give bonus points in scoring" % get_selected_existing_cards_cost()
+	cost_label.text = "[center][i]You have %s   to spend[/i]\n Any leftover   will give bonus points in scoring" % get_selected_existing_cards_cost()
 
 func finish():
 	# Disabled all cards
@@ -127,7 +127,7 @@ func finish():
 			shop_cards_row.add_child(card)
 		)
 
-	tween.chain().tween_callback(SceneManager.next_level).set_delay(1.0)
+	tween.chain().tween_callback(SceneManager.next_level).set_delay(2.0)
 
 func _on_card_select(upgrade: UpgradeResource):
 	if state == STATE.EXCHANGE:

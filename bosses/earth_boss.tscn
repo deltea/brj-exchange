@@ -16,6 +16,8 @@ movement_speed = 200
 rotation_speed = 200
 bullet_explosion_num = 5
 bullet_explosion_speed = 150
+earthquake_bullet_num = 10
+earthquake_bullet_delay = 1.0
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2(0, -4)
