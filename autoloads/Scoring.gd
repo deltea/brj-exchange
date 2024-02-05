@@ -3,6 +3,7 @@ extends Node
 var boss_times: Array[float] = []
 var boss_timer = 0.0
 var total_health_lost = 0.0
+var extra_cost_bonus = 0
 
 func _process(delta: float) -> void:
 	boss_timer += delta

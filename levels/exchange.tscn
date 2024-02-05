@@ -73,21 +73,35 @@ material = SubResource("ShaderMaterial_1q4bi")
 offset_right = 480.0
 offset_bottom = 270.0
 
-[node name="ExchangeText" type="RichTextLabel" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
+[node name="ExchangeLabel" type="Control" parent="."]
+z_index = 20
+layout_mode = 3
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -8.0
-offset_right = -240.0
-offset_bottom = 8.0
-grow_horizontal = 2
+offset_left = -480.0
+offset_top = -16.5
+offset_bottom = 16.5
 grow_vertical = 2
+
+[node name="ExchangeText" type="RichTextLabel" parent="ExchangeLabel"]
+layout_mode = 1
+offset_right = 480.0
+offset_bottom = 33.0
 theme_override_fonts/normal_font = ExtResource("9_k0tvl")
+theme_override_fonts/italics_font = ExtResource("10_vxpq1")
 bbcode_enabled = true
-text = "[wave]EXCHANGE![/wave]"
+text = "[center][wave]EXCHANGE![/wave]
+[i]You still had 2   left over, and will counted as a bonus in scoring"
+
+[node name="CostIcon" type="TextureRect" parent="ExchangeLabel"]
+layout_mode = 1
+offset_left = 131.0
+offset_top = 20.5
+offset_right = 137.0
+offset_bottom = 26.5
+texture = ExtResource("11_2foes")
+stretch_mode = 3
 
 [node name="ExistingPanel" type="Control" parent="."]
 layout_mode = 3

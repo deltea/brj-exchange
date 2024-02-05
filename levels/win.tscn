@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dceg3wi5s5edx"]
+[gd_scene load_steps=23 format=3 uid="uid://dceg3wi5s5edx"]
 
 [ext_resource type="Script" path="res://win.gd" id="1_vt0dq"]
 [ext_resource type="Shader" path="res://shaders/scrolling_background.gdshader" id="2_6bgh0"]
@@ -13,6 +13,7 @@
 [ext_resource type="FontFile" uid="uid://dw82ff1gmdlec" path="res://assets/fonts/monogram.ttf" id="11_diyfj"]
 [ext_resource type="FontFile" uid="uid://corh68u8se1oo" path="res://assets/fonts/grapesoda.ttf" id="12_p1o56"]
 [ext_resource type="Texture2D" uid="uid://da1j27ssolc2m" path="res://assets/ui/dotted-line.png" id="13_vbtjq"]
+[ext_resource type="Texture2D" uid="uid://d0le8uuwcsac" path="res://assets/ui/cost.png" id="14_cdpss"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_k4mol"]
 noise_type = 0
@@ -160,25 +161,42 @@ label_settings = SubResource("LabelSettings_yamn7")
 
 [node name="BossTime" type="Label" parent="."]
 offset_left = 224.0
-offset_top = 52.0
+offset_top = 44.0
 offset_right = 369.0
-offset_bottom = 71.0
+offset_bottom = 64.0
 text = "Boss Total Time: +0s"
 label_settings = SubResource("LabelSettings_prit0")
 vertical_alignment = 1
 
 [node name="HealthPenalty" type="Label" parent="."]
 offset_left = 224.0
-offset_top = 71.0
+offset_top = 64.0
 offset_right = 362.0
-offset_bottom = 90.0
+offset_bottom = 84.0
 text = "Health Penalty: +0s"
 label_settings = SubResource("LabelSettings_prit0")
 vertical_alignment = 1
 
+[node name="ExtraCostBonus" type="Label" parent="."]
+offset_left = 224.0
+offset_top = 84.0
+offset_right = 362.0
+offset_bottom = 104.0
+text = "Extra   Bonus: +0s"
+label_settings = SubResource("LabelSettings_prit0")
+vertical_alignment = 1
+
+[node name="CostIcon" type="TextureRect" parent="."]
+offset_left = 265.0
+offset_top = 91.0
+offset_right = 271.0
+offset_bottom = 97.0
+texture = ExtResource("14_cdpss")
+stretch_mode = 3
+
 [node name="DottedLine" type="Sprite2D" parent="."]
 texture_repeat = 2
-position = Vector2(223, 101)
+position = Vector2(223, 112)
 texture = ExtResource("13_vbtjq")
 centered = false
 region_enabled = true
@@ -186,9 +204,9 @@ region_rect = Rect2(0, 0, 150, 4)
 
 [node name="TotalTime" type="Label" parent="."]
 offset_left = 224.0
-offset_top = 116.0
+offset_top = 125.0
 offset_right = 362.0
-offset_bottom = 135.0
+offset_bottom = 145.0
 text = "Total Time: 0s"
 label_settings = SubResource("LabelSettings_prit0")
 vertical_alignment = 1

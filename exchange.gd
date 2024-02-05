@@ -14,7 +14,9 @@ enum STATE {
 @onready var existing_cards_row := $ExistingPanel/VerticalCenter/ExistingCards
 @onready var shop_cards_row := $ShopPanel/VerticalCenter/ShopCards
 @onready var continue_button := $ExistingPanel/ContinueButton
-@onready var exchange_text := $ExchangeText
+@onready var exchange_label := $ExchangeLabel
+@onready var exchange_text := $ExchangeLabel/ExchangeText
+@onready var exchange_label_cost_icon := $ExchangeLabel/CostIcon
 @onready var cost_label := $ShopPanel/CostLabel
 
 var card_scene = preload("res://ui/card.tscn")
@@ -38,6 +40,8 @@ func _ready() -> void:
 
 	Events.card_select.connect(_on_card_select)
 	Events.card_deselect.connect(_on_card_deselect)
+
+	exchange_label_cost_icon.visible = false
 
 func _process(delta: float) -> void:
 	var existing_panel_target_y = 0.0 if state == STATE.EXCHANGE else -270.0
@@ -92,13 +96,22 @@ func finish():
 
 	UpgradeManager.activate_all_upgrades()
 
+	# Extra cost bonus
+	var text = "[center][wave]EXCHANGE![/wave]"
+	if get_selected_existing_cards_cost() > shop_upgrade_selected.cost:
+		var extra = get_selected_existing_cards_cost() - shop_upgrade_selected.cost
+		Scoring.extra_cost_bonus += extra
+		exchange_label_cost_icon.visible = true
+		text += "\n[i]You still had %s   left over, and will counted as a bonus in scoring" % extra
+	exchange_text.text = text
+
 	# Animation stuff
 	var tween = get_tree().create_tween().set_parallel().set_trans(Tween.TRANS_BACK)
 
 	tween.tween_interval(0.5)
-	tween.chain().tween_property($ExistingPanel/VerticalCenter, "global_position", Vector2(0, 56 - 38), 1.0)
-	tween.tween_property($ShopPanel/VerticalCenter, "global_position", Vector2(0, 214 - 76), 1.0)
-	tween.tween_property(exchange_text, "global_position", Vector2(200, 127), 1.0)
+	tween.chain().tween_property($ExistingPanel/VerticalCenter, "global_position", Vector2(0, 48 - 38), 1.0)
+	tween.tween_property($ShopPanel/VerticalCenter, "global_position", Vector2(0, 222 - 76), 1.0)
+	tween.tween_property(exchange_label, "global_position", Vector2(0, exchange_label.position.y), 1.0)
 
 	tween.tween_interval(2.0)
 	var shop_card = get_selected_shop_card()

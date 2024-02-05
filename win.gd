@@ -10,6 +10,7 @@ extends CanvasLayer
 
 @onready var boss_total_time := $BossTime
 @onready var health_penalty := $HealthPenalty
+@onready var extra_cost_bonus := $ExtraCostBonus
 @onready var total_time_label := $TotalTime
 @onready var dotted_line := $DottedLine
 @onready var cards_row := $Cards
@@ -24,6 +25,7 @@ func _ready() -> void:
 	times_column.visible = false
 	boss_total_time.visible = false
 	health_penalty.visible = false
+	extra_cost_bonus.visible = false
 	total_time_label.visible = false
 	dotted_line.region_rect = Rect2(0, 0, 0, 4)
 	cards_row.visible = false
@@ -46,9 +48,15 @@ func _ready() -> void:
 
 	tween.tween_callback(func(): boss_total_time.visible = true)
 	tween.tween_method(set_boss_total_time, 0.0, total_boss_time, score_count_duration)
+
 	tween.tween_callback(func(): health_penalty.visible = true)
-	tween.tween_method(set_health_penalty, 0.0, Scoring.total_health_lost, score_count_duration)
+	tween.tween_method(set_health_penalty, 0.0, Scoring.total_health_lost * 10, score_count_duration)
+
+	tween.tween_callback(func(): extra_cost_bonus.visible = true)
+	tween.tween_method(set_extra_cost_bonus, 0.0, Scoring.extra_cost_bonus, score_count_duration)
+
 	tween.tween_property(dotted_line, "region_rect", Rect2(0, 0, 150, 4), score_count_duration)
+
 	tween.tween_callback(func(): total_time_label.visible = true)
 	tween.tween_method(set_total_time, 0.0, total_time, score_count_duration)
 
@@ -66,6 +74,10 @@ func set_boss_time(value: float, label: Label):
 func set_boss_total_time(value: float):
 	AudioManager.play_sound(AudioManager.score)
 	boss_total_time.text = "Boss Total Time: +%ss" % str(snapped(value, 0.01))
+
+func set_extra_cost_bonus(value: float):
+	AudioManager.play_sound(AudioManager.score)
+	extra_cost_bonus.text = "Extra   Bonus: -%ss" % str(snapped(value, 0.01))
 
 func set_health_penalty(value: float):
 	AudioManager.play_sound(AudioManager.score)
