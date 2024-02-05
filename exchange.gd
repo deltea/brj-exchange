@@ -3,155 +3,134 @@ class_name Exchange
 
 enum STATE {
 	EXCHANGE,
-	CURRENT,
+	SHOP,
 	FINISHED,
 }
 
 @export var tween_speed = 6
-@export var exchange_panel_y = -270.0
-@export var current_panel_y = 270.0
-@export var cost_texture: Texture2D
-@export var cost_filled: Texture2D
-@export var cost_extra: Texture2D
+@export var exchange_panel_y = 270.0
+@export var current_panel_y = -270.0
 
-@onready var exchange_panel := $ExchangePanel
-@onready var current_panel := $CurrentPanel
-@onready var exchange_cards_row := $ExchangePanel/VerticalCenter/ExchangeCards
-@onready var current_cards_row := $CurrentPanel/VerticalCenter/CurrentCards
-@onready var cost_row := $CurrentPanel/Cost
-@onready var back_button := $CurrentPanel/BackButton
-@onready var continue_button := $CurrentPanel/ContinueButton
-@onready var current_panel_instructions := $CurrentPanel/Instructions
+@onready var existing_panel := $ExistingPanel
+@onready var shop_panel := $ShopPanel
+@onready var existing_cards_row := $ExistingPanel/VerticalCenter/ExistingCards
+@onready var shop_cards_row := $ShopPanel/VerticalCenter/ShopCards
+@onready var continue_button := $ExistingPanel/ContinueButton
+@onready var exchange_text := $ExchangeText
 
 var card_scene = preload("res://ui/card.tscn")
 var state = STATE.EXCHANGE
-var exchange_upgrade: UpgradeResource
-var selected_upgrades: Array[UpgradeResource]
+var shop_upgrade_selected: UpgradeResource
+var existing_upgrades_selected: Array[UpgradeResource]
 
 func _ready() -> void:
-	var upgrade_num = 5
-	var random_upgrades = UpgradeManager.get_random_upgrades(upgrade_num)
-	for i in range(upgrade_num):
-		var card = card_scene.instantiate() as Card
-		card.upgrade = random_upgrades[i]
-		exchange_cards_row.add_child(card)
-
+	# Get 1 new random upgrade
 	var new_random_upgrade = UpgradeManager.get_random_upgrades(1)[0]
 	UpgradeManager.current_upgrades.push_back(new_random_upgrade)
 
+	# You current existing cards
 	var current_num = len(UpgradeManager.current_upgrades)
 	for i in range(current_num):
 		var card = card_scene.instantiate() as Card
 		card.upgrade = UpgradeManager.current_upgrades[i]
 		card.button_group = null
-		current_cards_row.add_child(card)
+		if i == current_num - 1: card.is_new = true
+		existing_cards_row.add_child(card)
 
-	Events.exchange_card_select.connect(_on_exchange_card_select)
-	Events.exchange_card_deselect.connect(_on_exchange_card_deselect)
+	Events.card_select.connect(_on_card_select)
+	Events.card_deselect.connect(_on_card_deselect)
 
 func _process(delta: float) -> void:
-	var exchange_panel_target = 0.0 if state == STATE.EXCHANGE else exchange_panel_y
-	exchange_panel.position.y = lerp(exchange_panel.position.y, exchange_panel_target, tween_speed * delta)
+	var existing_panel_target_y = 0.0 if state == STATE.EXCHANGE else -270.0
+	existing_panel.position.y = lerp(existing_panel.position.y, existing_panel_target_y, tween_speed * delta)
 
-	var current_panel_target = 0.0 if state == STATE.CURRENT or state == STATE.FINISHED else current_panel_y
-	current_panel.position.y = lerp(current_panel.position.y, current_panel_target, tween_speed * delta)
+	var shop_panel_target_y = 0.0 if state == STATE.SHOP else 270.0
+	shop_panel.position.y = lerp(shop_panel.position.y, shop_panel_target_y, tween_speed * delta)
 
-func update_cost_ui():
-	var selected_cost = get_selected_cards_cost()
-	for cost_ui in cost_row.get_children():
-		cost_ui.texture = null
-		cost_ui.visible = false
-
-	for i in range(exchange_upgrade.cost):
-		var cost_ui = cost_row.get_child(i) as TextureRect
-		if cost_ui:
-			cost_ui.visible = true
-			if i < selected_cost:
-				cost_ui.texture = cost_filled
-			else:
-				cost_ui.texture = cost_texture
-
-			if selected_cost > exchange_upgrade.cost:
-				cost_row.get_child(3).visible = true
-				cost_row.get_child(3).texture = cost_extra
-
-	if selected_cost >= exchange_upgrade.cost:
-		continue_button.disabled = false
-	else:
-		continue_button.disabled = true
-
-func get_selected_cards_cost():
+func get_selected_existing_cards_cost():
 	var cost = 0
-	for upgrade in selected_upgrades:
+	for upgrade in existing_upgrades_selected:
 		cost += upgrade.cost
 	return cost
 
-func get_exchange_card():
-	for card in exchange_cards_row.get_children():
+func get_selected_shop_card():
+	for card in shop_cards_row.get_children():
 		if card.button_pressed: return card
 
-func get_selected_cards():
+func get_selected_existing_cards():
 	var result: Array[Card] = []
-	for card in current_cards_row.get_children():
+	for card in existing_cards_row.get_children():
 		if card.button_pressed: result.push_back(card)
 	return result
 
-func _on_exchange_card_select(upgrade: UpgradeResource):
-	if state == STATE.EXCHANGE:
-		exchange_upgrade = upgrade
-		state = STATE.CURRENT
-		update_cost_ui()
-	elif state == STATE.CURRENT:
-		selected_upgrades.push_back(upgrade)
-		update_cost_ui()
+func update_continue_button():
+	continue_button.disabled = len(existing_upgrades_selected) < 1
 
-func _on_exchange_card_deselect(upgrade: UpgradeResource):
-	if state == STATE.CURRENT:
-		var upgrade_index = selected_upgrades.find(upgrade)
-		if upgrade_index != -1:
-			selected_upgrades.remove_at(upgrade_index)
-			update_cost_ui()
+func create_shop_cards():
+	# Random cards in the shop
+	var shop_upgrade_num = 5
+	var random_upgrades = UpgradeManager.get_random_upgrades(shop_upgrade_num)
+	for i in range(shop_upgrade_num):
+		var card = card_scene.instantiate() as Card
+		var upgrade = random_upgrades[i]
+		card.upgrade = upgrade
+		card.is_disabled = get_selected_existing_cards_cost() < upgrade.cost
+		shop_cards_row.add_child(card)
 
-func _on_back_button_pressed() -> void:
-	state = STATE.EXCHANGE
+func finish():
+	# Disabled all cards
+	for card in existing_cards_row.get_children(): card.disabled = true
+	for card in shop_cards_row.get_children(): card.disabled = true
 
-func _on_continue_button_pressed() -> void:
-	state = STATE.FINISHED
-
-	for card in current_cards_row.get_children():
-		card.disabled = true
-
-	UpgradeManager.current_upgrades.push_back(exchange_upgrade)
-	for upgrade in selected_upgrades:
+	# Exchanging the cards in upgrade manager
+	UpgradeManager.current_upgrades.push_back(shop_upgrade_selected)
+	for upgrade in existing_upgrades_selected:
 		var index = UpgradeManager.current_upgrades.find(upgrade)
-		if index != -1:
-			UpgradeManager.current_upgrades.remove_at(index)
+		if index != -1: UpgradeManager.current_upgrades.remove_at(index)
 
 	UpgradeManager.activate_all_upgrades()
 
+	# Animation stuff
 	var tween = get_tree().create_tween().set_parallel().set_trans(Tween.TRANS_BACK)
-	tween.tween_property(continue_button, "position", Vector2(0, 100), 1.0).as_relative()
-	tween.tween_property(back_button, "position", Vector2(0, 100), 1.0).as_relative()
-	tween.tween_property(cost_row, "position", -Vector2(0, 100), 1.0).as_relative()
-	tween.tween_property(current_panel_instructions, "position", -Vector2(0, 60), 1.0).as_relative()
-	tween.tween_property($CurrentPanel/VerticalCenter, "global_position", Vector2(0, 200 - 54), 1.0)
-	tween.tween_property($ExchangePanel/VerticalCenter, "global_position", Vector2(0, 70 - 54), 1.0)
 
-	var exchange_card = get_exchange_card()
+	tween.tween_interval(0.5)
+	tween.chain().tween_property($ExistingPanel/VerticalCenter, "global_position", Vector2(0, 56 - 38), 1.0)
+	tween.tween_property($ShopPanel/VerticalCenter, "global_position", Vector2(0, 214 - 76), 1.0)
+	tween.tween_property(exchange_text, "global_position", Vector2(200, 127), 1.0)
+
+	tween.tween_interval(2.0)
+	var shop_card = get_selected_shop_card()
 	tween.chain().tween_callback(func():
-		exchange_cards_row.remove_child(exchange_card)
-		current_cards_row.add_child(exchange_card)
+		shop_cards_row.remove_child(shop_card)
+		existing_cards_row.add_child(shop_card)
 	)
 
-	var selected_cards = get_selected_cards()
+	var selected_cards = get_selected_existing_cards()
 	for card in selected_cards:
 		tween.tween_callback(func():
-			current_cards_row.remove_child(card)
-			exchange_cards_row.add_child(card)
+			existing_cards_row.remove_child(card)
+			shop_cards_row.add_child(card)
 		)
 
-	tween.chain().tween_property($CurrentPanel/VerticalCenter, "global_position", Vector2(0, 270), 1.0).set_delay(1.0)
-	tween.tween_property($ExchangePanel/VerticalCenter, "global_position", Vector2(0, 0 - 108), 1.0).set_delay(1.0)
+	tween.chain().tween_callback(SceneManager.next_level).set_delay(1.0)
 
-	tween.tween_callback(SceneManager.next_level).set_delay(1.0)
+func _on_card_select(upgrade: UpgradeResource):
+	if state == STATE.EXCHANGE:
+		existing_upgrades_selected.push_back(upgrade)
+		update_continue_button()
+	elif state == STATE.SHOP:
+		shop_upgrade_selected = upgrade
+		state = STATE.FINISHED
+		finish()
 
+func _on_card_deselect(upgrade: UpgradeResource):
+	if state == STATE.EXCHANGE:
+		var index = existing_upgrades_selected.find(upgrade)
+		if index != -1: existing_upgrades_selected.remove_at(index)
+		update_continue_button()
+	elif state == STATE.SHOP:
+		shop_upgrade_selected = null
+
+func _on_continue_button_pressed() -> void:
+	state = STATE.SHOP
+	create_shop_cards()

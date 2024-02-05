@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1u5yhbh4x6bu"]
+[gd_scene load_steps=9 format=3 uid="uid://d1u5yhbh4x6bu"]
 
 [ext_resource type="ButtonGroup" uid="uid://hte8m2f7nvyi" path="res://ui/button_group.tres" id="1_axv7o"]
 [ext_resource type="Texture2D" uid="uid://cp4s8ga7e423h" path="res://assets/cards/placeholder.png" id="1_m1ron"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://8f3h1q5epi06" path="res://utils/drop_shadow_ui.tscn" id="3_u7v7r"]
 [ext_resource type="Shader" path="res://shaders/solid_color.gdshader" id="5_1jqbw"]
 [ext_resource type="Texture2D" uid="uid://g77clxgyr6ah" path="res://assets/ui/card-border.png" id="6_o7hli"]
+[ext_resource type="Texture2D" uid="uid://bqlf1nh12ossg" path="res://assets/ui/new-label.png" id="7_6b30a"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ux8p6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d6bl2"]
 resource_local_to_scene = true
 shader = ExtResource("5_1jqbw")
 shader_parameter/enabled = true
@@ -25,7 +26,7 @@ texture_normal = ExtResource("1_m1ron")
 script = ExtResource("1_rf507")
 
 [node name="DropShadowUI" parent="." instance=ExtResource("3_u7v7r")]
-material = SubResource("ShaderMaterial_ux8p6")
+material = SubResource("ShaderMaterial_d6bl2")
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,7 +38,6 @@ grow_vertical = 2
 shadow_color = Color(0.160784, 0.160784, 0.160784, 1)
 
 [node name="Border" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 68.0
@@ -48,6 +48,14 @@ stretch_mode = 2
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 68.0
+stretch_mode = 2
+
+[node name="NewLabel" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -14.0
+offset_right = 52.0
+offset_bottom = -2.0
+texture = ExtResource("7_6b30a")
 stretch_mode = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

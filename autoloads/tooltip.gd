@@ -24,9 +24,13 @@ func show_tooltip(new_text: String):
 func hide_tooltip():
 	visible = false
 
-func _on_card_hover(value: bool, upgrade: UpgradeResource):
+func _on_card_hover(value: bool, upgrade: UpgradeResource, cannot_afford: bool):
 	if value:
-		var text = "[wave][i]%s[/i][/wave]\n\n%s" % [upgrade.name, upgrade.description]
+		var text = ""
+
+		if cannot_afford: text = "\n\n[center][wave][i]You canot afford this card.[/i][/wave][/center]"
+		else: text = "[wave][i]%s[/i][/wave]\n\n%s" % [upgrade.name, upgrade.description]
+
 		show_tooltip(text)
 	else:
 		hide_tooltip()
